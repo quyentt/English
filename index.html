@@ -616,6 +616,7 @@
         <button data-view="speaking">🎤 Luyện nói</button>
         <button data-view="vocab">📒 Từ vựng</button>
         <button data-view="irregular">🔤 Động từ BQT</button>
+        <button onclick="location.href='tieng-anh-9.html'" style="background:#22c55e;color:#fff">🎓 Tiếng Anh 9</button>
       </nav>
     </div>
   </header>
@@ -1248,7 +1249,7 @@
       navBtns.forEach(b => b.classList.toggle('active', b.dataset.view === id));
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-    navBtns.forEach(b => b.onclick = () => show(b.dataset.view));
+    navBtns.forEach(b => { if (b.dataset.view) b.onclick = () => show(b.dataset.view); });
     document.querySelectorAll('[data-go]').forEach(el => el.onclick = () => show(el.dataset.go));
 
     /* ============================================================

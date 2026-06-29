@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiếng Anh 9 – Global Success | Hệ thống bài giảng & luyện tập</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --bg:#0f172a;--card:#1e293b;--card2:#273449;--primary:#6366f1;--primary2:#4f46e5;
+    --accent:#22c55e;--warn:#f59e0b;--danger:#ef4444;--text:#e2e8f0;--muted:#94a3b8;--border:#334155;
+  }
+  body{font-family:'Segoe UI',system-ui,Tahoma,sans-serif;background:linear-gradient(135deg,#0f172a,#1e1b4b);color:var(--text);min-height:100vh;line-height:1.65;}
+  header{background:rgba(15,23,42,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;}
+  .hi{max-width:1150px;margin:0 auto;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+  .logo{font-size:1.2rem;font-weight:800;display:flex;align-items:center;gap:8px;}
+  nav{display:flex;gap:5px;flex-wrap:wrap;}
+  nav button{background:transparent;color:var(--muted);border:none;padding:8px 14px;border-radius:10px;cursor:pointer;font-size:.93rem;font-weight:600;transition:.2s;}
+  nav button:hover{color:#fff;background:var(--card);}
+  nav button.active{background:var(--primary);color:#fff;}
+  main{max-width:1150px;margin:0 auto;padding:24px 18px 80px;}
+  .view{display:none;animation:fade .35s;}
+  .view.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+  h1{font-size:1.8rem;margin-bottom:8px;}
+  h2{font-size:1.35rem;margin:22px 0 12px;}
+  h3{font-size:1.1rem;margin-bottom:8px;color:#a5b4fc;}
+  p{margin-bottom:8px;}
+  .muted{color:var(--muted);}
+  .hero{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:28px;margin-bottom:22px;}
+  .hero h1{background:linear-gradient(90deg,#818cf8,#34d399);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .grid{display:grid;gap:15px;}
+  .cols3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr));}
+  .cols2{grid-template-columns:repeat(auto-fit,minmax(290px,1fr));}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:18px;}
+  .card.link{cursor:pointer;transition:.2s;}
+  .card.link:hover{transform:translateY(-4px);border-color:var(--primary);box-shadow:0 10px 28px rgba(99,102,241,.2);}
+  .theme-tag{display:inline-block;font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:999px;margin-bottom:8px;}
+  .badge{display:inline-block;font-size:.78rem;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--card2);color:#a5b4fc;margin:2px 0;}
+  .unit-num{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:var(--primary);color:#fff;font-weight:800;margin-right:8px;}
+  .btn{background:var(--primary);color:#fff;border:none;padding:10px 18px;border-radius:10px;cursor:pointer;font-size:.93rem;font-weight:700;transition:.2s;}
+  .btn:hover{background:var(--primary2);}
+  .btn.ghost{background:var(--card2);color:var(--text);}
+  .btn.ghost:hover{background:var(--border);}
+  .btn.green{background:var(--accent);}
+  .btn.sm{padding:5px 11px;font-size:.82rem;}
+  .btn:disabled{opacity:.5;cursor:not-allowed;}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+  select{background:var(--card2);color:var(--text);border:1px solid var(--border);padding:9px 13px;border-radius:10px;font-size:.95rem;}
+  .formula{background:var(--card2);border:1px dashed var(--primary);border-radius:12px;padding:13px 15px;margin:10px 0;font-family:'Consolas',monospace;}
+  .formula b{color:#fcd34d;}
+  ul.clean{list-style:none;}
+  ul.clean li{padding:4px 0 4px 24px;position:relative;}
+  ul.clean li::before{content:'▸';position:absolute;left:2px;color:var(--accent);}
+  .ex{background:rgba(34,197,94,.08);border-left:3px solid var(--accent);padding:8px 12px;border-radius:6px;margin:6px 0;}
+  .ex .vi{color:var(--muted);font-style:italic;font-size:.9rem;}
+  .note{background:rgba(245,158,11,.1);border-left:3px solid var(--warn);padding:8px 12px;border-radius:6px;margin:8px 0;font-size:.92rem;}
+  table{width:100%;border-collapse:collapse;}
+  th{text-align:left;color:#a5b4fc;border-bottom:2px solid var(--border);padding:9px;}
+  td{border-bottom:1px solid var(--border);padding:8px 9px;}
+  .tag{display:inline-block;background:var(--card2);padding:4px 10px;border-radius:8px;font-size:.82rem;margin:3px;}
+  /* quiz */
+  .progress{height:8px;background:var(--card2);border-radius:99px;overflow:hidden;margin:12px 0;}
+  .progress>div{height:100%;background:linear-gradient(90deg,#6366f1,#22c55e);width:0;transition:.3s;}
+  .question{font-size:1.18rem;font-weight:600;margin:8px 0 16px;}
+  .opt{display:block;width:100%;text-align:left;background:var(--card2);color:var(--text);border:2px solid transparent;padding:12px 16px;border-radius:11px;margin-bottom:9px;cursor:pointer;font-size:1rem;transition:.15s;}
+  .opt:hover{border-color:var(--primary);}
+  .opt.correct{border-color:var(--accent);background:rgba(34,197,94,.18);}
+  .opt.wrong{border-color:var(--danger);background:rgba(239,68,68,.18);}
+  .opt.disabled{pointer-events:none;}
+  .feedback{padding:11px 15px;border-radius:10px;margin:6px 0 12px;display:none;}
+  .feedback.show{display:block;}
+  .feedback.ok{background:rgba(34,197,94,.15);border:1px solid var(--accent);}
+  .feedback.no{background:rgba(239,68,68,.15);border:1px solid var(--danger);}
+  .scoreboard{text-align:center;padding:18px;}
+  .scoreboard .big{font-size:2.8rem;font-weight:800;}
+  .acc{margin-bottom:12px;}
+  .acc-head{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:13px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;font-weight:700;}
+  .acc-head:hover{border-color:var(--primary);}
+  .acc-body{display:none;padding:14px 16px;background:rgba(30,41,59,.5);border:1px solid var(--border);border-top:none;border-radius:0 0 12px 12px;margin-top:-6px;}
+  .acc.open .acc-body{display:block;}
+  .acc.open .acc-head{border-radius:12px 12px 0 0;}
+  .chev{transition:.2s;}.acc.open .chev{transform:rotate(90deg);}
+  .review-item{padding:10px;border-radius:8px;margin-bottom:8px;background:var(--card2);font-size:.92rem;}
+  footer{text-align:center;color:var(--muted);padding:22px;font-size:.83rem;border-top:1px solid var(--border);}
+  @media(max-width:600px){.hi{justify-content:center;}h1{font-size:1.4rem;}}
+</style>
+</head>
+<body>
+<header>
+  <div class="hi">
+    <div class="logo">🎓 Tiếng Anh 9 <span class="muted" style="font-weight:600;font-size:.8rem">Global Success</span></div>
+    <nav>
+      <button class="active" data-v="home">🏠 Trang chủ</button>
+      <button data-v="study">🧠 Cách học</button>
+      <button data-v="lessons">📘 Bài giảng</button>
+      <button data-v="listen">🎧 Luyện nghe</button>
+      <button data-v="practice">✍️ Luyện tập</button>
+      <button data-v="test">📝 Kiểm tra</button>
+      <button onclick="location.href='index.html'" style="background:#3b82f6;color:#fff">📚 Học 12 thì</button>
+    </nav>
+  </div>
+</header>
+<main>
+  <!-- HOME -->
+  <section id="home" class="view active">
+    <div class="hero">
+      <h1>Hệ thống bài giảng Tiếng Anh 9 🚀</h1>
+      <p class="muted">Bám sát sách <b>Tiếng Anh 9 – Global Success</b> (Bộ Giáo dục). Gồm <b>cách học</b>, <b>bài giảng 12 Unit</b> (ngữ pháp – từ vựng – phát âm – giao tiếp), <b>hệ thống bài tập</b> và <b>bài kiểm tra</b>. Hoạt động <b>offline</b>.</p>
+      <div class="row" style="margin-top:14px">
+        <button class="btn" data-go="lessons">📘 Vào bài giảng</button>
+        <button class="btn ghost" data-go="study">🧠 Xem cách học</button>
+        <button class="btn ghost" data-go="test">📝 Làm kiểm tra</button>
+      </div>
+    </div>
+    <h2>Chương trình gồm 4 chủ điểm – 12 Unit</h2>
+    <div id="themeList"></div>
+  </section>
+
+  <!-- STUDY METHOD -->
+  <section id="study" class="view">
+    <h1>🧠 Cách học hiệu quả môn Tiếng Anh 9</h1>
+    <p class="muted">Hướng dẫn phương pháp học cho từng phần. Áp dụng đều đặn sẽ tiến bộ nhanh.</p>
+    <div id="studyContent" style="margin-top:16px"></div>
+  </section>
+
+  <!-- LESSONS -->
+  <section id="lessons" class="view">
+    <h1>📘 Bài giảng theo Unit</h1>
+    <div class="card" style="margin:14px 0">
+      <div class="row"><label>Chọn Unit:</label><select id="lsUnit"></select></div>
+    </div>
+    <div id="lessonBody"></div>
+  </section>
+
+  <!-- LISTEN -->
+  <section id="listen" class="view">
+    <h1>🎧 Luyện nghe</h1>
+    <p class="muted">Mỗi Unit có 1 bài nghe (file MP3 trong thư mục <b>audio/</b>). Đọc "Nội dung & lưu ý" trước khi nghe để nghe hiệu quả hơn.</p>
+    <div class="card" style="margin:14px 0"><div class="row"><label>Chọn Unit:</label><select id="lnUnit"></select></div></div>
+    <div id="lnBody"></div>
+  </section>
+
+  <!-- PRACTICE -->
+  <section id="practice" class="view">
+    <h1>✍️ Luyện tập trắc nghiệm</h1>
+    <div id="pSetup" class="card" style="margin-top:14px;text-align:center">
+      <h3>Chọn phạm vi luyện tập</h3>
+      <div class="row" style="justify-content:center;margin:14px 0">
+        <select id="pScope"></select>
+        <select id="pCount">
+          <option value="10">10 câu</option>
+          <option value="15" selected>15 câu</option>
+          <option value="20">20 câu</option>
+          <option value="30">30 câu</option>
+        </select>
+      </div>
+      <button class="btn green" id="pStart">▶️ Bắt đầu</button>
+      <p class="muted" style="margin-top:10px;font-size:.85rem">🔀 Câu hỏi và đáp án được trộn ngẫu nhiên mỗi lần làm.</p>
+    </div>
+    <div id="pPlay" style="display:none"><div class="card">
+      <div class="row" style="justify-content:space-between">
+        <button class="btn ghost sm" id="pBack">← Quay lại</button>
+        <span class="badge" id="pTopic">—</span><span class="muted" id="pCounter">1/10</span>
+      </div>
+      <div class="progress"><div id="pBar"></div></div>
+      <div class="question" id="pQ">—</div>
+      <div id="pOpts"></div>
+      <div class="feedback" id="pFb"></div>
+      <div class="row" style="justify-content:flex-end"><button class="btn" id="pNext" style="display:none">Câu tiếp →</button></div>
+    </div></div>
+    <div id="pResult" style="display:none"><div class="card scoreboard">
+      <div class="big" id="pScore">0/0</div><p id="pMsg" class="muted"></p>
+      <div class="row" style="justify-content:center;margin-top:14px">
+        <button class="btn green" id="pRetry">🔁 Làm lại</button>
+        <button class="btn ghost" id="pNew">Đổi phạm vi</button>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- TEST -->
+  <section id="test" class="view">
+    <h1>📝 Bài kiểm tra</h1>
+    <div id="tSetup" class="card" style="margin-top:14px;text-align:center">
+      <h3>Chọn nội dung kiểm tra</h3>
+      <div class="row" style="justify-content:center;margin:14px 0">
+        <select id="tScope"></select>
+        <select id="tCount">
+          <option value="15">15 câu (15')</option>
+          <option value="25" selected>25 câu (45')</option>
+          <option value="40">40 câu (đề lớn)</option>
+        </select>
+      </div>
+      <button class="btn green" id="tStart">▶️ Bắt đầu kiểm tra</button>
+      <p class="muted" style="margin-top:10px;font-size:.85rem">Chấm điểm theo thang 10. Cuối bài có phần xem lại các câu sai.</p>
+    </div>
+    <div id="tPlay" style="display:none"><div class="card">
+      <div class="row" style="justify-content:space-between">
+        <button class="btn ghost sm" id="tBack">← Thoát</button>
+        <span class="badge" id="tTopic">—</span><span class="muted" id="tCounter">1/25</span>
+      </div>
+      <div class="progress"><div id="tBar"></div></div>
+      <div class="question" id="tQ">—</div>
+      <div id="tOpts"></div>
+      <div class="row" style="justify-content:space-between;margin-top:8px">
+        <button class="btn ghost" id="tPrev">← Câu trước</button>
+        <button class="btn" id="tNextBtn">Câu sau →</button>
+      </div>
+      <div class="row" style="justify-content:center;margin-top:12px"><button class="btn green" id="tSubmit">✅ Nộp bài</button></div>
+    </div></div>
+    <div id="tResult" style="display:none"></div>
+  </section>
+</main>
+<footer>Biên soạn theo Tiếng Anh 9 – Global Success (NXB Giáo dục Việt Nam) • Chạy offline • Nhấn 🔊 để nghe phát âm</footer>
+
+<script>
+/* ===== Tương thích Safari + bắt lỗi ===== */
+window.onerror=function(m,s,l){var b=document.getElementById('eb');if(!b){b=document.createElement('div');b.id='eb';b.style.cssText='position:fixed;left:0;right:0;bottom:0;background:#7f1d1d;color:#fff;padding:9px 12px;font:12px monospace;z-index:999';document.body.appendChild(b);}b.textContent='⚠️ '+m+' (dòng '+l+')';return false;};
+if(!Array.prototype.flat){Array.prototype.flat=function(){return this.reduce((a,b)=>a.concat(b),[]);};}
+
+/* ============================================================
+   DỮ LIỆU 12 UNIT (Tiếng Anh 9 – Global Success)
+============================================================ */
+const THEMES=[
+  {name:'Our Communities',vi:'Cộng đồng của chúng ta',color:'#6366f1',units:[1,2,3]},
+  {name:'Our Heritage',vi:'Di sản của chúng ta',color:'#f59e0b',units:[4,5,6]},
+  {name:'Our World',vi:'Thế giới của chúng ta',color:'#06b6d4',units:[7,8,9]},
+  {name:'Visions of the Future',vi:'Tầm nhìn tương lai',color:'#22c55e',units:[10,11,12]}
+];
+
+const UNITS=[
+{
+  n:1,title:'Local Community',vi:'Cộng đồng địa phương',color:'#6366f1',
+  vocabTopic:'Community helpers • Traditional handicrafts',
+  pron:'Ôn nguyên âm /æ/, /ɑː/, /e/',
+  grammarNames:['Từ để hỏi + to-V','Phrasal verbs (1)'],
+  everydayName:'Seeking help and responding (Nhờ giúp đỡ & đáp lại)',
+  tips:[
+    'Học từ vựng theo nhóm: nghề giúp ích cộng đồng (firefighter, volunteer...) và nghề thủ công (artisan, pottery...).',
+    'Học phrasal verbs theo cụm có ví dụ câu, đừng học rời nghĩa từng từ.',
+    'Luyện mẫu câu nhờ giúp đỡ để dùng trong Speaking.'
+  ],
+  grammar:[
+    {title:'Từ để hỏi đứng trước to-infinitive',
+     theory:'<div class="formula"><b>Từ để hỏi</b> (what / where / when / how / who / which / whether) <b>+ to + V</b></div>',
+     usage:['Dùng sau các động từ: know, decide, wonder, learn, understand, ask, tell, show, explain, remember...','Cụm này thay cho cả một mệnh đề.','<i>whether/if + to-V</i> mang nghĩa "có nên ... hay không".'],
+     examples:[['I don\'t know what to do.','Tôi không biết phải làm gì.'],['Can you tell me how to get to the museum?','Bạn chỉ tôi cách đến bảo tàng được không?'],['She hasn\'t decided where to go this summer.','Cô ấy chưa quyết định đi đâu hè này.']]},
+    {title:'Phrasal verbs (1) – Cụm động từ',
+     theory:'<div class="formula"><b>Động từ + tiểu từ</b> (giới từ/trạng từ) → nghĩa mới</div>',
+     usage:['Một số tách được tân ngữ (turn it on), một số không tách (look after the baby).','Học thuộc cả cụm + nghĩa + ví dụ.'],
+     examples:[['Please turn off the lights before going out.','Tắt đèn trước khi ra ngoài nhé.'],['Who looks after your little brother?','Ai trông em trai của bạn?'],['I get on with my new neighbours well.','Tôi hòa hợp với hàng xóm mới.']],
+     note:'Phrasal verbs hay gặp: turn on/off, look after, look for, get on (with), set up, take care of, find out, give up, put on, go on.'}
+  ],
+  vocab:[['community','/kəˈmjuːnəti/','cộng đồng'],['neighbourhood','/ˈneɪbəhʊd/','khu phố, hàng xóm'],['suburb','/ˈsʌbɜːb/','vùng ngoại ô'],['facility','/fəˈsɪləti/','tiện ích, cơ sở vật chất'],['craft village','/krɑːft ˈvɪlɪdʒ/','làng nghề'],['handicraft','/ˈhændikrɑːft/','đồ thủ công'],['artisan','/ˈɑːtɪzæn/','nghệ nhân'],['speciality','/ˌspeʃiˈæləti/','đặc sản'],['pottery','/ˈpɒtəri/','đồ gốm'],['weave','/wiːv/','dệt'],['preserve','/prɪˈzɜːv/','bảo tồn'],['volunteer','/ˌvɒlənˈtɪə/','tình nguyện viên'],['firefighter','/ˈfaɪəfaɪtə/','lính cứu hỏa'],['neighbour','/ˈneɪbə/','hàng xóm']],
+  pronEx:[['/æ/','cat, hand, map, bag'],['/ɑː/','car, park, far, start'],['/e/','bed, ten, red, head']],
+  everyday:[['Could you help me, please?','Bạn giúp mình được không?'],['Can you give me a hand?','Bạn giúp một tay nhé?'],['Sure. / Of course.','Tất nhiên rồi.'],['No problem.','Không vấn đề gì.'],['I\'m sorry, I\'m a bit busy now.','Xin lỗi, mình đang hơi bận.']],
+  ex:[
+    {q:'I don\'t know ___ to start the lesson.', o:['how','what','which','whether'], a:0, e:'"how to + V" = cách làm gì → how to start.'},
+    {q:'Can you tell me where ___ the bus tickets?', o:['buy','to buy','buying','bought'], a:1, e:'Từ để hỏi (where) + to-V → to buy.'},
+    {q:'Please turn ___ the lights when you leave.', o:['off','in','at','to'], a:0, e:'turn off = tắt.'},
+    {q:'My grandmother ___ my little sister every afternoon.', o:['looks for','looks after','looks up','looks at'], a:1, e:'look after = chăm sóc.'},
+    {q:'An ___ is a person who makes handicrafts by hand.', o:['artisan','engineer','author','athlete'], a:0, e:'artisan = nghệ nhân.'},
+    {q:'We moved to a quiet ___ outside the city.', o:['suburb','centre','traffic','factory'], a:0, e:'suburb = vùng ngoại ô.'},
+    {q:'She hasn\'t decided ___ to invite to her party.', o:['who','how','where','when'], a:0, e:'who to invite = mời ai.'},
+    {q:'They want to ___ the old craft village for future generations.', o:['preserve','pollute','destroy','waste'], a:0, e:'preserve = bảo tồn.'},
+    {q:'I get ___ well with all my classmates.', o:['on','up','off','in'], a:0, e:'get on with = hòa hợp với.'},
+    {q:'Bat Trang is famous for its ___.', o:['pottery','seafood','mountains','beaches'], a:0, e:'Bát Tràng nổi tiếng về đồ gốm (pottery).'}
+  ]
+},
+{
+  n:2,title:'City Life',vi:'Cuộc sống thành phố',color:'#6366f1',
+  vocabTopic:'City life (cuộc sống đô thị)',
+  pron:'Ôn nguyên âm đôi /aʊ/, /əʊ/, /eə/',
+  grammarNames:['So sánh kép (Double comparatives)','Phrasal verbs (2)'],
+  everydayName:'Offering help and responding (Đề nghị giúp đỡ & đáp lại)',
+  tips:['Học cặp từ trái nghĩa mô tả thành phố (crowded↔quiet, modern↔old).','Nắm 2 dạng so sánh kép và luyện đặt câu thật.','Phân biệt giọng các nguyên âm đôi qua cặp từ tối thiểu.'],
+  grammar:[
+    {title:'So sánh kép (Double comparatives)',
+     theory:'<div class="formula"><b>Dạng 1:</b> comparative + <b>and</b> + comparative → "ngày càng..."<br>bigger and bigger; more and more crowded<br><br><b>Dạng 2:</b> <b>The</b> + comparative ..., <b>the</b> + comparative ... → "càng... càng..."</div>',
+     usage:['Dạng 1 diễn tả sự thay đổi tăng/giảm dần.','Tính từ ngắn: -er and -er; tính từ dài: more and more + adj.','Dạng 2 diễn tả 2 sự việc thay đổi cùng nhau.'],
+     examples:[['The city is getting more and more crowded.','Thành phố ngày càng đông đúc.'],['The streets are becoming wider and wider.','Đường phố ngày càng rộng hơn.'],['The more crowded the city gets, the more polluted it becomes.','Thành phố càng đông thì càng ô nhiễm.']]},
+    {title:'Phrasal verbs (2)',
+     theory:'<div class="formula"><b>Động từ + tiểu từ</b> (chủ đề thành phố/cuộc sống)</div>',
+     usage:['Học cụm gắn với ngữ cảnh đô thị.'],
+     examples:[['Traffic builds up during rush hour.','Giao thông ùn ứ vào giờ cao điểm.'],['I get around the city by underground.','Tôi đi lại trong thành phố bằng tàu điện ngầm.'],['We should cut down on using private cars.','Chúng ta nên giảm dùng xe cá nhân.']],
+     note:'Hay gặp: get around (đi lại), build up (tích tụ), cut down on (cắt giảm), set off (khởi hành), put up with (chịu đựng).'}
+  ],
+  vocab:[['urban','/ˈɜːbən/','thuộc đô thị'],['skyscraper','/ˈskaɪskreɪpə/','nhà chọc trời'],['traffic jam','/ˈtræfɪk dʒæm/','tắc đường'],['congestion','/kənˈdʒestʃən/','sự tắc nghẽn'],['pollution','/pəˈluːʃn/','ô nhiễm'],['pedestrian','/pəˈdestriən/','người đi bộ'],['downtown','/ˌdaʊnˈtaʊn/','trung tâm thành phố'],['crowded','/ˈkraʊdɪd/','đông đúc'],['modern','/ˈmɒdn/','hiện đại'],['reliable','/rɪˈlaɪəbl/','đáng tin cậy'],['fascinating','/ˈfæsɪneɪtɪŋ/','hấp dẫn'],['stressed','/strest/','căng thẳng'],['underground','/ˈʌndəɡraʊnd/','tàu điện ngầm'],['facilities','/fəˈsɪlətiz/','tiện ích']],
+  pronEx:[['/aʊ/','now, house, town, down'],['/əʊ/','go, home, road, know'],['/eə/','hair, care, where, chair']],
+  everyday:[['Would you like some help?','Bạn có cần giúp gì không?'],['Do you need a hand?','Bạn cần giúp một tay không?'],['Let me help you with that.','Để mình giúp bạn việc đó.'],['Yes, please. That\'s very kind of you.','Vâng, cảm ơn bạn nhiều.'],['No, thanks. I\'m fine.','Không, cảm ơn. Mình ổn.']],
+  ex:[
+    {q:'The city is getting ___ crowded.', o:['more and more','the more','as more','much most'], a:0, e:'Dạng 1 so sánh kép: more and more + adj dài.'},
+    {q:'The streets are becoming ___.', o:['wide and wide','wider and wider','the wider','more wide'], a:1, e:'Tính từ ngắn: -er and -er → wider and wider.'},
+    {q:'___ more polluted the air is, ___ more people get sick.', o:['The / the','More / more','As / as','The / a'], a:0, e:'Cấu trúc "The + comp..., the + comp...".'},
+    {q:'I usually ___ the city by bus.', o:['get around','get up','get on','get over'], a:0, e:'get around = đi lại.'},
+    {q:'A tall building with many floors is a ___.', o:['skyscraper','cottage','tunnel','bridge'], a:0, e:'skyscraper = nhà chọc trời.'},
+    {q:'The underground is more ___ than the bus; it\'s rarely late.', o:['reliable','noisy','expensive','crowded'], a:0, e:'reliable = đáng tin cậy.'},
+    {q:'We should ___ on using motorbikes to reduce pollution.', o:['cut down','cut up','put up','build up'], a:0, e:'cut down on = cắt giảm.'},
+    {q:'A person who walks on the street is a ___.', o:['pedestrian','passenger','driver','pilot'], a:0, e:'pedestrian = người đi bộ.'},
+    {q:'There is terrible traffic ___ during rush hour.', o:['congestion','collection','condition','connection'], a:0, e:'traffic congestion = tắc nghẽn giao thông.'},
+    {q:'The harder you study, ___ results you get.', o:['the better','better','the best','more good'], a:0, e:'the + comparative → the better.'}
+  ]
+},
+{
+  n:3,title:'Healthy Living for Teens',vi:'Sống khỏe cho tuổi teen',color:'#6366f1',
+  vocabTopic:'Students\' life and schoolwork',
+  pron:'Âm /h/ và /r/',
+  grammarNames:['Động từ khuyết thiếu trong câu điều kiện loại 1'],
+  everydayName:'Asking for repetition and responding (Đề nghị nhắc lại & đáp lại)',
+  tips:['Học từ vựng về sức khỏe thể chất & tinh thần và quản lý thời gian.','Nắm câu điều kiện loại 1 và cách thay will bằng can/should/may.','Luyện đọc to phân biệt /h/ (có hơi) và /r/.'],
+  grammar:[
+    {title:'Modal verbs trong câu điều kiện loại 1',
+     theory:'<div class="formula"><b>If</b> + S + V(hiện tại đơn), S + <b>will/can/may/might/should/must</b> + V</div>',
+     usage:['Câu điều kiện loại 1 nói về điều có thật/có khả năng xảy ra ở hiện tại–tương lai.','Thay <i>will</i> bằng modal để diễn tả: khả năng (can), lời khuyên (should), khả năng xảy ra (may/might), sự bắt buộc (must).'],
+     examples:[['If you study hard, you can pass the exam.','Nếu bạn học chăm, bạn có thể đỗ.'],['If you feel stressed, you should take a break.','Nếu thấy căng thẳng, bạn nên nghỉ ngơi.'],['If she doesn\'t sleep enough, she may get tired.','Nếu cô ấy ngủ không đủ, cô ấy có thể bị mệt.']],
+     note:'Mệnh đề If dùng hiện tại đơn, KHÔNG dùng will/modal sau If.'}
+  ],
+  vocab:[['well-balanced','/ˌwel ˈbælənst/','cân bằng'],['physical health','/ˈfɪzɪkl helθ/','sức khỏe thể chất'],['mental health','/ˈmentl helθ/','sức khỏe tinh thần'],['stress','/stres/','căng thẳng'],['diet','/ˈdaɪət/','chế độ ăn'],['priority','/praɪˈɒrəti/','sự ưu tiên'],['schedule','/ˈʃedjuːl/','lịch trình'],['concentrate','/ˈkɒnsntreɪt/','tập trung'],['relax','/rɪˈlæks/','thư giãn'],['exhausted','/ɪɡˈzɔːstɪd/','kiệt sức'],['deadline','/ˈdedlaɪn/','hạn chót'],['workload','/ˈwɜːkləʊd/','khối lượng công việc'],['manage','/ˈmænɪdʒ/','quản lý'],['exercise','/ˈeksəsaɪz/','tập thể dục']],
+  pronEx:[['/h/','happy, house, hand, behind'],['/r/','red, road, write, around']],
+  everyday:[['Sorry? / Pardon?','Xin lỗi? (mình chưa nghe rõ)'],['Could you say that again, please?','Bạn nói lại được không?'],['Could you repeat that?','Bạn nhắc lại nhé?'],['Sure, I said...','Được, mình vừa nói là...'],['Of course. Let me repeat.','Tất nhiên. Để mình nhắc lại.']],
+  ex:[
+    {q:'If you eat too much junk food, you ___ gain weight.', o:['may','are','do','being'], a:0, e:'may = có thể (khả năng) trong điều kiện loại 1.'},
+    {q:'If you want good marks, you ___ study regularly.', o:['should','will be','are','being'], a:0, e:'should = nên (lời khuyên).'},
+    {q:'If she ___ enough sleep, she will feel better.', o:['get','gets','will get','got'], a:1, e:'Mệnh đề If dùng hiện tại đơn; "she" → gets.'},
+    {q:'You should keep a ___ life between study and play.', o:['well-balanced','crowded','reliable','modern'], a:0, e:'well-balanced life = cuộc sống cân bằng.'},
+    {q:'Before exams, students often feel a lot of ___.', o:['stress','diet','schedule','priority'], a:0, e:'stress = căng thẳng.'},
+    {q:'To do well, you need to ___ your time wisely.', o:['manage','pollute','preserve','weave'], a:0, e:'manage time = quản lý thời gian.'},
+    {q:'A healthy ___ should include vegetables and fruit.', o:['diet','deadline','workload','accent'], a:0, e:'diet = chế độ ăn.'},
+    {q:'If you don\'t rest, you ___ become exhausted.', o:['might','are','do','being'], a:0, e:'might = có thể.'},
+    {q:'It\'s hard to ___ when the room is noisy.', o:['concentrate','relax','preserve','manage'], a:0, e:'concentrate = tập trung.'},
+    {q:'If you give ___ to important tasks, you\'ll finish on time.', o:['priority','deadline','schedule','diet'], a:0, e:'give priority to = ưu tiên cho.'}
+  ]
+},
+{
+  n:4,title:'Remembering the Past',vi:'Nhớ về quá khứ',color:'#f59e0b',
+  vocabTopic:'Life in the past • Preserving values of the past',
+  pron:'Âm /m/ và /l/',
+  grammarNames:['Quá khứ tiếp diễn','Wish + quá khứ đơn'],
+  everydayName:'Thanking and responding (Cảm ơn & đáp lại)',
+  tips:['Học từ về truyền thống, di sản, đời sống xưa.','Phân biệt khi nào dùng QK đơn và QK tiếp diễn.','Nhớ "wish + were" (cho mọi ngôi) khi ước hiện tại.'],
+  grammar:[
+    {title:'Quá khứ tiếp diễn (Past Continuous)',
+     theory:'<div class="formula"><b>S + was/were + V-ing</b></div>',
+     usage:['Hành động đang diễn ra tại một thời điểm trong quá khứ.','Hành động đang diễn ra thì bị một hành động khác (QK đơn) cắt ngang → dùng <i>when/while</i>.','Hai hành động song song trong quá khứ.'],
+     examples:[['I was doing my homework at 8 p.m. last night.','Tôi đang làm bài lúc 8 giờ tối qua.'],['While she was cooking, the phone rang.','Khi cô ấy đang nấu ăn thì điện thoại reo.'],['They were playing while we were studying.','Họ đang chơi trong khi chúng tôi đang học.']]},
+    {title:'Wish + quá khứ đơn (ước ở hiện tại)',
+     theory:'<div class="formula"><b>S + wish(es) + (that) + S + V(quá khứ đơn)</b><br>Động từ "be" dùng <b>were</b> cho mọi ngôi</div>',
+     usage:['Diễn tả điều ước trái với thực tế ở hiện tại (mong điều khác đi).'],
+     examples:[['I wish I were taller.','Ước gì tôi cao hơn.'],['She wishes she could go to the past.','Cô ấy ước có thể về quá khứ.'],['I wish I had more free time.','Ước gì tôi có nhiều thời gian rảnh hơn.']],
+     note:'wish hiện tại → động từ lùi về quá khứ đơn; "I/he/she/it" + were (không dùng was trong văn viết chuẩn).'}
+  ],
+  vocab:[['tradition','/trəˈdɪʃn/','truyền thống'],['heritage','/ˈherɪtɪdʒ/','di sản'],['generation','/ˌdʒenəˈreɪʃn/','thế hệ'],['ancestor','/ˈænsestə/','tổ tiên'],['custom','/ˈkʌstəm/','phong tục'],['preserve','/prɪˈzɜːv/','bảo tồn'],['cuisine','/kwɪˈziːn/','ẩm thực'],['monument','/ˈmɒnjumənt/','di tích, tượng đài'],['old-fashioned','/ˌəʊld ˈfæʃnd/','lỗi thời, kiểu cũ'],['folk','/fəʊk/','dân gian'],['century','/ˈsentʃəri/','thế kỷ'],['relic','/ˈrelɪk/','di vật, cổ vật'],['communal house','/kəˈmjuːnl haʊs/','đình làng'],['memory','/ˈmeməri/','kỷ niệm, trí nhớ']],
+  pronEx:[['/m/','mother, time, name, summer'],['/l/','love, school, light, family']],
+  everyday:[['Thank you so much.','Cảm ơn bạn rất nhiều.'],['Thanks a lot for your help.','Cảm ơn vì đã giúp đỡ.'],['I really appreciate it.','Mình thực sự biết ơn.'],['You\'re welcome.','Không có gì.'],['My pleasure. / No problem.','Rất hân hạnh. / Không sao.']],
+  ex:[
+    {q:'I ___ TV when my mother came home.', o:['watched','was watching','am watching','watch'], a:1, e:'Đang diễn ra thì bị cắt ngang → was watching.'},
+    {q:'While they ___ football, it started to rain.', o:['played','were playing','play','are playing'], a:1, e:'"While + QK tiếp diễn" → were playing.'},
+    {q:'I wish I ___ taller.', o:['am','was','were','be'], a:2, e:'wish + were (mọi ngôi).'},
+    {q:'She wishes she ___ speak English fluently.', o:['can','could','will','may'], a:1, e:'wish + could (ước về khả năng).'},
+    {q:'A ___ is a tradition passed from generation to generation.', o:['custom','deadline','device','tourist'], a:0, e:'custom = phong tục.'},
+    {q:'We must ___ our cultural heritage.', o:['preserve','pollute','waste','destroy'], a:0, e:'preserve = bảo tồn.'},
+    {q:'Vietnamese ___ is famous for pho and banh mi.', o:['cuisine','accent','species','device'], a:0, e:'cuisine = ẩm thực.'},
+    {q:'At 7 p.m. yesterday, we ___ dinner.', o:['had','were having','have','are having'], a:1, e:'Thời điểm cụ thể trong QK → were having.'},
+    {q:'My grandparents lived in this village a ___ ago.', o:['century','memory','custom','folk'], a:0, e:'a century ago = một thế kỷ trước.'},
+    {q:'I wish I ___ more time to visit my hometown.', o:['have','had','will have','having'], a:1, e:'wish + had (quá khứ đơn).'}
+  ]
+},
+{
+  n:5,title:'Our Experiences',vi:'Những trải nghiệm của chúng ta',color:'#f59e0b',
+  vocabTopic:'Experiences • Adjectives describing experiences',
+  pron:'Âm /j/ và /w/',
+  grammarNames:['Hiện tại hoàn thành'],
+  everydayName:'Apologising and responding (Xin lỗi & đáp lại)',
+  tips:['Học tính từ tả trải nghiệm (thrilling, awful...).','Nắm dấu hiệu của hiện tại hoàn thành: just, already, yet, ever, never, since, for.','Phân biệt /j/ (yes) và /w/ (water).'],
+  grammar:[
+    {title:'Hiện tại hoàn thành (Present Perfect)',
+     theory:'<div class="formula"><b>S + have/has + V3/-ed</b><br>(has dùng cho he/she/it)</div>',
+     usage:['Trải nghiệm đã từng làm (ever/never).','Hành động vừa xảy ra còn ảnh hưởng đến hiện tại (just/already/yet).','Hành động bắt đầu trong quá khứ kéo dài đến nay (since/for).'],
+     examples:[['I have visited Da Lat twice.','Tôi đã đến Đà Lạt hai lần.'],['She has just finished her project.','Cô ấy vừa làm xong dự án.'],['Have you ever tried grilled pork?','Bạn đã từng ăn thịt nướng chưa?']],
+     note:'since + mốc thời gian (since 2020); for + khoảng thời gian (for two years).'}
+  ],
+  vocab:[['experience','/ɪkˈspɪəriəns/','trải nghiệm'],['memorable','/ˈmemərəbl/','đáng nhớ'],['thrilling','/ˈθrɪlɪŋ/','ly kỳ, hồi hộp'],['enjoyable','/ɪnˈdʒɔɪəbl/','thú vị'],['brilliant','/ˈbrɪliənt/','tuyệt vời'],['unforgettable','/ˌʌnfəˈɡetəbl/','không thể quên'],['disappointing','/ˌdɪsəˈpɔɪntɪŋ/','gây thất vọng'],['frightening','/ˈfraɪtnɪŋ/','đáng sợ'],['awful','/ˈɔːfl/','tồi tệ'],['explore','/ɪkˈsplɔː/','khám phá'],['adventure','/ədˈventʃə/','cuộc phiêu lưu'],['scenery','/ˈsiːnəri/','phong cảnh'],['magnificent','/mæɡˈnɪfɪsnt/','tráng lệ'],['eco-tour','/ˈiːkəʊ tʊə/','tour sinh thái']],
+  pronEx:[['/j/','yes, you, year, yellow'],['/w/','water, win, world, want']],
+  everyday:[['I\'m so sorry.','Mình rất xin lỗi.'],['I apologise for being late.','Mình xin lỗi vì đến muộn.'],['I didn\'t mean to do that.','Mình không cố ý làm vậy.'],['That\'s OK. / Never mind.','Không sao đâu.'],['Don\'t worry about it.','Đừng lo về việc đó.']],
+  ex:[
+    {q:'I ___ never been to Ha Long Bay.', o:['have','has','am','was'], a:0, e:'"I" + have + V3 → have never been.'},
+    {q:'She ___ just finished her homework.', o:['have','has','is','was'], a:1, e:'"She" → has just finished.'},
+    {q:'Have you ___ tried Da Lat specialities?', o:['ever','since','for','yet'], a:0, e:'ever đi với câu hỏi hiện tại hoàn thành.'},
+    {q:'We have lived here ___ 2018.', o:['for','since','in','at'], a:1, e:'since + mốc thời gian (2018).'},
+    {q:'It was a thrilling ride. "Thrilling" means ___.', o:['ly kỳ, hồi hộp','buồn chán','tồi tệ','bình thường'], a:0, e:'thrilling = ly kỳ, hồi hộp.'},
+    {q:'The trip was ___; I will never forget it.', o:['unforgettable','disappointing','awful','boring'], a:0, e:'unforgettable = không thể quên.'},
+    {q:'They took an eco-tour to ___ the mountain.', o:['explore','pollute','preserve','manage'], a:0, e:'explore = khám phá.'},
+    {q:'I have known Tom ___ five years.', o:['since','for','in','at'], a:1, e:'for + khoảng thời gian (five years).'},
+    {q:'The food was terrible. It was an ___ meal.', o:['awful','enjoyable','brilliant','amazing'], a:0, e:'awful = tồi tệ.'},
+    {q:'She ___ taken many beautiful photos so far.', o:['have','has','was','is'], a:1, e:'"She" → has taken; "so far" là dấu hiệu.'}
+  ]
+},
+{
+  n:6,title:'Vietnamese Lifestyle: Then and Now',vi:'Lối sống Việt: Xưa và nay',color:'#f59e0b',
+  vocabTopic:'Changes in lifestyle',
+  pron:'Âm /fl/ và /fr/',
+  grammarNames:['Verbs + to-infinitive','Verbs + V-ing'],
+  everydayName:'Making promises (Hứa hẹn)',
+  tips:['Lập 2 danh sách: động từ theo sau là to-V và động từ theo sau là V-ing.','Học từ về thay đổi lối sống xưa–nay.','Phân biệt cụm phụ âm /fl/ (flower) và /fr/ (free).'],
+  grammar:[
+    {title:'Động từ + to-infinitive',
+     theory:'<div class="formula"><b>S + V + to + V</b></div>',
+     usage:['Theo sau là to-V: want, decide, hope, plan, agree, promise, refuse, learn, offer, expect, would like, need, try, choose...'],
+     examples:[['I want to learn how to swim.','Tôi muốn học bơi.'],['They decided to move to the city.','Họ quyết định chuyển lên thành phố.'],['She promised to call me.','Cô ấy hứa sẽ gọi tôi.']]},
+    {title:'Động từ + V-ing',
+     theory:'<div class="formula"><b>S + V + V-ing</b></div>',
+     usage:['Theo sau là V-ing: enjoy, finish, avoid, mind, suggest, practise, keep, consider, dislike, give up, miss...'],
+     examples:[['I enjoy playing traditional games.','Tôi thích chơi trò chơi dân gian.'],['He avoided using his phone too much.','Anh ấy tránh dùng điện thoại quá nhiều.'],['They kept talking about the past.','Họ cứ nói mãi về quá khứ.']],
+     note:'Một số động từ theo sau cả hai (nghĩa gần giống): like, love, hate, prefer, start, begin, continue.'}
+  ],
+  vocab:[['lifestyle','/ˈlaɪfstaɪl/','lối sống'],['nowadays','/ˈnaʊədeɪz/','ngày nay'],['traditional','/trəˈdɪʃənl/','truyền thống'],['modern','/ˈmɒdn/','hiện đại'],['countryside','/ˈkʌntrisaɪd/','nông thôn'],['opportunity','/ˌɒpəˈtjuːnəti/','cơ hội'],['improve','/ɪmˈpruːv/','cải thiện'],['leisure','/ˈleʒə/','giải trí, nhàn rỗi'],['convenient','/kənˈviːniənt/','tiện lợi'],['materials','/məˈtɪəriəlz/','vật liệu'],['freedom','/ˈfriːdəm/','sự tự do'],['generation','/ˌdʒenəˈreɪʃn/','thế hệ'],['device','/dɪˈvaɪs/','thiết bị'],['change','/tʃeɪndʒ/','thay đổi']],
+  pronEx:[['/fl/','flower, fly, flat, flag'],['/fr/','friend, free, fresh, from']],
+  everyday:[['I promise I will study harder.','Mình hứa sẽ học chăm hơn.'],['I give you my word.','Mình hứa với bạn đấy.'],['I\'ll definitely be there.','Mình chắc chắn sẽ đến.'],['I\'ll make sure to help you.','Mình sẽ chắc chắn giúp bạn.'],['Don\'t worry, I won\'t forget.','Đừng lo, mình sẽ không quên.']],
+  ex:[
+    {q:'They decided ___ to a new house.', o:['move','to move','moving','moved'], a:1, e:'decide + to-V → to move.'},
+    {q:'I enjoy ___ traditional games with friends.', o:['play','to play','playing','played'], a:2, e:'enjoy + V-ing → playing.'},
+    {q:'She promised ___ me after school.', o:['call','to call','calling','called'], a:1, e:'promise + to-V → to call.'},
+    {q:'He avoided ___ his phone during dinner.', o:['use','to use','using','used'], a:2, e:'avoid + V-ing → using.'},
+    {q:'We hope ___ more opportunities in the future.', o:['have','to have','having','had'], a:1, e:'hope + to-V → to have.'},
+    {q:'Modern devices make our life more ___.', o:['convenient','traditional','old-fashioned','awful'], a:0, e:'convenient = tiện lợi.'},
+    {q:'Children ___ have more freedom of choice.', o:['nowadays','ago','yesterday','last'], a:0, e:'nowadays = ngày nay.'},
+    {q:'Would you mind ___ the window?', o:['open','to open','opening','opened'], a:2, e:'mind + V-ing → opening.'},
+    {q:'People in the ___ still play many traditional games.', o:['countryside','skyscraper','traffic','device'], a:0, e:'countryside = nông thôn.'},
+    {q:'They want ___ their living conditions.', o:['improve','to improve','improving','improved'], a:1, e:'want + to-V → to improve.'}
+  ]
+},
+{
+  n:7,title:'Natural Wonders of the World',vi:'Kỳ quan thiên nhiên thế giới',color:'#06b6d4',
+  vocabTopic:'Natural wonders',
+  pron:'Cụm phụ âm /sl/ và /sn/',
+  grammarNames:['Câu tường thuật (câu hỏi Yes/No)'],
+  everydayName:'Asking for permission and responding (Xin phép & đáp lại)',
+  tips:['Học từ về địa hình & kỳ quan thiên nhiên.','Nắm quy tắc lùi thì + dùng if/whether khi tường thuật câu hỏi Yes/No.','Đọc to /sl/ (sleep) và /sn/ (snow).'],
+  grammar:[
+    {title:'Câu tường thuật – Câu hỏi Yes/No',
+     theory:'<div class="formula">S + asked / wanted to know + <b>if / whether</b> + S + V (lùi thì)</div>',
+     usage:['Lùi thì: present→past, will→would, can→could, am/is→was, are→were...','Đổi đại từ và trạng từ thời gian/nơi chốn cho phù hợp.','Bỏ dấu hỏi, đưa về dạng câu trần thuật.'],
+     examples:[['"Do you like it?" → He asked if I liked it.','Anh ấy hỏi tôi có thích nó không.'],['"Did you visit Ha Long Bay?" → She asked whether I had visited Ha Long Bay.','Cô ấy hỏi tôi đã đến vịnh Hạ Long chưa.'],['"Can you swim?" → They asked if I could swim.','Họ hỏi tôi có biết bơi không.']],
+     note:'Câu hỏi Yes/No → dùng if hoặc whether; trật tự trở lại S + V.'}
+  ],
+  vocab:[['natural wonder','/ˈnætʃrəl ˈwʌndə/','kỳ quan thiên nhiên'],['landscape','/ˈlændskeɪp/','phong cảnh'],['waterfall','/ˈwɔːtəfɔːl/','thác nước'],['cave','/keɪv/','hang động'],['desert','/ˈdezət/','sa mạc'],['valley','/ˈvæli/','thung lũng'],['peak','/piːk/','đỉnh núi'],['canyon','/ˈkænjən/','hẻm núi'],['reef','/riːf/','rạn san hô'],['breathtaking','/ˈbreθteɪkɪŋ/','ngoạn mục'],['spectacular','/spekˈtækjələ/','hùng vĩ'],['sustainable','/səˈsteɪnəbl/','bền vững'],['admire','/ədˈmaɪə/','ngưỡng mộ'],['preserve','/prɪˈzɜːv/','bảo tồn']],
+  pronEx:[['/sl/','sleep, slow, slide, sled'],['/sn/','snow, snake, snack, snail']],
+  everyday:[['Can / Could I open the window?','Mình mở cửa sổ được không?'],['May I come in?','Em vào được không ạ?'],['Is it OK if I sit here?','Mình ngồi đây có được không?'],['Sure, go ahead.','Được, cứ tự nhiên.'],['I\'m afraid not.','E là không được.']],
+  ex:[
+    {q:'"Do you like nature?" He asked me if I ___ nature.', o:['like','liked','will like','liking'], a:1, e:'Lùi thì: like → liked.'},
+    {q:'She asked ___ I had visited the Grand Canyon.', o:['that','whether','what','to'], a:1, e:'Câu hỏi Yes/No → if/whether.'},
+    {q:'"Can you swim?" They asked if I ___ swim.', o:['can','could','will','may'], a:1, e:'can → could.'},
+    {q:'The ___ from the top of the mountain was breathtaking.', o:['landscape','traffic','device','deadline'], a:0, e:'landscape = phong cảnh.'},
+    {q:'A ___ is a large area of sand with little water.', o:['desert','waterfall','reef','cave'], a:0, e:'desert = sa mạc.'},
+    {q:'We must protect natural wonders for ___ development.', o:['sustainable','modern','crowded','awful'], a:0, e:'sustainable = bền vững.'},
+    {q:'The view was ___; we couldn\'t stop admiring it.', o:['breathtaking','boring','awful','old-fashioned'], a:0, e:'breathtaking = ngoạn mục.'},
+    {q:'"Are you tired?" Tom asked me if I ___ tired.', o:['am','was','were','be'], a:1, e:'am → was (chủ ngữ I).'},
+    {q:'The Great Barrier ___ in Australia is a natural wonder.', o:['Reef','Peak','Cave','Valley'], a:0, e:'reef = rạn san hô.'},
+    {q:'"Did you enjoy the trip?" She asked whether I ___ the trip.', o:['enjoy','enjoyed','had enjoyed','enjoying'], a:2, e:'QK đơn → QK hoàn thành: had enjoyed.'}
+  ]
+},
+{
+  n:8,title:'Tourism',vi:'Du lịch',color:'#06b6d4',
+  vocabTopic:'Tourism',
+  pron:'Trọng âm từ tận cùng -ic và -ious',
+  grammarNames:['Đại từ quan hệ (who, which, that, whose)'],
+  everydayName:'Expressing obligation (Diễn đạt sự bắt buộc)',
+  tips:['Học từ vựng du lịch (destination, accommodation...).','Nắm cách chọn who/which/that/whose.','Quy tắc trọng âm: từ tận cùng -ic/-ious → nhấn âm tiết ngay trước.'],
+  grammar:[
+    {title:'Đại từ quan hệ (Relative pronouns)',
+     theory:'<div class="formula"><b>who</b> – người &nbsp; <b>which</b> – vật &nbsp; <b>that</b> – người/vật<br><b>whose</b> – sở hữu &nbsp; <b>whom</b> – tân ngữ (trang trọng)</div>',
+     usage:['who: thay cho người (chủ ngữ/tân ngữ).','which: thay cho vật/sự việc.','that: thay cho cả người và vật (mệnh đề xác định).','whose: chỉ sự sở hữu (của ai/của cái gì).'],
+     examples:[['The man who guides tourists is friendly.','Người hướng dẫn khách du lịch rất thân thiện.'],['Bali is a place which attracts many holidaymakers.','Bali là nơi thu hút nhiều khách du lịch.'],['That\'s the hotel whose rooms have sea views.','Đó là khách sạn mà các phòng nhìn ra biển.']]}
+  ],
+  vocab:[['tourism','/ˈtʊərɪzəm/','ngành du lịch'],['tourist','/ˈtʊərɪst/','khách du lịch'],['destination','/ˌdestɪˈneɪʃn/','điểm đến'],['holidaymaker','/ˈhɒlədeɪmeɪkə/','người đi nghỉ'],['accommodation','/əˌkɒməˈdeɪʃn/','chỗ ở'],['sightseeing','/ˈsaɪtsiːɪŋ/','tham quan'],['excursion','/ɪkˈskɜːʃn/','chuyến tham quan'],['domestic','/dəˈmestɪk/','nội địa'],['ecotourism','/ˌiːkəʊˈtʊərɪzəm/','du lịch sinh thái'],['package tour','/ˈpækɪdʒ tʊə/','tour trọn gói'],['souvenir','/ˌsuːvəˈnɪə/','quà lưu niệm'],['itinerary','/aɪˈtɪnərəri/','lịch trình'],['affordable','/əˈfɔːdəbl/','giá phải chăng'],['tan','/tæn/','da rám nắng']],
+  pronEx:[['-ic (nhấn âm trước)','fanˈtastic, hisˈtoric, sciˈentific'],['-ious (nhấn âm trước)','deˈlicious, mysˈterious, ˈcurious']],
+  everyday:[['I have to book the hotel now.','Mình phải đặt khách sạn ngay.'],['You must bring your passport.','Bạn phải mang hộ chiếu.'],['We need to be at the airport early.','Chúng ta cần đến sân bay sớm.'],['You\'re supposed to check out at noon.','Bạn phải trả phòng vào buổi trưa.'],['Tourists mustn\'t litter here.','Khách du lịch không được xả rác ở đây.']],
+  ex:[
+    {q:'The guide ___ showed us around was very kind.', o:['who','which','whose','where'], a:0, e:'who = thay cho người.'},
+    {q:'Bali is a destination ___ attracts many tourists.', o:['who','which','whose','whom'], a:1, e:'which = thay cho vật/nơi.'},
+    {q:'That\'s the hotel ___ rooms have sea views.', o:['who','which','whose','that'], a:2, e:'whose = sở hữu.'},
+    {q:'We stayed in cheap ___ near the beach.', o:['accommodation','itinerary','souvenir','tan'], a:0, e:'accommodation = chỗ ở.'},
+    {q:'A person who travels for pleasure is a ___.', o:['tourist','pilot','artisan','pedestrian'], a:0, e:'tourist = khách du lịch.'},
+    {q:'A ___ tour includes flights, hotels and meals.', o:['package','domestic','reliable','modern'], a:0, e:'package tour = tour trọn gói.'},
+    {q:'We bought some ___ to remember the trip.', o:['souvenirs','deadlines','devices','species'], a:0, e:'souvenir = quà lưu niệm.'},
+    {q:'The food here is ___! I love it.', o:['delicious','awful','boring','old'], a:0, e:'delicious (-ious, nhấn âm trước).'},
+    {q:'Travelling within your own country is ___ tourism.', o:['domestic','international','foreign','global'], a:0, e:'domestic = nội địa.'},
+    {q:'The man ___ I met yesterday is a tour guide.', o:['who','which','whose','where'], a:0, e:'who = người (tân ngữ).'}
+  ]
+},
+{
+  n:9,title:'World Englishes',vi:'Các biến thể tiếng Anh',color:'#06b6d4',
+  vocabTopic:'Aspects of languages • English language learning',
+  pron:'Trọng âm từ tận cùng -ion và -ity',
+  grammarNames:['Mệnh đề quan hệ xác định'],
+  everydayName:'Saying good luck and responding (Chúc may mắn & đáp lại)',
+  tips:['Học từ về ngôn ngữ (accent, dialect, borrowed word...).','Mệnh đề quan hệ xác định KHÔNG dùng dấu phẩy; có thể bỏ đại từ khi nó là tân ngữ.','Quy tắc: -ion/-ity → nhấn âm tiết ngay trước hậu tố.'],
+  grammar:[
+    {title:'Mệnh đề quan hệ xác định (Defining relative clauses)',
+     theory:'<div class="formula">Cung cấp thông tin <b>cần thiết</b> để xác định danh từ.<br>Dùng who/which/that/whose · <b>KHÔNG có dấu phẩy</b></div>',
+     usage:['Bổ nghĩa, xác định rõ danh từ đứng trước (thiếu mệnh đề thì câu thiếu nghĩa).','Có thể dùng <i>that</i> thay cho who/which.','Có thể <b>lược bỏ</b> đại từ quan hệ khi nó làm tân ngữ.'],
+     examples:[['The book which/that I borrowed is interesting.','Cuốn sách (mà) tôi mượn rất hay.'],['The teacher who teaches us English is from the USA.','Giáo viên dạy tiếng Anh cho chúng tôi đến từ Mỹ.'],['This is the app I use to learn vocabulary.','Đây là ứng dụng (mà) tôi dùng để học từ vựng.']],
+     note:'"The app (which/that) I use..." – lược bỏ được vì đại từ là tân ngữ.'}
+  ],
+  vocab:[['language','/ˈlæŋɡwɪdʒ/','ngôn ngữ'],['accent','/ˈæksent/','giọng, trọng âm'],['dialect','/ˈdaɪəlekt/','phương ngữ'],['vocabulary','/vəˈkæbjələri/','từ vựng'],['borrowed word','/ˈbɒrəʊd wɜːd/','từ vay mượn'],['pronunciation','/prəˌnʌnsiˈeɪʃn/','cách phát âm'],['fluent','/ˈfluːənt/','trôi chảy'],['bilingual','/baɪˈlɪŋɡwəl/','song ngữ'],['native speaker','/ˈneɪtɪv ˈspiːkə/','người bản ngữ'],['mother tongue','/ˈmʌðə tʌŋ/','tiếng mẹ đẻ'],['communicate','/kəˈmjuːnɪkeɪt/','giao tiếp'],['spelling','/ˈspelɪŋ/','chính tả'],['variety','/vəˈraɪəti/','biến thể'],['global','/ˈɡləʊbl/','toàn cầu']],
+  pronEx:[['-ion (nhấn âm trước)','eduˈcation, infor'+"ˈ"+'mation? → infor'+"ˈ"+'mation; deˈcision'],['-ity (nhấn âm trước)','aˈbility, possiˈbility, nationˈality']],
+  everyday:[['Good luck!','Chúc may mắn!'],['Best of luck with your exam!','Chúc bạn thi tốt!'],['I\'ll keep my fingers crossed for you.','Mình sẽ cầu may cho bạn.'],['Thanks! I\'ll need it.','Cảm ơn! Mình cần lắm.'],['Thank you very much.','Cảm ơn bạn nhiều.']],
+  ex:[
+    {q:'The teacher ___ teaches us English is American.', o:['who','which','whose','where'], a:0, e:'who = người (chủ ngữ).'},
+    {q:'The book ___ I borrowed yesterday is very useful.', o:['who','which','whose','whom'], a:1, e:'which = vật.'},
+    {q:'In which sentence can we omit the relative pronoun?', o:['The man who lives here...','The app which I use...','The girl who sings...','The dog which barks...'], a:1, e:'Bỏ được khi đại từ là tân ngữ: "the app (which) I use".'},
+    {q:'"Football" is a ___ word in many languages.', o:['borrowed','modern','reliable','domestic'], a:0, e:'borrowed word = từ vay mượn.'},
+    {q:'She speaks two languages; she is ___.', o:['bilingual','fluent','global','native'], a:0, e:'bilingual = song ngữ.'},
+    {q:'A regional form of a language is a ___.', o:['dialect','spelling','variety','vocabulary'], a:0, e:'dialect = phương ngữ.'},
+    {q:'British and American English are two ___ of English.', o:['varieties','accents','spellings','tongues'], a:0, e:'variety/varieties = biến thể.'},
+    {q:'A person born speaking a language is a ___ speaker.', o:['native','fluent','global','foreign'], a:0, e:'native speaker = người bản ngữ.'},
+    {q:'The woman ___ bag was stolen called the police.', o:['who','which','whose','that'], a:2, e:'whose = sở hữu (cái túi của bà ấy).'},
+    {q:'English is now a ___ language used worldwide.', o:['global','domestic','old-fashioned','local'], a:0, e:'global = toàn cầu.'}
+  ]
+},
+{
+  n:10,title:'Planet Earth',vi:'Hành tinh Trái Đất',color:'#22c55e',
+  vocabTopic:'Planet Earth • Habitats • Flora and fauna',
+  pron:'Nhịp điệu trong câu (rhythm)',
+  grammarNames:['Mệnh đề quan hệ không xác định'],
+  everydayName:'Persuading someone and responding (Thuyết phục & đáp lại)',
+  tips:['Học từ về môi trường, hệ động–thực vật.','Mệnh đề quan hệ KHÔNG xác định luôn có dấu phẩy, KHÔNG dùng "that", KHÔNG lược bỏ đại từ.','Luyện nhịp điệu: nhấn mạnh từ mang nghĩa (danh, động, tính, trạng từ).'],
+  grammar:[
+    {title:'Mệnh đề quan hệ không xác định (Non-defining)',
+     theory:'<div class="formula">Cung cấp thông tin <b>thêm</b> (bỏ đi câu vẫn đủ nghĩa).<br><b>Có dấu phẩy</b> · dùng who/which/whose · <b>KHÔNG dùng "that"</b> · không lược bỏ</div>',
+     usage:['Bổ sung thông tin phụ về danh từ đã xác định rõ.','Luôn ngăn cách bằng dấu phẩy.','Không dùng "that" và không được lược bỏ đại từ quan hệ.'],
+     examples:[['Ha Long Bay, which is in Quang Ninh, is a natural wonder.','Vịnh Hạ Long, ở Quảng Ninh, là một kỳ quan thiên nhiên.'],['Mr An, who is an earth scientist, gave a talk.','Ông An, người là nhà khoa học Trái Đất, đã có buổi nói chuyện.'],['Pandas, which eat bamboo, are endangered.','Gấu trúc, loài ăn tre, đang bị nguy cấp.']],
+     note:'So sánh: xác định (không phẩy, được dùng that) ≠ không xác định (có phẩy, không dùng that).'}
+  ],
+  vocab:[['planet','/ˈplænɪt/','hành tinh'],['habitat','/ˈhæbɪtæt/','môi trường sống'],['flora','/ˈflɔːrə/','hệ thực vật'],['fauna','/ˈfɔːnə/','hệ động vật'],['species','/ˈspiːʃiːz/','loài'],['environment','/ɪnˈvaɪrənmənt/','môi trường'],['endangered','/ɪnˈdeɪndʒəd/','có nguy cơ tuyệt chủng'],['extinct','/ɪkˈstɪŋkt/','tuyệt chủng'],['ecosystem','/ˈiːkəʊsɪstəm/','hệ sinh thái'],['conserve','/kənˈsɜːv/','bảo tồn'],['wildlife','/ˈwaɪldlaɪf/','động vật hoang dã'],['atmosphere','/ˈætməsfɪə/','khí quyển'],['threat','/θret/','mối đe dọa'],['pollution','/pəˈluːʃn/','ô nhiễm']],
+  pronEx:[['Nhấn từ nội dung','I WANT to GO to the BEACH.'],['Lướt từ chức năng','to, the, a, of, and... đọc nhẹ, nhanh']],
+  everyday:[['Why don\'t you join the green club?','Sao bạn không tham gia câu lạc bộ xanh?'],['You should really plant more trees.','Bạn nên trồng thêm cây thật đấy.'],['Come on, it\'ll be good for the planet.','Nào, việc đó tốt cho hành tinh mà.'],['OK, I will.','Được, mình sẽ làm.'],['Well, maybe you\'re right.','Ừ, có lẽ bạn đúng.']],
+  ex:[
+    {q:'Ha Long Bay, ___ is in Quang Ninh, is a wonder.', o:['that','which','who','whose'], a:1, e:'Mệnh đề không xác định, vật → which (không dùng that).'},
+    {q:'Mr An, ___ is a scientist, gave a talk.', o:['which','that','who','whose'], a:2, e:'người → who.'},
+    {q:'Which sentence is a non-defining clause?', o:['The book that I read...','My father, who is a doctor, ...','The dog which barks...','The pen I lost...'], a:1, e:'Có dấu phẩy, thông tin thêm → không xác định.'},
+    {q:'Animals at risk of dying out are ___.', o:['endangered','reliable','fluent','modern'], a:0, e:'endangered = nguy cấp.'},
+    {q:'The natural home of an animal is its ___.', o:['habitat','accent','souvenir','itinerary'], a:0, e:'habitat = môi trường sống.'},
+    {q:'We must ___ wildlife and forests.', o:['conserve','pollute','waste','destroy'], a:0, e:'conserve = bảo tồn.'},
+    {q:'Plants of an area are called ___.', o:['flora','fauna','species','threat'], a:0, e:'flora = hệ thực vật.'},
+    {q:'Pollution is a big ___ to the environment.', o:['threat','tan','peak','custom'], a:0, e:'threat = mối đe dọa.'},
+    {q:'Dinosaurs are ___; they no longer exist.', o:['extinct','endangered','native','fluent'], a:0, e:'extinct = tuyệt chủng.'},
+    {q:'Pandas, ___ eat bamboo, live in China.', o:['that','which','who','whose'], a:1, e:'Không xác định, vật → which.'}
+  ]
+},
+{
+  n:11,title:'Electronic Devices',vi:'Thiết bị điện tử',color:'#22c55e',
+  vocabTopic:'Electronic devices',
+  pron:'Nhấn mạnh tất cả các từ trong câu',
+  grammarNames:['suggest/advise/recommend + V-ing / mệnh đề với should'],
+  everydayName:'Checking understanding and responding (Kiểm tra hiểu & đáp lại)',
+  tips:['Học từ về thiết bị điện tử & tính năng.','Nắm 2 cách dùng sau suggest/advise/recommend.','Tập nói nhấn rõ từng từ để diễn đạt mạnh.'],
+  grammar:[
+    {title:'suggest / advise / recommend + V-ing hoặc mệnh đề với should',
+     theory:'<div class="formula"><b>Cách 1:</b> suggest/advise/recommend + <b>V-ing</b><br><b>Cách 2:</b> suggest/advise/recommend + (that) + S + <b>(should) + V</b></div>',
+     usage:['Dùng để khuyên/gợi ý làm gì.','advise có thể + tân ngữ + to-V: advise sb to do.','Hai cách diễn đạt cùng một ý.'],
+     examples:[['I suggest going to bed early.','Mình gợi ý đi ngủ sớm.'],['She suggested that we (should) buy a tablet.','Cô ấy gợi ý chúng ta nên mua máy tính bảng.'],['The doctor advised resting / advised him to rest.','Bác sĩ khuyên nghỉ ngơi / khuyên anh ấy nghỉ.']]}
+  ],
+  vocab:[['device','/dɪˈvaɪs/','thiết bị'],['laptop','/ˈlæptɒp/','máy tính xách tay'],['tablet','/ˈtæblət/','máy tính bảng'],['desktop','/ˈdesktɒp/','máy tính để bàn'],['touchscreen','/ˈtʌtʃskriːn/','màn hình cảm ứng'],['portable','/ˈpɔːtəbl/','di động, xách tay'],['virtual','/ˈvɜːtʃuəl/','ảo'],['wireless','/ˈwaɪələs/','không dây'],['charge','/tʃɑːdʒ/','sạc'],['application','/ˌæplɪˈkeɪʃn/','ứng dụng'],['keyboard','/ˈkiːbɔːd/','bàn phím'],['battery','/ˈbætəri/','pin'],['function','/ˈfʌŋkʃn/','chức năng'],['lightweight','/ˈlaɪtweɪt/','nhẹ']],
+  pronEx:[['Nhấn mạnh để nhấn ý','I REALLY LOVE THIS PHONE.'],['Dùng khi muốn nhấn mạnh','mỗi từ được đọc rõ và mạnh']],
+  everyday:[['Do you know what I mean?','Bạn hiểu ý mình chứ?'],['Are you with me?','Bạn theo kịp chứ?'],['Does that make sense?','Như vậy có hợp lý không?'],['Yes, I see. / I get it.','Ừ, mình hiểu rồi.'],['Sorry, I\'m not sure I follow.','Xin lỗi, mình chưa hiểu lắm.']],
+  ex:[
+    {q:'I suggest ___ a tablet for studying.', o:['buy','to buy','buying','bought'], a:2, e:'suggest + V-ing → buying.'},
+    {q:'She suggested that we ___ use the app.', o:['should','will','are','being'], a:0, e:'suggest + (that) + S + should + V.'},
+    {q:'The doctor advised ___ more water.', o:['drink','to drink','drinking','drank'], a:2, e:'advise + V-ing → drinking.'},
+    {q:'A ___ is light and easy to carry.', o:['portable device','desktop','keyboard','battery'], a:0, e:'portable = di động/xách tay.'},
+    {q:'You can touch the ___ to control the tablet.', o:['touchscreen','battery','charger','keyboard'], a:0, e:'touchscreen = màn hình cảm ứng.'},
+    {q:'My phone is dead. I need to ___ it.', o:['charge','spell','admire','conserve'], a:0, e:'charge = sạc.'},
+    {q:'A ___ keyboard has no cables.', o:['wireless','virtual','portable','lightweight'], a:0, e:'wireless = không dây.'},
+    {q:'I recommend ___ this learning app.', o:['use','to use','using','used'], a:2, e:'recommend + V-ing → using.'},
+    {q:'An ___ (app) helps you do tasks on a device.', o:['application','itinerary','accent','excursion'], a:0, e:'application = ứng dụng.'},
+    {q:'The teacher advised us ___ harder.', o:['study','to study','studying','studied'], a:1, e:'advise + sb + to-V → to study.'}
+  ]
+},
+{
+  n:12,title:'Career Choices',vi:'Lựa chọn nghề nghiệp',color:'#22c55e',
+  vocabTopic:'Jobs',
+  pron:'Ngữ điệu câu trần thuật dùng làm câu hỏi',
+  grammarNames:['Mệnh đề trạng ngữ: nhượng bộ, kết quả, nguyên nhân'],
+  everydayName:'Expressing hope and responding (Bày tỏ hy vọng & đáp lại)',
+  tips:['Học tên nghề nghiệp & từ về hướng nghiệp.','Phân biệt 3 loại mệnh đề trạng ngữ và liên từ đi kèm.','Tập ngữ điệu lên giọng cuối câu khi câu trần thuật dùng để hỏi.'],
+  grammar:[
+    {title:'Mệnh đề trạng ngữ: nhượng bộ / kết quả / nguyên nhân',
+     theory:'<div class="formula"><b>Nhượng bộ:</b> although / though / even though + mệnh đề; despite / in spite of + N/V-ing<br><b>Kết quả:</b> so + adj/adv + that; such + (a/an) + adj + N + that<br><b>Nguyên nhân:</b> because / since / as + mệnh đề; because of + N</div>',
+     usage:['Nhượng bộ: diễn tả sự trái ngược ("mặc dù...").','Kết quả: diễn tả hệ quả ("...đến nỗi mà...").','Nguyên nhân: diễn tả lý do ("vì...").'],
+     examples:[['Although he was tired, he kept working.','Mặc dù mệt, anh ấy vẫn làm việc.'],['The job is so interesting that I love it.','Công việc thú vị đến nỗi tôi rất thích.'],['She chose this career because she loves art.','Cô ấy chọn nghề này vì yêu nghệ thuật.']],
+     note:'despite/in spite of + danh từ/V-ing (KHÔNG + mệnh đề); because of + danh từ.'}
+  ],
+  vocab:[['career','/kəˈrɪə/','sự nghiệp'],['vocational','/vəʊˈkeɪʃənl/','thuộc dạy nghề'],['mechanic','/məˈkænɪk/','thợ máy'],['hairdresser','/ˈheədresə/','thợ làm tóc'],['fashion designer','/ˈfæʃn dɪˈzaɪnə/','nhà thiết kế thời trang'],['engineer','/ˌendʒɪˈnɪə/','kỹ sư'],['accountant','/əˈkaʊntənt/','kế toán'],['training','/ˈtreɪnɪŋ/','đào tạo'],['qualification','/ˌkwɒlɪfɪˈkeɪʃn/','bằng cấp'],['skilful','/ˈskɪlfl/','khéo léo, lành nghề'],['earn a living','/ɜːn ə ˈlɪvɪŋ/','kiếm sống'],['ambition','/æmˈbɪʃn/','hoài bão'],['apply for','/əˈplaɪ fɔː/','nộp đơn xin'],['orientation','/ˌɔːriənˈteɪʃn/','định hướng']],
+  pronEx:[['Lên giọng cuối câu (hỏi)','You\'re a teacher? ↗'],['Xuống giọng (trần thuật)','You\'re a teacher. ↘']],
+  everyday:[['I hope I\'ll become a doctor.','Mình hy vọng sẽ trở thành bác sĩ.'],['Hopefully, I\'ll pass the exam.','Hy vọng mình sẽ đỗ.'],['Fingers crossed!','Cầu may nhé!'],['Me too. / I hope so.','Mình cũng vậy. / Hy vọng thế.'],['I hope your dream comes true.','Mong ước mơ của bạn thành hiện thực.']],
+  ex:[
+    {q:'___ he was tired, he kept studying.', o:['Although','Because','So','Such'], a:0, e:'Although = mặc dù (nhượng bộ).'},
+    {q:'The job is ___ interesting that I never feel bored.', o:['so','such','although','because'], a:0, e:'so + adj + that (kết quả).'},
+    {q:'She chose this career ___ she loves children.', o:['because','although','so','despite'], a:0, e:'because = vì (nguyên nhân).'},
+    {q:'___ the rain, we still went to the orientation session.', o:['Despite','Although','Because','So'], a:0, e:'Despite + N → Despite the rain.'},
+    {q:'A person who repairs machines is a ___.', o:['mechanic','hairdresser','engineer','accountant'], a:0, e:'mechanic = thợ máy.'},
+    {q:'It was ___ a good talk that everyone listened.', o:['such','so','although','because'], a:0, e:'such + (a) + adj + N + that.'},
+    {q:'You should ___ this job; it suits you.', o:['apply for','give up','look after','cut down'], a:0, e:'apply for = nộp đơn xin.'},
+    {q:'___ of his hard work, he succeeded.', o:['Because','Although','Despite','So'], a:2, e:'Despite + N (his hard work). (Because of cũng đúng nhưng đáp án là Despite ở đây? )', alt:true},
+    {q:'After grade 9, some students take ___ training courses.', o:['vocational','global','domestic','endangered'], a:0, e:'vocational = dạy nghề.'},
+    {q:'Everyone needs to ___ to support themselves.', o:['earn a living','give up','look for','set off'], a:0, e:'earn a living = kiếm sống.'}
+  ]
+}
+];
+
+/* fix a possibly confusing item (remove alt note) */
+UNITS[11].ex[7]={q:'___ working hard, he didn\'t pass the test.', o:['Despite','Because','So','Such'], a:0, e:'Despite + V-ing/N (mặc dù) → Despite working hard.'};
+
+/* ============================================================
+   CÁCH HỌC (nội dung tĩnh)
+============================================================ */
+const STUDY=[
+  {icon:'📖',title:'Học TỪ VỰNG',items:[
+    'Học theo <b>chủ đề từng Unit</b>, mỗi ngày 7–10 từ; ghi cả phiên âm, nghĩa và 1 ví dụ.',
+    'Dùng <b>flashcard</b> hoặc sổ tay; ôn lại theo chu kỳ (1 ngày – 3 ngày – 1 tuần).',
+    'Nghe phát âm (nút 🔊) rồi <b>đọc to</b> 3 lần để nhớ cả âm và mặt chữ.',
+    'Đặt câu với từ mới để biết cách dùng, không học nghĩa rời rạc.'
+  ]},
+  {icon:'📐',title:'Học NGỮ PHÁP',items:[
+    'Hiểu <b>công thức + cách dùng</b> trước, rồi xem ví dụ minh họa.',
+    'Tự đặt 2–3 câu cho mỗi cấu trúc; làm bài tập ngay sau khi học.',
+    'Ghi chú các <b>lưu ý/ngoại lệ</b> (vd: wish + were; despite + N/V-ing).',
+    'So sánh các cấu trúc dễ nhầm (mệnh đề quan hệ xác định ↔ không xác định).'
+  ]},
+  {icon:'🔊',title:'Luyện PHÁT ÂM',items:[
+    'Mỗi Unit có trọng tâm âm riêng — luyện qua <b>cặp từ tối thiểu</b>.',
+    'Bắt chước (shadowing) theo audio: nghe – tạm dừng – nhại lại.',
+    'Chú ý <b>trọng âm từ</b> (-ic/-ious/-ion/-ity) và <b>ngữ điệu câu</b>.',
+    'Thu âm giọng mình rồi so sánh với mẫu.'
+  ]},
+  {icon:'🎧',title:'4 KỸ NĂNG (Nghe–Nói–Đọc–Viết)',items:[
+    '<b>Nghe:</b> nghe ý chính trước, sau đó nghe lấy thông tin cụ thể; nghe lại nhiều lần.',
+    '<b>Nói:</b> học mẫu Everyday English; luyện nói theo chủ đề "Talking about..." của Unit.',
+    '<b>Đọc:</b> đoán nghĩa từ qua ngữ cảnh, gạch chân từ khóa, đọc lướt tìm thông tin.',
+    '<b>Viết:</b> theo dàn ý mẫu của Unit (đoạn văn/email); dùng từ vựng & ngữ pháp đã học.'
+  ]},
+  {icon:'🗓️',title:'KẾ HOẠCH & ÔN TẬP',items:[
+    'Mỗi Unit học trong ~1 tuần: 2 buổi từ vựng+ngữ pháp, 2 buổi kỹ năng, 1 buổi luyện tập.',
+    'Sau mỗi 3 Unit có <b>Review</b> — hãy làm bài <b>Kiểm tra theo chủ điểm</b> ở mục Kiểm tra.',
+    'Sai ở đâu, quay lại đọc phần Bài giảng tương ứng rồi làm lại.',
+    'Đặt mục tiêu nhỏ mỗi tuần và tự thưởng khi đạt được.'
+  ]}
+];
+
+/* ============================================================
+   ĐIỀU HƯỚNG
+============================================================ */
+const views=document.querySelectorAll('.view');
+const navBtns=document.querySelectorAll('nav button');
+function show(id){views.forEach(v=>v.classList.toggle('active',v.id===id));navBtns.forEach(b=>b.classList.toggle('active',b.dataset.v===id));window.scrollTo({top:0,behavior:'smooth'});}
+navBtns.forEach(b=>{ if(b.dataset.v) b.onclick=()=>show(b.dataset.v); });
+document.querySelectorAll('[data-go]').forEach(el=>el.onclick=()=>show(el.dataset.go));
+
+/* ===== TTS ===== */
+function speak(t,r){if(!('speechSynthesis'in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=r||0.92;const v=speechSynthesis.getVoices().find(v=>v.lang.indexOf('en')===0);if(v)u.voice=v;speechSynthesis.speak(u);}
+window.speak=speak;
+const U=n=>UNITS.find(u=>u.n===n);
+
+/* ===== HOME ===== */
+document.getElementById('themeList').innerHTML=THEMES.map(t=>`
+  <div style="margin-bottom:18px">
+    <div class="theme-tag" style="background:${t.color}22;color:${t.color}">${t.name} — ${t.vi}</div>
+    <div class="grid cols3">
+      ${t.units.map(n=>{const u=U(n);return `<div class="card link" data-u="${n}" style="border-left:4px solid ${u.color}">
+        <div><span class="unit-num" style="background:${u.color}">${n}</span><b>${u.title}</b></div>
+        <p class="muted" style="margin:8px 0 4px">${u.vi}</p>
+        <div><span class="badge">📐 ${u.grammarNames[0]}</span></div>
+      </div>`;}).join('')}
+    </div>
+  </div>`).join('');
+document.querySelectorAll('#themeList [data-u]').forEach(el=>el.onclick=()=>{document.getElementById('lsUnit').value=el.dataset.u;show('lessons');renderLesson();});
+
+/* ===== STUDY ===== */
+document.getElementById('studyContent').innerHTML=`<div class="grid cols2">${STUDY.map(s=>`
+  <div class="card"><h3>${s.icon} ${s.title}</h3><ul class="clean">${s.items.map(i=>`<li>${i}</li>`).join('')}</ul></div>`).join('')}</div>`;
+
+/* ===== LESSONS ===== */
+const lsUnit=document.getElementById('lsUnit');
+lsUnit.innerHTML=UNITS.map(u=>`<option value="${u.n}">Unit ${u.n}: ${u.title}</option>`).join('');
+lsUnit.onchange=renderLesson;
+function renderLesson(){
+  const u=U(parseInt(lsUnit.value));
+  const body=document.getElementById('lessonBody');
+  body.innerHTML=`
+  <div class="card" style="border-left:5px solid ${u.color}">
+    <h2 style="margin-top:0;color:${u.color}"><span class="unit-num" style="background:${u.color}">${u.n}</span>${u.title} <span class="muted" style="font-size:1rem">— ${u.vi}</span></h2>
+    <div class="row">
+      <span class="badge">📖 ${u.vocabTopic}</span>
+      <span class="badge">🔊 ${u.pron}</span>
+      ${u.grammarNames.map(g=>`<span class="badge">📐 ${g}</span>`).join('')}
+      <span class="badge">💬 ${u.everydayName}</span>
+    </div>
+  </div>
+
+  <div class="acc open"><div class="acc-head" onclick="this.parentElement.classList.toggle('open')"><span>🧭 Cách học Unit này</span><span class="chev">▶</span></div>
+    <div class="acc-body"><ul class="clean">${u.tips.map(t=>`<li>${t}</li>`).join('')}</ul></div></div>
+
+  <div class="acc open"><div class="acc-head" onclick="this.parentElement.classList.toggle('open')"><span>📐 Ngữ pháp trọng tâm</span><span class="chev">▶</span></div>
+    <div class="acc-body">
+      ${u.grammar.map(g=>`
+        <h3>${g.title}</h3>
+        ${g.theory}
+        <ul class="clean">${g.usage.map(x=>`<li>${x}</li>`).join('')}</ul>
+        ${g.examples.map(ex=>`<div class="ex"><div class="row" style="justify-content:space-between"><b>${ex[0]}</b><button class="btn ghost sm" onclick="speak(this.previousElementSibling.textContent)">🔊</button></div><div class="vi">${ex[1]}</div></div>`).join('')}
+        ${g.note?`<div class="note">📌 ${g.note}</div>`:''}
+      `).join('<hr style="border-color:var(--border);margin:16px 0">')}
+    </div></div>
+
+  <div class="acc"><div class="acc-head" onclick="this.parentElement.classList.toggle('open')"><span>📖 Từ vựng trọng tâm (${u.vocab.length} từ)</span><span class="chev">▶</span></div>
+    <div class="acc-body"><table><thead><tr><th>Từ</th><th>Phiên âm</th><th>Nghĩa</th><th></th></tr></thead><tbody>
+      ${u.vocab.map(w=>`<tr><td style="font-weight:700;color:#a5b4fc">${w[0]}</td><td class="muted">${w[1]}</td><td>${w[2]}</td><td><button class="btn ghost sm" onclick="speak('${w[0].replace(/'/g,"\\'")}')">🔊</button></td></tr>`).join('')}
+    </tbody></table></div></div>
+
+  <div class="acc"><div class="acc-head" onclick="this.parentElement.classList.toggle('open')"><span>🔊 Phát âm: ${u.pron}</span><span class="chev">▶</span></div>
+    <div class="acc-body">${u.pronEx.map(p=>`<div class="ex"><div class="row" style="justify-content:space-between"><span><b>${p[0]}</b> — ${p[1]}</span><button class="btn ghost sm" onclick="speak('${p[1].replace(/'/g,"\\'")}')">🔊</button></div></div>`).join('')}</div></div>
+
+  <div class="acc"><div class="acc-head" onclick="this.parentElement.classList.toggle('open')"><span>💬 Giao tiếp: ${u.everydayName}</span><span class="chev">▶</span></div>
+    <div class="acc-body">${u.everyday.map(e=>`<div class="ex"><div class="row" style="justify-content:space-between"><b>${e[0]}</b><button class="btn ghost sm" onclick="speak(this.previousElementSibling.textContent)">🔊</button></div><div class="vi">${e[1]}</div></div>`).join('')}</div></div>
+
+  <div class="row" style="justify-content:center;margin-top:18px">
+    <button class="btn green" onclick="practiceUnit(${u.n})">✍️ Luyện tập Unit ${u.n}</button>
+    <button class="btn ghost" onclick="testUnit(${u.n})">📝 Kiểm tra Unit ${u.n}</button>
+  </div>`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+renderLesson();
+
+/* ============================================================
+   ENGINE TRẮC NGHIỆM (dùng chung)
+============================================================ */
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function unitPool(n){return UNITS.find(u=>u.n===n).ex.map(q=>({...q,unit:n}));}
+function buildPool(scope,count){
+  let pool=[];
+  if(scope==='all') UNITS.forEach(u=>pool=pool.concat(unitPool(u.n)));
+  else if(scope.indexOf('theme')===0){const ti=parseInt(scope.split('-')[1]);THEMES[ti].units.forEach(n=>pool=pool.concat(unitPool(n)));}
+  else pool=unitPool(parseInt(scope));
+  // shuffle options of each question (giữ đáp án đúng)
+  pool=pool.map(q=>{
+    const correct=q.o[q.a];const opts=q.o.slice();shuffle(opts);
+    return {q:q.q,o:opts,a:opts.indexOf(correct),e:q.e,unit:q.unit};
+  });
+  shuffle(pool);
+  // nếu thiếu, lặp lại pool đã trộn
+  const out=[];let i=0;
+  while(out.length<count && pool.length){out.push(pool[i%pool.length]);i++;if(i>count*4)break;}
+  return out.slice(0,Math.min(count,Math.max(pool.length,count)));
+}
+const scopeOptions=()=>'<option value="all">🎯 Tổng hợp tất cả Unit</option>'+
+  THEMES.map((t,i)=>`<option value="theme-${i}">📚 ${t.name} (Unit ${t.units.join(', ')})</option>`).join('')+
+  UNITS.map(u=>`<option value="${u.n}">Unit ${u.n}: ${u.title}</option>`).join('');
+
+/* ===== PRACTICE ===== */
+document.getElementById('pScope').innerHTML=scopeOptions();
+let pq={list:[],idx:0,score:0};
+function startP(){
+  const scope=document.getElementById('pScope').value;
+  const cnt=parseInt(document.getElementById('pCount').value);
+  pq={list:buildPool(scope,cnt),idx:0,score:0};
+  document.getElementById('pSetup').style.display='none';
+  document.getElementById('pResult').style.display='none';
+  document.getElementById('pPlay').style.display='block';
+  renderP();
+}
+document.getElementById('pStart').onclick=startP;
+function scopeName(n){const u=UNITS.find(x=>x.n===n);return u?('Unit '+u.n):'';}
+function renderP(){
+  const q=pq.list[pq.idx];
+  document.getElementById('pTopic').textContent=scopeName(q.unit);
+  document.getElementById('pCounter').textContent=`${pq.idx+1}/${pq.list.length}`;
+  document.getElementById('pBar').style.width=`${pq.idx/pq.list.length*100}%`;
+  document.getElementById('pQ').textContent=q.q;
+  const box=document.getElementById('pOpts');box.innerHTML='';
+  q.o.forEach((o,i)=>{const b=document.createElement('button');b.className='opt';b.textContent=o;b.onclick=()=>ansP(i,b);box.appendChild(b);});
+  const fb=document.getElementById('pFb');fb.className='feedback';fb.textContent='';
+  document.getElementById('pNext').style.display='none';
+}
+function ansP(i,btn){
+  const q=pq.list[pq.idx];const all=document.querySelectorAll('#pOpts .opt');all.forEach(b=>b.classList.add('disabled'));
+  const fb=document.getElementById('pFb');
+  if(i===q.a){btn.classList.add('correct');pq.score++;fb.className='feedback ok show';fb.innerHTML=`✅ <b>Chính xác!</b> ${q.e}`;}
+  else{btn.classList.add('wrong');all[q.a].classList.add('correct');fb.className='feedback no show';fb.innerHTML=`❌ <b>Sai.</b> Đáp án: <b>${q.o[q.a]}</b>. ${q.e}`;}
+  document.getElementById('pBar').style.width=`${(pq.idx+1)/pq.list.length*100}%`;
+  document.getElementById('pNext').style.display='inline-block';
+}
+document.getElementById('pNext').onclick=()=>{pq.idx++;if(pq.idx>=pq.list.length)finishP();else renderP();};
+function finishP(){
+  document.getElementById('pPlay').style.display='none';document.getElementById('pResult').style.display='block';
+  const pct=Math.round(pq.score/pq.list.length*100);
+  document.getElementById('pScore').textContent=`${pq.score}/${pq.list.length}`;
+  let m=pct>=90?'🏆 Xuất sắc!':pct>=70?'🌟 Tốt lắm!':pct>=50?'👍 Khá ổn, ôn thêm nhé.':'💪 Cố lên! Hãy xem lại Bài giảng.';
+  document.getElementById('pMsg').textContent=`${m} (${pct}%)`;
+}
+document.getElementById('pBack').onclick=()=>{if(confirm('Quay lại? Bài làm hiện tại sẽ mất.')){document.getElementById('pPlay').style.display='none';document.getElementById('pSetup').style.display='block';}};
+document.getElementById('pRetry').onclick=startP;
+document.getElementById('pNew').onclick=()=>{document.getElementById('pResult').style.display='none';document.getElementById('pSetup').style.display='block';};
+function practiceUnit(n){show('practice');document.getElementById('pScope').value=String(n);startP();}
+window.practiceUnit=practiceUnit;
+
+/* ===== TEST ===== */
+document.getElementById('tScope').innerHTML=scopeOptions();
+let tq={list:[],idx:0,ans:[]};
+function startT(){
+  const scope=document.getElementById('tScope').value;
+  const cnt=parseInt(document.getElementById('tCount').value);
+  tq={list:buildPool(scope,cnt),idx:0,ans:[]};
+  tq.ans=new Array(tq.list.length).fill(-1);
+  document.getElementById('tSetup').style.display='none';
+  document.getElementById('tResult').style.display='none';
+  document.getElementById('tPlay').style.display='block';
+  renderT();
+}
+document.getElementById('tStart').onclick=startT;
+function renderT(){
+  const q=tq.list[tq.idx];
+  document.getElementById('tTopic').textContent=scopeName(q.unit);
+  document.getElementById('tCounter').textContent=`${tq.idx+1}/${tq.list.length}`;
+  document.getElementById('tBar').style.width=`${(tq.idx+1)/tq.list.length*100}%`;
+  document.getElementById('tQ').textContent=q.q;
+  const box=document.getElementById('tOpts');box.innerHTML='';
+  q.o.forEach((o,i)=>{const b=document.createElement('button');b.className='opt'+(tq.ans[tq.idx]===i?' correct':'');b.textContent=o;b.onclick=()=>{tq.ans[tq.idx]=i;renderT();};box.appendChild(b);});
+  document.getElementById('tPrev').style.visibility=tq.idx===0?'hidden':'visible';
+  document.getElementById('tNextBtn').style.visibility=tq.idx===tq.list.length-1?'hidden':'visible';
+}
+document.getElementById('tPrev').onclick=()=>{if(tq.idx>0){tq.idx--;renderT();}};
+document.getElementById('tNextBtn').onclick=()=>{if(tq.idx<tq.list.length-1){tq.idx++;renderT();}};
+document.getElementById('tBack').onclick=()=>{if(confirm('Thoát kiểm tra? Bài làm sẽ mất.')){document.getElementById('tPlay').style.display='none';document.getElementById('tSetup').style.display='block';}};
+document.getElementById('tSubmit').onclick=()=>{
+  const un=tq.ans.filter(a=>a<0).length;
+  if(un>0 && !confirm(`Còn ${un} câu chưa làm. Vẫn nộp bài?`))return;
+  finishT();
+};
+function finishT(){
+  let score=0;
+  tq.list.forEach((q,i)=>{if(tq.ans[i]===q.a)score++;});
+  const total=tq.list.length;const mark=Math.round(score/total*100)/10; // thang 10
+  document.getElementById('tPlay').style.display='none';
+  const wrong=tq.list.map((q,i)=>({q,i})).filter(x=>tq.ans[x.i]!==x.q.a);
+  let html=`<div class="card scoreboard">
+    <div class="big">${mark.toFixed(1)}<span style="font-size:1.2rem"> /10</span></div>
+    <p class="muted">Đúng ${score}/${total} câu — ${Math.round(score/total*100)}%</p>
+    <p style="margin-top:6px">${mark>=8?'🏆 Giỏi!':mark>=6.5?'🌟 Khá!':mark>=5?'👍 Trung bình, cần ôn thêm.':'💪 Chưa đạt — hãy ôn lại Bài giảng rồi thi lại.'}</p>
+    <div class="row" style="justify-content:center;margin-top:14px">
+      <button class="btn green" onclick="startTAgain()">🔁 Làm đề khác</button>
+      <button class="btn ghost" onclick="document.getElementById('tResult').style.display='none';document.getElementById('tSetup').style.display='block';">Đổi nội dung</button>
+    </div>
+  </div>`;
+  if(wrong.length){
+    html+=`<h2>🔍 Xem lại ${wrong.length} câu sai</h2>`;
+    wrong.forEach(x=>{
+      const yours=tq.ans[x.i]<0?'(bỏ trống)':x.q.o[tq.ans[x.i]];
+      html+=`<div class="review-item"><b>${scopeName(x.q.unit)}.</b> ${x.q.q}<br>
+        <span style="color:#fca5a5">Bạn chọn: ${yours}</span> · <span style="color:#4ade80">Đáp án: ${x.q.o[x.q.a]}</span><br>
+        <span class="muted">💡 ${x.q.e}</span></div>`;
+    });
+  } else { html+=`<div class="card" style="text-align:center">🎉 Bạn làm đúng tất cả các câu!</div>`; }
+  const r=document.getElementById('tResult');r.innerHTML=html;r.style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function startTAgain(){startT();}
+window.startTAgain=startTAgain;
+function testUnit(n){show('test');document.getElementById('tScope').value=String(n);document.getElementById('tCount').value='15';startT();}
+window.testUnit=testUnit;
+
+/* ============================================================
+   LUYỆN NGHE (file MP3 trong thư mục audio/)
+============================================================ */
+const LISTEN={
+  1:{file:'audio/bai_nghe_tieng_anh_9_unit_1_7ff1bccde1.mp3',
+     summary:'Bài nghe xoay quanh cuộc sống ở khu dân cư: chuyển đến nơi ở mới, làng nghề và những người giúp ích cho cộng đồng.',
+     keywords:['neighbourhood','suburb','craft village','community helper','facilities','friendly'],
+     tips:['Nghe các tính từ mô tả nơi ở (quiet, wider, bigger...).','Chú ý các tiện ích được nhắc tới (shops, park, hospital...).']},
+  2:{file:'audio/bai_nghe_tieng_anh_9_unit_2_87783d1eb1.mp3',
+     summary:'Nội dung về cuộc sống đô thị: các vấn đề của thành phố (giao thông, ô nhiễm) và giải pháp.',
+     keywords:['traffic jam','crowded','pollution','public transport','solution','reliable'],
+     tips:['Nghe vấn đề (problem) và giải pháp (solution) được nêu ra.','Chú ý so sánh kép: more and more, the more... the more...']},
+  3:{file:'audio/bai_nghe_tieng_anh_9_unit_3_623afe5a09.mp3',
+     summary:'Lời khuyên giữ gìn sức khỏe thể chất – tinh thần và cách quản lý thời gian cho học sinh.',
+     keywords:['sleep','diet','exercise','stress','manage time','well-balanced'],
+     tips:['Nghe các lời khuyên dùng should / shouldn\'t.','Chú ý các con số (số giờ ngủ, thời gian...).']},
+  4:{file:'audio/bai_nghe_tieng_anh_9_unit_4_953a6e6128.mp3',
+     summary:'Nội dung về cuộc sống và trường học ngày xưa, cùng việc gìn giữ các giá trị truyền thống.',
+     keywords:['in the past','traditional','school days','preserve','memory','generation'],
+     tips:['Chú ý sự khác biệt giữa "xưa" và "nay".','Nghe các động từ ở quá khứ (was/were, played, walked...).']},
+  5:{file:'audio/bai_nghe_tieng_anh_9_unit_5_ea12c626b5.mp3',
+     summary:'Kể về một trải nghiệm hoặc chuyến đi đáng nhớ và cảm nhận của người nói.',
+     keywords:['experience','trip','exciting','memorable','scenery','enjoyable'],
+     tips:['Nghe nơi chốn và các hoạt động đã làm.','Chú ý tính từ chỉ cảm xúc (thrilling, unforgettable...).']},
+  6:{file:'audio/bai_nghe_tieng_anh_9_unit_6_1a83802b42.mp3',
+     summary:'Nói về những thay đổi trong lối sống và đời sống gia đình người Việt xưa và nay.',
+     keywords:['lifestyle','change','nowadays','family','opportunity','convenient'],
+     tips:['So sánh cuộc sống quá khứ và hiện tại.','Nghe các động từ + to-V / V-ing.']},
+  7:{file:'audio/bai_nghe_tieng_anh_9_unit_7_18d5b18da5.mp3',
+     summary:'Giới thiệu một kỳ quan thiên nhiên và lý do cần bảo tồn nó.',
+     keywords:['natural wonder','landscape','breathtaking','preserve','heritage','spectacular'],
+     tips:['Nghe tên địa danh và đặc điểm nổi bật.','Chú ý câu tường thuật (asked if/whether...).']},
+  8:{file:'audio/bai_nghe_tieng_anh_9_unit_8_97dbdf78ec.mp3',
+     summary:'Nội dung về du lịch: các loại hình tour, điểm đến và kinh nghiệm đi du lịch.',
+     keywords:['tour','destination','accommodation','sightseeing','package tour','souvenir'],
+     tips:['Nghe thông tin lịch trình: giờ giấc, địa điểm.','Chú ý đại từ quan hệ who/which/that.']},
+  9:{file:'audio/bai_nghe_tieng_anh_9_unit_9_2834d3e407.mp3',
+     summary:'Nói về cách học/cải thiện tiếng Anh và sự đa dạng của tiếng Anh trên thế giới.',
+     keywords:['vocabulary','accent','practise','improve','language','native speaker'],
+     tips:['Nghe các cách/lời khuyên để cải thiện tiếng Anh.','Chú ý mệnh đề quan hệ xác định.']},
+  10:{file:'audio/bai_nghe_tieng_anh_9_unit_10_ab242bb1cb.mp3',
+     summary:'Nội dung về môi trường sống, hệ động – thực vật và việc bảo vệ thiên nhiên.',
+     keywords:['habitat','species','endangered','environment','protect','wildlife'],
+     tips:['Nghe mối quan hệ nguyên nhân – hậu quả và giải pháp.','Chú ý mệnh đề quan hệ không xác định (có dấu phẩy).']},
+  11:{file:'audio/bai_nghe_tieng_anh_9_unit_11_7da3cdaf1e.mp3',
+     summary:'Nói về thiết bị điện tử yêu thích, các tính năng và công dụng của nó.',
+     keywords:['device','tablet','touchscreen','portable','function','wireless'],
+     tips:['Nghe các tính năng và lợi ích của thiết bị.','Chú ý suggest/advise/recommend + V-ing / should.']},
+  12:{file:'audio/bai_nghe_tieng_anh_9_unit_12_6b01078709.mp3',
+     summary:'Nội dung về định hướng nghề nghiệp: các nghề, đào tạo và lời khuyên chọn nghề.',
+     keywords:['career','job','vocational','training','ability','ambition'],
+     tips:['Nghe tên các nghề được nhắc đến.','Chú ý mệnh đề chỉ nguyên nhân/kết quả/nhượng bộ.']}
+};
+const GENERAL_TIPS=[
+  'Đọc trước phần "Từ khóa cần nghe" và câu hỏi (nếu có) để biết cần chú ý điều gì.',
+  'Nghe lần 1 để nắm ý chính, nghe lần 2–3 để lấy thông tin chi tiết.',
+  'Không dừng lại ở từ chưa hiểu — đoán nghĩa qua ngữ cảnh và nghe tiếp.',
+  'Ghi nhanh tên riêng, con số và từ khóa khi nghe.',
+  'Nghe chậm (0.75x) khi mới làm quen, rồi tăng dần lên tốc độ thường.'
+];
+const lnUnit=document.getElementById('lnUnit');
+lnUnit.innerHTML=UNITS.map(u=>`<option value="${u.n}">Unit ${u.n}: ${u.title}</option>`).join('');
+lnUnit.onchange=renderListen;
+function renderListen(){
+  const n=parseInt(lnUnit.value);const u=U(n);const L=LISTEN[n];
+  const body=document.getElementById('lnBody');
+  body.innerHTML=`
+  <div class="card" style="border-left:5px solid ${u.color}">
+    <h2 style="margin-top:0;color:${u.color}"><span class="unit-num" style="background:${u.color}">${n}</span>${u.title} <span class="muted" style="font-size:1rem">— Bài nghe</span></h2>
+    <audio id="lnAudio" controls preload="none" style="width:100%;margin:8px 0" src="${L.file}"></audio>
+    <div id="lnErr" class="note" style="display:none">⚠️ Không tải được file nghe. Hãy kiểm tra file <b>${L.file}</b> có nằm trong thư mục <b>audio/</b> cạnh trang web không. Hoặc chọn file thủ công:
+      <div style="margin-top:8px"><input type="file" id="lnPick" accept="audio/*"></div>
+    </div>
+    <div class="row" style="margin-top:6px"><span class="muted">Tốc độ phát:</span>
+      <button class="btn ghost sm" data-sp="0.75">0.75x</button>
+      <button class="btn ghost sm" data-sp="1">1x</button>
+      <button class="btn ghost sm" data-sp="1.25">1.25x</button>
+    </div>
+  </div>
+  <div class="acc open"><div class="acc-head" onclick="this.parentElement.classList.toggle('open')"><span>📋 Nội dung & lưu ý khi nghe</span><span class="chev">▶</span></div>
+    <div class="acc-body">
+      <h3>Nội dung chính</h3><p>${L.summary}</p>
+      <h3 style="margin-top:12px">🔑 Từ khóa cần nghe</h3>
+      <div>${L.keywords.map(k=>`<span class="tag">${k} <button class="btn ghost sm" style="padding:2px 8px" onclick="speak('${k.replace(/'/g,"\\'")}')">🔊</button></span>`).join('')}</div>
+      <h3 style="margin-top:12px">💡 Lưu ý cho bài này</h3>
+      <ul class="clean">${L.tips.map(t=>`<li>${t}</li>`).join('')}</ul>
+      <h3 style="margin-top:12px">🎧 Mẹo nghe chung</h3>
+      <ul class="clean">${GENERAL_TIPS.map(t=>`<li>${t}</li>`).join('')}</ul>
+    </div></div>
+  <div class="row" style="justify-content:center;margin-top:14px">
+    <button class="btn green" onclick="practiceUnit(${n})">✍️ Luyện tập Unit ${n}</button>
+    <button class="btn ghost" onclick="document.getElementById('lsUnit').value='${n}';show('lessons');renderLesson();">📘 Xem bài giảng Unit ${n}</button>
+  </div>`;
+  const audio=document.getElementById('lnAudio');
+  audio.onerror=()=>{document.getElementById('lnErr').style.display='block';};
+  body.querySelectorAll('[data-sp]').forEach(b=>b.onclick=()=>{audio.playbackRate=parseFloat(b.dataset.sp);if(audio.paused)audio.play();});
+  body.addEventListener('change',e=>{if(e.target.id==='lnPick'&&e.target.files[0]){audio.src=URL.createObjectURL(e.target.files[0]);document.getElementById('lnErr').style.display='none';audio.play();}});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+renderListen();
+
+window.addEventListener('load',()=>{if('speechSynthesis'in window)speechSynthesis.getVoices();});
+</script>
+</body>
+</html>
