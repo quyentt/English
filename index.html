@@ -1,783 +1,1209 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Học Các Thì Tiếng Anh - Lớp 6 đến 9</title>
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  :root{
-    --bg:#0f172a; --card:#1e293b; --card2:#273449;
-    --primary:#3b82f6; --primary2:#2563eb; --accent:#22c55e;
-    --warn:#f59e0b; --danger:#ef4444; --text:#e2e8f0; --muted:#94a3b8;
-    --border:#334155;
-  }
-  body{
-    font-family:'Segoe UI',system-ui,Tahoma,sans-serif;
-    background:linear-gradient(135deg,#0f172a 0%,#1e1b4b 100%);
-    color:var(--text); min-height:100vh; line-height:1.6;
-  }
-  header{
-    background:rgba(15,23,42,.85); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--border); position:sticky; top:0; z-index:50;
-  }
-  .header-inner{
-    max-width:1100px; margin:0 auto; padding:14px 20px;
-    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;
-  }
-  .logo{ font-size:1.35rem; font-weight:800; display:flex; align-items:center; gap:10px; }
-  .logo .em{ font-size:1.6rem; }
-  nav{ display:flex; gap:6px; flex-wrap:wrap; }
-  nav button{
-    background:transparent; color:var(--muted); border:1px solid transparent;
-    padding:8px 16px; border-radius:10px; cursor:pointer; font-size:.95rem; font-weight:600;
-    transition:.2s;
-  }
-  nav button:hover{ color:var(--text); background:var(--card); }
-  nav button.active{ background:var(--primary); color:#fff; }
-  main{ max-width:1100px; margin:0 auto; padding:24px 20px 80px; }
-  .view{ display:none; animation:fade .35s ease; }
-  .view.active{ display:block; }
-  @keyframes fade{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:none;} }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Học Các Thì Tiếng Anh - Lớp 6 đến 9</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  h1{ font-size:1.9rem; margin-bottom:8px; }
-  h2{ font-size:1.4rem; margin:6px 0 14px; }
-  h3{ font-size:1.1rem; margin-bottom:8px; color:#93c5fd; }
-  p{ margin-bottom:8px; }
-  .muted{ color:var(--muted); }
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --card2: #273449;
+      --primary: #3b82f6;
+      --primary2: #2563eb;
+      --accent: #22c55e;
+      --warn: #f59e0b;
+      --danger: #ef4444;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --border: #334155;
+    }
 
-  .hero{
-    background:var(--card); border:1px solid var(--border); border-radius:18px;
-    padding:30px; margin-bottom:24px;
-  }
-  .hero h1{ background:linear-gradient(90deg,#60a5fa,#34d399); -webkit-background-clip:text; background-clip:text; color:transparent; }
-  .grid{ display:grid; gap:16px; }
-  .grid.cols3{ grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); }
-  .grid.cols2{ grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); }
+    body {
+      font-family: 'Segoe UI', system-ui, Tahoma, sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
 
-  .card{
-    background:var(--card); border:1px solid var(--border); border-radius:16px;
-    padding:20px; transition:.2s;
-  }
-  .card.link{ cursor:pointer; }
-  .card.link:hover{ transform:translateY(-4px); border-color:var(--primary); box-shadow:0 10px 30px rgba(59,130,246,.18); }
-  .card .icon{ font-size:2rem; margin-bottom:8px; }
-  .badge{
-    display:inline-block; font-size:.78rem; font-weight:700; padding:3px 10px;
-    border-radius:999px; background:var(--card2); color:#93c5fd; margin-bottom:8px;
-  }
-  .formula{
-    background:var(--card2); border:1px dashed var(--primary); border-radius:12px;
-    padding:14px 16px; margin:10px 0; font-family:'Consolas',monospace; font-size:1rem;
-  }
-  .formula b{ color:#fcd34d; }
-  ul.clean{ list-style:none; }
-  ul.clean li{ padding:5px 0 5px 26px; position:relative; }
-  ul.clean li::before{ content:'✔'; position:absolute; left:0; color:var(--accent); }
-  ul.signal li::before{ content:'🔑'; }
-  .ex{ background:rgba(34,197,94,.08); border-left:3px solid var(--accent); padding:8px 12px; border-radius:6px; margin:6px 0; }
-  .ex .vi{ color:var(--muted); font-style:italic; font-size:.9rem; }
+    header {
+      background: rgba(15, 23, 42, .85);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
 
-  .btn{
-    background:var(--primary); color:#fff; border:none; padding:11px 20px;
-    border-radius:10px; cursor:pointer; font-size:.95rem; font-weight:700; transition:.2s;
-  }
-  .btn:hover{ background:var(--primary2); }
-  .btn.ghost{ background:var(--card2); color:var(--text); }
-  .btn.ghost:hover{ background:var(--border); }
-  .btn.green{ background:var(--accent); } .btn.green:hover{ filter:brightness(1.1); }
-  .btn:disabled{ opacity:.5; cursor:not-allowed; }
-  .row{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
 
-  /* lesson accordion */
-  .lesson{ margin-bottom:14px; }
-  .lesson-head{
-    background:var(--card); border:1px solid var(--border); border-radius:14px;
-    padding:16px 20px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:10px;
-  }
-  .lesson-head:hover{ border-color:var(--primary); }
-  .lesson-head .t{ font-weight:700; font-size:1.1rem; }
-  .lesson-head .t small{ display:block; color:var(--muted); font-weight:500; font-size:.82rem; }
-  .lesson-body{ display:none; padding:18px 20px; background:rgba(30,41,59,.5); border:1px solid var(--border); border-top:none; border-radius:0 0 14px 14px; margin-top:-8px; }
-  .lesson.open .lesson-body{ display:block; }
-  .lesson.open .lesson-head{ border-radius:14px 14px 0 0; }
-  .chev{ transition:.2s; }
-  .lesson.open .chev{ transform:rotate(90deg); }
+    .logo {
+      font-size: 1.35rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-  /* quiz */
-  .quiz-setup .card{ text-align:center; }
-  .progress{ height:8px; background:var(--card2); border-radius:99px; overflow:hidden; margin:14px 0; }
-  .progress > div{ height:100%; background:linear-gradient(90deg,#3b82f6,#22c55e); width:0; transition:.3s; }
-  .question{ font-size:1.25rem; font-weight:600; margin:10px 0 18px; }
-  .opt{
-    display:block; width:100%; text-align:left; background:var(--card2); color:var(--text);
-    border:2px solid transparent; padding:13px 18px; border-radius:12px; margin-bottom:10px;
-    cursor:pointer; font-size:1rem; transition:.15s;
-  }
-  .opt:hover{ border-color:var(--primary); }
-  .opt.correct{ border-color:var(--accent); background:rgba(34,197,94,.18); }
-  .opt.wrong{ border-color:var(--danger); background:rgba(239,68,68,.18); }
-  .opt.disabled{ pointer-events:none; }
-  .feedback{ padding:12px 16px; border-radius:10px; margin:6px 0 14px; display:none; }
-  .feedback.show{ display:block; }
-  .feedback.ok{ background:rgba(34,197,94,.15); border:1px solid var(--accent); }
-  .feedback.no{ background:rgba(239,68,68,.15); border:1px solid var(--danger); }
-  .scoreboard{ text-align:center; padding:20px; }
-  .scoreboard .big{ font-size:3rem; font-weight:800; }
-  select, input[type=text]{
-    background:var(--card2); color:var(--text); border:1px solid var(--border);
-    padding:10px 14px; border-radius:10px; font-size:1rem;
-  }
+    .logo .em {
+      font-size: 1.6rem;
+    }
 
-  /* speaking */
-  .speak-card{ background:var(--card); border:1px solid var(--border); border-radius:16px; padding:22px; }
-  .phrase{ font-size:1.5rem; font-weight:700; margin:6px 0; }
-  .phrase-vi{ color:var(--muted); font-style:italic; margin-bottom:14px; }
-  .mic-btn{
-    width:84px; height:84px; border-radius:50%; border:none; cursor:pointer;
-    background:var(--danger); color:#fff; font-size:2rem; transition:.2s; box-shadow:0 6px 20px rgba(239,68,68,.4);
-  }
-  .mic-btn:hover{ transform:scale(1.05); }
-  .mic-btn.listening{ animation:pulse 1.1s infinite; }
-  @keyframes pulse{ 0%{box-shadow:0 0 0 0 rgba(239,68,68,.6);} 70%{box-shadow:0 0 0 22px rgba(239,68,68,0);} }
-  .heard{ background:var(--card2); border-radius:10px; padding:12px 16px; margin-top:14px; min-height:48px; }
-  .result-good{ color:#4ade80; font-weight:700; }
-  .result-bad{ color:#fca5a5; font-weight:700; }
-  .wmatch{ color:#4ade80; } .wmiss{ color:#fca5a5; text-decoration:underline; }
+    nav {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
 
-  footer{ text-align:center; color:var(--muted); padding:24px; font-size:.85rem; border-top:1px solid var(--border); }
-  .tag{ display:inline-block; background:var(--card2); padding:4px 10px; border-radius:8px; font-size:.8rem; margin:2px; }
-  @media(max-width:600px){ .header-inner{ justify-content:center; } .hero{ padding:20px; } h1{ font-size:1.5rem; } }
-</style>
+    nav button {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid transparent;
+      padding: 8px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: .95rem;
+      font-weight: 600;
+      transition: .2s;
+    }
+
+    nav button:hover {
+      color: var(--text);
+      background: var(--card);
+    }
+
+    nav button.active {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 20px 80px;
+    }
+
+    .view {
+      display: none;
+      animation: fade .35s ease;
+    }
+
+    .view.active {
+      display: block;
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      margin: 6px 0 14px;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      color: #93c5fd;
+    }
+
+    p {
+      margin-bottom: 8px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .hero {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 30px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      background: linear-gradient(90deg, #60a5fa, #34d399);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .grid.cols3 {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .grid.cols2 {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      transition: .2s;
+    }
+
+    .card.link {
+      cursor: pointer;
+    }
+
+    .card.link:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
+      box-shadow: 0 10px 30px rgba(59, 130, 246, .18);
+    }
+
+    .card .icon {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: .78rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: var(--card2);
+      color: #93c5fd;
+      margin-bottom: 8px;
+    }
+
+    .formula {
+      background: var(--card2);
+      border: 1px dashed var(--primary);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 10px 0;
+      font-family: 'Consolas', monospace;
+      font-size: 1rem;
+    }
+
+    .formula b {
+      color: #fcd34d;
+    }
+
+    ul.clean {
+      list-style: none;
+    }
+
+    ul.clean li {
+      padding: 5px 0 5px 26px;
+      position: relative;
+    }
+
+    ul.clean li::before {
+      content: '✔';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    ul.signal li::before {
+      content: '🔑';
+    }
+
+    .ex {
+      background: rgba(34, 197, 94, .08);
+      border-left: 3px solid var(--accent);
+      padding: 8px 12px;
+      border-radius: 6px;
+      margin: 6px 0;
+    }
+
+    .ex .vi {
+      color: var(--muted);
+      font-style: italic;
+      font-size: .9rem;
+    }
+
+    .btn {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 11px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: .95rem;
+      font-weight: 700;
+      transition: .2s;
+    }
+
+    .btn:hover {
+      background: var(--primary2);
+    }
+
+    .btn.ghost {
+      background: var(--card2);
+      color: var(--text);
+    }
+
+    .btn.ghost:hover {
+      background: var(--border);
+    }
+
+    .btn.green {
+      background: var(--accent);
+    }
+
+    .btn.green:hover {
+      filter: brightness(1.1);
+    }
+
+    .btn:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    /* lesson accordion */
+    .lesson {
+      margin-bottom: 14px;
+    }
+
+    .lesson-head {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .lesson-head:hover {
+      border-color: var(--primary);
+    }
+
+    .lesson-head .t {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .lesson-head .t small {
+      display: block;
+      color: var(--muted);
+      font-weight: 500;
+      font-size: .82rem;
+    }
+
+    .lesson-body {
+      display: none;
+      padding: 18px 20px;
+      background: rgba(30, 41, 59, .5);
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 14px 14px;
+      margin-top: -8px;
+    }
+
+    .lesson.open .lesson-body {
+      display: block;
+    }
+
+    .lesson.open .lesson-head {
+      border-radius: 14px 14px 0 0;
+    }
+
+    .chev {
+      transition: .2s;
+    }
+
+    .lesson.open .chev {
+      transform: rotate(90deg);
+    }
+
+    /* quiz */
+    .quiz-setup .card {
+      text-align: center;
+    }
+
+    .progress {
+      height: 8px;
+      background: var(--card2);
+      border-radius: 99px;
+      overflow: hidden;
+      margin: 14px 0;
+    }
+
+    .progress>div {
+      height: 100%;
+      background: linear-gradient(90deg, #3b82f6, #22c55e);
+      width: 0;
+      transition: .3s;
+    }
+
+    .question {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 10px 0 18px;
+    }
+
+    .opt {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: var(--card2);
+      color: var(--text);
+      border: 2px solid transparent;
+      padding: 13px 18px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: .15s;
+    }
+
+    .opt:hover {
+      border-color: var(--primary);
+    }
+
+    .opt.correct {
+      border-color: var(--accent);
+      background: rgba(34, 197, 94, .18);
+    }
+
+    .opt.wrong {
+      border-color: var(--danger);
+      background: rgba(239, 68, 68, .18);
+    }
+
+    .opt.disabled {
+      pointer-events: none;
+    }
+
+    .feedback {
+      padding: 12px 16px;
+      border-radius: 10px;
+      margin: 6px 0 14px;
+      display: none;
+    }
+
+    .feedback.show {
+      display: block;
+    }
+
+    .feedback.ok {
+      background: rgba(34, 197, 94, .15);
+      border: 1px solid var(--accent);
+    }
+
+    .feedback.no {
+      background: rgba(239, 68, 68, .15);
+      border: 1px solid var(--danger);
+    }
+
+    .scoreboard {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .scoreboard .big {
+      font-size: 3rem;
+      font-weight: 800;
+    }
+
+    select,
+    input[type=text] {
+      background: var(--card2);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 1rem;
+    }
+
+    /* speaking */
+    .speak-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+    }
+
+    .phrase {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 6px 0;
+    }
+
+    .phrase-vi {
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 14px;
+    }
+
+    .mic-btn {
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      background: var(--danger);
+      color: #fff;
+      font-size: 2rem;
+      transition: .2s;
+      box-shadow: 0 6px 20px rgba(239, 68, 68, .4);
+    }
+
+    .mic-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .mic-btn.listening {
+      animation: pulse 1.1s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, .6);
+      }
+
+      70% {
+        box-shadow: 0 0 0 22px rgba(239, 68, 68, 0);
+      }
+    }
+
+    .heard {
+      background: var(--card2);
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-top: 14px;
+      min-height: 48px;
+    }
+
+    .result-good {
+      color: #4ade80;
+      font-weight: 700;
+    }
+
+    .result-bad {
+      color: #fca5a5;
+      font-weight: 700;
+    }
+
+    .wmatch {
+      color: #4ade80;
+    }
+
+    .wmiss {
+      color: #fca5a5;
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 24px;
+      font-size: .85rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--card2);
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: .8rem;
+      margin: 2px;
+    }
+
+    @media(max-width:600px) {
+      .header-inner {
+        justify-content: center;
+      }
+
+      .hero {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header>
-  <div class="header-inner">
-    <div class="logo"><span class="em">📚</span> Học Các Thì Tiếng Anh</div>
-    <nav>
-      <button class="active" data-view="home">🏠 Trang chủ</button>
-      <button data-view="lessons">📖 Bài học</button>
-      <button data-view="practice">✍️ Luyện tập</button>
-      <button data-view="speaking">🎤 Luyện nói</button>
-      <button data-view="vocab">📒 Từ vựng</button>
-      <button data-view="irregular">🔤 Động từ BQT</button>
-    </nav>
-  </div>
-</header>
-
-<main>
-  <!-- ================= HOME ================= -->
-  <section id="home" class="view active">
-    <div class="hero">
-      <h1>Chinh phục các Thì trong Tiếng Anh 🚀</h1>
-      <p class="muted">Dành cho học sinh cấp 2 (lớp 6 → 9). Học lý thuyết dễ hiểu, luyện tập trắc nghiệm và luyện nói với micro. <b>Hoạt động hoàn toàn offline</b> – không cần mạng!</p>
-      <div class="row" style="margin-top:14px">
-        <button class="btn" data-go="lessons">Bắt đầu học →</button>
-        <button class="btn ghost" data-go="practice">Làm bài tập</button>
-      </div>
+  <header>
+    <div class="header-inner">
+      <div class="logo"><span class="em">📚</span> Học Các Thì Tiếng Anh</div>
+      <nav>
+        <button class="active" data-view="home">🏠 Trang chủ</button>
+        <button data-view="lessons">📖 Bài học</button>
+        <button data-view="practice">✍️ Luyện tập</button>
+        <button data-view="speaking">🎤 Luyện nói</button>
+        <button data-view="vocab">📒 Từ vựng</button>
+        <button data-view="irregular">🔤 Động từ BQT</button>
+      </nav>
     </div>
+  </header>
 
-    <h2>Bạn muốn làm gì?</h2>
-    <div class="grid cols3">
-      <div class="card link" data-go="lessons">
-        <div class="icon">📖</div>
-        <h3>Học lý thuyết</h3>
-        <p class="muted">Công thức, cách dùng, dấu hiệu nhận biết và ví dụ cho đủ 12 thì tiếng Anh.</p>
+  <main>
+    <!-- ================= HOME ================= -->
+    <section id="home" class="view active">
+      <div class="hero">
+        <h1>Chinh phục các Thì trong Tiếng Anh 🚀</h1>
+        <p class="muted">Dành cho học sinh cấp 2 (lớp 6 → 9). Học lý thuyết dễ hiểu, luyện tập trắc nghiệm và luyện nói
+          với micro. <b>Hoạt động hoàn toàn offline</b> – không cần mạng!</p>
+        <div class="row" style="margin-top:14px">
+          <button class="btn" data-go="lessons">Bắt đầu học →</button>
+          <button class="btn ghost" data-go="practice">Làm bài tập</button>
+        </div>
       </div>
-      <div class="card link" data-go="practice">
-        <div class="icon">✍️</div>
-        <h3>Luyện tập</h3>
-        <p class="muted">Hơn 60 câu trắc nghiệm có giải thích. Chọn thì muốn ôn hoặc làm tổng hợp.</p>
-      </div>
-      <div class="card link" data-go="speaking">
-        <div class="icon">🎤</div>
-        <h3>Luyện nói</h3>
-        <p class="muted">Nghe phát âm mẫu và tự nói vào micro để máy chấm điểm phát âm của bạn.</p>
-      </div>
-      <div class="card link" data-go="vocab">
-        <div class="icon">📒</div>
-        <h3>Từ vựng</h3>
-        <p class="muted">Hơn 100 từ theo chủ đề, có phiên âm, nghĩa, phát âm và trò chơi ghép từ.</p>
-      </div>
-      <div class="card link" data-go="irregular">
-        <div class="icon">🔤</div>
-        <h3>Động từ bất quy tắc</h3>
-        <p class="muted">Bảng tra hơn 80 động từ bất quy tắc (V1 - V2 - V3) có nghĩa, tìm kiếm nhanh.</p>
-      </div>
-    </div>
 
-    <h2 style="margin-top:28px">12 Thì + cấu trúc be going to</h2>
-    <div class="grid cols2" id="tenseOverview"></div>
-  </section>
+      <h2>Bạn muốn làm gì?</h2>
+      <div class="grid cols3">
+        <div class="card link" data-go="lessons">
+          <div class="icon">📖</div>
+          <h3>Học lý thuyết</h3>
+          <p class="muted">Công thức, cách dùng, dấu hiệu nhận biết và ví dụ cho đủ 12 thì tiếng Anh.</p>
+        </div>
+        <div class="card link" data-go="practice">
+          <div class="icon">✍️</div>
+          <h3>Luyện tập</h3>
+          <p class="muted">Hàng trăm câu cho mỗi thì, tự trộn mới mỗi lần làm, có giải thích đáp án.</p>
+        </div>
+        <div class="card link" data-go="speaking">
+          <div class="icon">🎤</div>
+          <h3>Luyện nói</h3>
+          <p class="muted">Nghe phát âm mẫu và tự nói vào micro để máy chấm điểm phát âm của bạn.</p>
+        </div>
+        <div class="card link" data-go="vocab">
+          <div class="icon">📒</div>
+          <h3>Từ vựng</h3>
+          <p class="muted">Hơn 100 từ theo chủ đề, có phiên âm, nghĩa, phát âm và trò chơi ghép từ.</p>
+        </div>
+        <div class="card link" data-go="irregular">
+          <div class="icon">🔤</div>
+          <h3>Động từ bất quy tắc</h3>
+          <p class="muted">Bảng tra hơn 80 động từ bất quy tắc (V1 - V2 - V3) có nghĩa, tìm kiếm nhanh.</p>
+        </div>
+      </div>
 
-  <!-- ================= LESSONS ================= -->
-  <section id="lessons" class="view">
-    <h1>📖 Bài học – Các Thì</h1>
-    <p class="muted">Nhấn vào từng thì để mở rộng. Nhấn 🔊 để nghe ví dụ.</p>
-    <div id="lessonList" style="margin-top:18px"></div>
-  </section>
+      <h2 style="margin-top:28px">12 Thì + cấu trúc be going to</h2>
+      <div class="grid cols2" id="tenseOverview"></div>
+    </section>
 
-  <!-- ================= PRACTICE ================= -->
-  <section id="practice" class="view">
-    <h1>✍️ Luyện tập trắc nghiệm</h1>
-    <div id="quizSetup" class="quiz-setup">
-      <div class="card" style="margin-top:18px">
-        <h3>Chọn chủ đề ôn tập</h3>
+    <!-- ================= LESSONS ================= -->
+    <section id="lessons" class="view">
+      <h1>📖 Bài học – Các Thì</h1>
+      <p class="muted">Nhấn vào từng thì để mở rộng. Nhấn 🔊 để nghe ví dụ.</p>
+      <div id="lessonList" style="margin-top:18px"></div>
+    </section>
+
+    <!-- ================= PRACTICE ================= -->
+    <section id="practice" class="view">
+      <h1>✍️ Luyện tập trắc nghiệm</h1>
+      <div id="quizSetup" class="quiz-setup">
+        <div class="card" style="margin-top:18px">
+          <h3>Chọn chủ đề ôn tập</h3>
+          <div class="row" style="justify-content:center; margin:14px 0">
+            <select id="quizTopic"></select>
+            <select id="quizCount">
+              <option value="10">10 câu</option>
+              <option value="20" selected>20 câu</option>
+              <option value="30">30 câu</option>
+              <option value="50">50 câu</option>
+              <option value="100">100 câu</option>
+            </select>
+          </div>
+          <button class="btn green" id="startQuiz">▶️ Bắt đầu</button>
+          <p class="muted" style="margin-top:12px; font-size:.85rem">🔀 Mỗi thì có hàng trăm câu, đề được trộn ngẫu
+            nhiên mới mỗi lần bắt đầu.</p>
+        </div>
+      </div>
+
+      <div id="quizPlay" style="display:none">
+        <div class="card">
+          <div class="row" style="justify-content:space-between">
+            <button class="btn ghost" id="backQuiz" style="padding:6px 14px">← Quay lại</button>
+            <span class="badge" id="qTopic">—</span>
+            <span class="muted" id="qCounter">1/10</span>
+          </div>
+          <div class="progress">
+            <div id="qBar"></div>
+          </div>
+          <div class="question" id="qText">—</div>
+          <div id="qOpts"></div>
+          <div class="feedback" id="qFeedback"></div>
+          <div class="row" style="justify-content:flex-end">
+            <button class="btn" id="nextQ" style="display:none">Câu tiếp →</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="quizResult" style="display:none">
+        <div class="card scoreboard">
+          <div class="big" id="finalScore">0/0</div>
+          <p id="scoreMsg" class="muted"></p>
+          <div class="row" style="justify-content:center; margin-top:16px">
+            <button class="btn green" id="retryQuiz">🔁 Làm lại</button>
+            <button class="btn ghost" id="newQuiz">Chọn chủ đề khác</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SPEAKING ================= -->
+    <section id="speaking" class="view">
+      <h1>🎤 Luyện nói</h1>
+      <p class="muted">Chọn thì → Nghe câu mẫu (🔊) → Nhấn micro và đọc to câu đó. Máy sẽ chấm điểm phát âm.</p>
+      <div class="card" style="margin:16px 0">
+        <div class="row">
+          <label>Chủ đề:</label>
+          <select id="speakTopic"></select>
+        </div>
+      </div>
+      <div class="speak-card" style="text-align:center" id="speakBox">
+        <span class="badge" id="spIndex">Câu 1</span>
+        <div class="phrase" id="spPhrase">—</div>
+        <div class="phrase-vi" id="spPhraseVi">—</div>
         <div class="row" style="justify-content:center; margin:14px 0">
-          <select id="quizTopic"></select>
-          <select id="quizCount">
-            <option value="5">5 câu</option>
-            <option value="10">10 câu</option>
-            <option value="20">20 câu</option>
-            <option value="50">50 câu</option>
-            <option value="100" selected>100 câu</option>
-            <option value="9999">Tất cả</option>
-          </select>
+          <button class="btn ghost" id="spListen">🔊 Nghe mẫu</button>
+          <button class="btn ghost" id="spSlow">🐢 Nghe chậm</button>
         </div>
-        <button class="btn green" id="startQuiz">▶️ Bắt đầu</button>
+        <div style="margin:10px 0">
+          <button class="mic-btn" id="spMic" title="Nhấn để nói">🎤</button>
+        </div>
+        <p class="muted" id="spHint">Nhấn micro rồi đọc câu trên</p>
+        <div class="heard" id="spHeard" style="display:none"></div>
+        <div class="row" style="justify-content:space-between; margin-top:16px">
+          <button class="btn ghost" id="spPrev">← Câu trước</button>
+          <button class="btn" id="spNext">Câu sau →</button>
+        </div>
       </div>
-    </div>
+      <p id="speakWarn" class="muted" style="margin-top:14px; display:none">
+        ⚠️ Trình duyệt của bạn chưa hỗ trợ nhận diện giọng nói (hãy dùng <b>Google Chrome</b> hoặc <b>Microsoft
+          Edge</b>). Bạn vẫn có thể nghe câu mẫu để luyện nói theo.
+      </p>
+    </section>
 
-    <div id="quizPlay" style="display:none">
-      <div class="card">
-        <div class="row" style="justify-content:space-between">
-          <button class="btn ghost" id="backQuiz" style="padding:6px 14px">← Quay lại</button>
-          <span class="badge" id="qTopic">—</span>
-          <span class="muted" id="qCounter">1/10</span>
-        </div>
-        <div class="progress"><div id="qBar"></div></div>
-        <div class="question" id="qText">—</div>
-        <div id="qOpts"></div>
-        <div class="feedback" id="qFeedback"></div>
+    <!-- ================= VOCAB ================= -->
+    <section id="vocab" class="view">
+      <h1>📒 Từ vựng theo chủ đề</h1>
+      <p class="muted">Nhấn 🔊 để nghe phát âm. Cuối trang có trò chơi ghép từ để ôn lại.</p>
+      <div class="row" style="margin:16px 0; gap:8px" id="vocabTabs"></div>
+      <div id="vocabList"></div>
+
+      <div class="card" style="margin-top:28px">
+        <h3>🎮 Trò chơi: Chọn nghĩa đúng</h3>
+        <p class="muted" id="vgScore">Điểm: 0</p>
+        <div class="question" id="vgWord" style="margin:14px 0">—</div>
+        <div id="vgOpts"></div>
+        <div class="feedback" id="vgFeedback"></div>
         <div class="row" style="justify-content:flex-end">
-          <button class="btn" id="nextQ" style="display:none">Câu tiếp →</button>
+          <button class="btn" id="vgNext" style="display:none">Từ tiếp →</button>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div id="quizResult" style="display:none">
-      <div class="card scoreboard">
-        <div class="big" id="finalScore">0/0</div>
-        <p id="scoreMsg" class="muted"></p>
-        <div class="row" style="justify-content:center; margin-top:16px">
-          <button class="btn green" id="retryQuiz">🔁 Làm lại</button>
-          <button class="btn ghost" id="newQuiz">Chọn chủ đề khác</button>
+    <!-- ================= IRREGULAR VERBS ================= -->
+    <section id="irregular" class="view">
+      <h1>🔤 Động từ bất quy tắc</h1>
+      <p class="muted">Bảng V1 (nguyên thể) – V2 (quá khứ) – V3 (quá khứ phân từ). Gõ để tìm nhanh, nhấn 🔊 để nghe.</p>
+      <div class="card" style="margin:16px 0">
+        <input type="text" id="ivSearch" placeholder="🔍 Tìm động từ (vd: go, ăn, eat...)" style="width:100%">
+      </div>
+      <div id="ivTable"></div>
+
+      <div class="card" style="margin-top:28px">
+        <h3>🎮 Trò chơi: Điền V2 / V3</h3>
+        <p class="muted" id="ivgScore">Điểm: 0</p>
+        <div class="question" id="ivgWord" style="margin:14px 0">—</div>
+        <div id="ivgOpts"></div>
+        <div class="feedback" id="ivgFeedback"></div>
+        <div class="row" style="justify-content:flex-end">
+          <button class="btn" id="ivgNext" style="display:none">Câu tiếp →</button>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- ================= SPEAKING ================= -->
-  <section id="speaking" class="view">
-    <h1>🎤 Luyện nói</h1>
-    <p class="muted">Chọn thì → Nghe câu mẫu (🔊) → Nhấn micro và đọc to câu đó. Máy sẽ chấm điểm phát âm.</p>
-    <div class="card" style="margin:16px 0">
-      <div class="row">
-        <label>Chủ đề:</label>
-        <select id="speakTopic"></select>
-      </div>
-    </div>
-    <div class="speak-card" style="text-align:center" id="speakBox">
-      <span class="badge" id="spIndex">Câu 1</span>
-      <div class="phrase" id="spPhrase">—</div>
-      <div class="phrase-vi" id="spPhraseVi">—</div>
-      <div class="row" style="justify-content:center; margin:14px 0">
-        <button class="btn ghost" id="spListen">🔊 Nghe mẫu</button>
-        <button class="btn ghost" id="spSlow">🐢 Nghe chậm</button>
-      </div>
-      <div style="margin:10px 0">
-        <button class="mic-btn" id="spMic" title="Nhấn để nói">🎤</button>
-      </div>
-      <p class="muted" id="spHint">Nhấn micro rồi đọc câu trên</p>
-      <div class="heard" id="spHeard" style="display:none"></div>
-      <div class="row" style="justify-content:space-between; margin-top:16px">
-        <button class="btn ghost" id="spPrev">← Câu trước</button>
-        <button class="btn" id="spNext">Câu sau →</button>
-      </div>
-    </div>
-    <p id="speakWarn" class="muted" style="margin-top:14px; display:none">
-      ⚠️ Trình duyệt của bạn chưa hỗ trợ nhận diện giọng nói (hãy dùng <b>Google Chrome</b> hoặc <b>Microsoft Edge</b>). Bạn vẫn có thể nghe câu mẫu để luyện nói theo.
-    </p>
-  </section>
+  <footer>
+    Made for học sinh cấp 2 • Chạy offline • Luyện nói cần trình duyệt Chrome/Edge có micro 🎧
+  </footer>
 
-  <!-- ================= VOCAB ================= -->
-  <section id="vocab" class="view">
-    <h1>📒 Từ vựng theo chủ đề</h1>
-    <p class="muted">Nhấn 🔊 để nghe phát âm. Cuối trang có trò chơi ghép từ để ôn lại.</p>
-    <div class="row" style="margin:16px 0; gap:8px" id="vocabTabs"></div>
-    <div id="vocabList"></div>
+  <script>
+    /* ============================================================
+       TƯƠNG THÍCH TRÌNH DUYỆT (Safari/iOS) + BẮT LỖI
+    ============================================================ */
+    // Hiển thị lỗi JS ra màn hình (giúp gỡ lỗi trên Safari)
+    window.onerror = function (msg, src, line, col) {
+      var b = document.getElementById('errBanner');
+      if (!b) {
+        b = document.createElement('div'); b.id = 'errBanner';
+        b.style.cssText = 'position:fixed;left:0;right:0;bottom:0;background:#7f1d1d;color:#fff;padding:10px 14px;font:13px monospace;z-index:9999;white-space:pre-wrap';
+        (document.body || document.documentElement).appendChild(b);
+      }
+      b.textContent = '⚠️ Lỗi: ' + msg + ' (dòng ' + line + ')';
+      return false;
+    };
+    // Polyfill cho Safari cũ
+    if (!Array.prototype.flat) { Array.prototype.flat = function () { return this.reduce(function (a, b) { return a.concat(b); }, []); }; }
+    if (!Array.prototype.flatMap) { Array.prototype.flatMap = function (f) { return this.map(f).flat(); }; }
 
-    <div class="card" style="margin-top:28px">
-      <h3>🎮 Trò chơi: Chọn nghĩa đúng</h3>
-      <p class="muted" id="vgScore">Điểm: 0</p>
-      <div class="question" id="vgWord" style="margin:14px 0">—</div>
-      <div id="vgOpts"></div>
-      <div class="feedback" id="vgFeedback"></div>
-      <div class="row" style="justify-content:flex-end">
-        <button class="btn" id="vgNext" style="display:none">Từ tiếp →</button>
-      </div>
-    </div>
-  </section>
+    /* ============================================================
+       DỮ LIỆU CÁC THÌ
+    ============================================================ */
+    const TENSES = [
+      {
+        id: 'present-simple', name: 'Hiện tại đơn', en: 'Present Simple', color: '#3b82f6',
+        use: 'Diễn tả thói quen, sự thật hiển nhiên, lịch trình.',
+        forms: [
+          ['Khẳng định', 'S + V(s/es) + O', 'She <b>plays</b> tennis.'],
+          ['Phủ định', 'S + do/does + not + V', 'She <b>does not play</b> tennis.'],
+          ['Nghi vấn', 'Do/Does + S + V ?', '<b>Does</b> she <b>play</b> tennis?']
+        ],
+        usage: ['Thói quen hằng ngày', 'Sự thật, chân lý', 'Lịch trình tàu xe, thời khóa biểu'],
+        signals: ['every day', 'usually', 'often', 'always', 'sometimes', 'never'],
+        examples: [
+          ['I go to school every day.', 'Tôi đi học mỗi ngày.'],
+          ['The sun rises in the east.', 'Mặt trời mọc ở hướng đông.'],
+          ['She does not like coffee.', 'Cô ấy không thích cà phê.']
+        ]
+      },
+      {
+        id: 'present-continuous', name: 'Hiện tại tiếp diễn', en: 'Present Continuous', color: '#06b6d4',
+        use: 'Hành động đang xảy ra ngay lúc nói.',
+        forms: [
+          ['Khẳng định', 'S + am/is/are + V-ing', 'They <b>are playing</b> now.'],
+          ['Phủ định', 'S + am/is/are + not + V-ing', 'They <b>are not playing</b>.'],
+          ['Nghi vấn', 'Am/Is/Are + S + V-ing ?', '<b>Are</b> they <b>playing</b>?']
+        ],
+        usage: ['Hành động đang diễn ra lúc nói', 'Hành động tạm thời quanh thời điểm nói'],
+        signals: ['now', 'right now', 'at the moment', 'at present', 'Look!', 'Listen!'],
+        examples: [
+          ['I am doing my homework now.', 'Tôi đang làm bài tập bây giờ.'],
+          ['Look! The bus is coming.', 'Nhìn kìa! Xe buýt đang đến.'],
+          ['They are not sleeping.', 'Họ không đang ngủ.']
+        ]
+      },
+      {
+        id: 'present-perfect', name: 'Hiện tại hoàn thành', en: 'Present Perfect', color: '#8b5cf6',
+        use: 'Hành động đã xảy ra nhưng còn liên quan đến hiện tại.',
+        forms: [
+          ['Khẳng định', 'S + have/has + V3/ed', 'I <b>have finished</b> it.'],
+          ['Phủ định', 'S + have/has + not + V3/ed', 'I <b>have not finished</b> it.'],
+          ['Nghi vấn', 'Have/Has + S + V3/ed ?', '<b>Have</b> you <b>finished</b>?']
+        ],
+        usage: ['Việc vừa mới xảy ra', 'Kinh nghiệm từng làm', 'Việc bắt đầu trong quá khứ, kéo dài đến nay'],
+        signals: ['just', 'already', 'yet', 'ever', 'never', 'since', 'for', 'recently'],
+        examples: [
+          ['I have just eaten lunch.', 'Tôi vừa mới ăn trưa.'],
+          ['She has lived here for 5 years.', 'Cô ấy đã sống ở đây 5 năm.'],
+          ['Have you ever been to Hanoi?', 'Bạn đã từng đến Hà Nội chưa?']
+        ]
+      },
+      {
+        id: 'past-simple', name: 'Quá khứ đơn', en: 'Past Simple', color: '#f59e0b',
+        use: 'Hành động đã xảy ra và kết thúc trong quá khứ.',
+        forms: [
+          ['Khẳng định', 'S + V2/ed + O', 'He <b>visited</b> Hue.'],
+          ['Phủ định', 'S + did not + V', 'He <b>did not visit</b> Hue.'],
+          ['Nghi vấn', 'Did + S + V ?', '<b>Did</b> he <b>visit</b> Hue?']
+        ],
+        usage: ['Hành động đã kết thúc trong quá khứ', 'Chuỗi hành động trong quá khứ'],
+        signals: ['yesterday', 'last week', 'ago', 'in 2010', 'last night', 'last year'],
+        examples: [
+          ['I watched a film yesterday.', 'Tôi đã xem phim hôm qua.'],
+          ['They went to the zoo last Sunday.', 'Họ đã đi sở thú Chủ Nhật trước.'],
+          ['She did not come to school.', 'Cô ấy đã không đến trường.']
+        ]
+      },
+      {
+        id: 'past-continuous', name: 'Quá khứ tiếp diễn', en: 'Past Continuous', color: '#ec4899',
+        use: 'Hành động đang xảy ra tại một thời điểm trong quá khứ.',
+        forms: [
+          ['Khẳng định', 'S + was/were + V-ing', 'I <b>was reading</b> at 8pm.'],
+          ['Phủ định', 'S + was/were + not + V-ing', 'I <b>was not reading</b>.'],
+          ['Nghi vấn', 'Was/Were + S + V-ing ?', '<b>Were</b> you <b>reading</b>?']
+        ],
+        usage: ['Đang xảy ra tại thời điểm trong quá khứ', 'Hành động đang diễn ra thì bị cắt ngang'],
+        signals: ['at 8 o\'clock yesterday', 'while', 'when', 'at that moment'],
+        examples: [
+          ['I was watching TV at 9pm last night.', 'Tôi đang xem TV lúc 9 giờ tối qua.'],
+          ['While she was cooking, the phone rang.', 'Khi cô ấy đang nấu ăn, điện thoại reo.'],
+          ['They were playing football then.', 'Lúc đó họ đang chơi bóng đá.']
+        ]
+      },
+      {
+        id: 'past-perfect', name: 'Quá khứ hoàn thành', en: 'Past Perfect', color: '#f43f5e',
+        use: 'Hành động xảy ra TRƯỚC một hành động khác trong quá khứ.',
+        forms: [
+          ['Khẳng định', 'S + had + V3/ed', 'She <b>had left</b> before I came.'],
+          ['Phủ định', 'S + had not (hadn\'t) + V3', 'She <b>had not left</b>.'],
+          ['Nghi vấn', 'Had + S + V3 ?', '<b>Had</b> she <b>left</b>?']
+        ],
+        usage: ['Hành động xảy ra trước một hành động/thời điểm khác trong quá khứ', 'Thường đi với "before, after, by the time"'],
+        signals: ['before', 'after', 'by the time', 'already', 'until then', 'when'],
+        examples: [
+          ['When I arrived, the train had already left.', 'Khi tôi đến, tàu đã rời đi rồi.'],
+          ['She had finished her homework before dinner.', 'Cô ấy đã làm xong bài tập trước bữa tối.'],
+          ['They had never seen snow before that day.', 'Họ chưa từng thấy tuyết trước ngày đó.']
+        ]
+      },
+      {
+        id: 'past-perfect-cont', name: 'QK hoàn thành tiếp diễn', en: 'Past Perfect Continuous', color: '#fb7185',
+        use: 'Nhấn mạnh hành động kéo dài TRƯỚC một thời điểm trong quá khứ (nâng cao).',
+        forms: [
+          ['Khẳng định', 'S + had been + V-ing', 'I <b>had been waiting</b> for an hour.'],
+          ['Phủ định', 'S + had not been + V-ing', 'I <b>had not been waiting</b>.'],
+          ['Nghi vấn', 'Had + S + been + V-ing ?', '<b>Had</b> you <b>been waiting</b>?']
+        ],
+        usage: ['Nhấn mạnh tính liên tục của hành động trước một mốc trong quá khứ'],
+        signals: ['for', 'since', 'before', 'all day', 'until'],
+        examples: [
+          ['I had been studying for 2 hours when she called.', 'Tôi đã học được 2 tiếng khi cô ấy gọi.'],
+          ['He was tired because he had been working all day.', 'Anh ấy mệt vì đã làm việc cả ngày.'],
+          ['They had been living there for ten years before they moved.', 'Họ đã sống ở đó 10 năm trước khi chuyển đi.']
+        ]
+      },
+      {
+        id: 'future-simple', name: 'Tương lai đơn', en: 'Future Simple', color: '#10b981',
+        use: 'Quyết định tức thời, dự đoán, lời hứa.',
+        forms: [
+          ['Khẳng định', 'S + will + V', 'I <b>will help</b> you.'],
+          ['Phủ định', 'S + will not (won\'t) + V', 'I <b>will not help</b> you.'],
+          ['Nghi vấn', 'Will + S + V ?', '<b>Will</b> you <b>help</b> me?']
+        ],
+        usage: ['Quyết định ngay lúc nói', 'Dự đoán tương lai', 'Lời hứa, lời đề nghị'],
+        signals: ['tomorrow', 'next week', 'soon', 'someday', 'in the future', 'I think'],
+        examples: [
+          ['I will call you tomorrow.', 'Tôi sẽ gọi cho bạn ngày mai.'],
+          ['It will rain this evening.', 'Trời sẽ mưa tối nay.'],
+          ['She won\'t be late.', 'Cô ấy sẽ không trễ đâu.']
+        ]
+      },
+      {
+        id: 'future-continuous', name: 'Tương lai tiếp diễn', en: 'Future Continuous', color: '#0ea5e9',
+        use: 'Hành động sẽ ĐANG diễn ra tại một thời điểm trong tương lai.',
+        forms: [
+          ['Khẳng định', 'S + will be + V-ing', 'I <b>will be studying</b> at 8pm.'],
+          ['Phủ định', 'S + will not be + V-ing', 'I <b>will not be studying</b>.'],
+          ['Nghi vấn', 'Will + S + be + V-ing ?', '<b>Will</b> you <b>be studying</b>?']
+        ],
+        usage: ['Hành động đang diễn ra tại một thời điểm trong tương lai'],
+        signals: ['at this time tomorrow', 'at 8pm tomorrow', 'this time next week', 'soon'],
+        examples: [
+          ['This time tomorrow, I will be flying to Japan.', 'Giờ này ngày mai, tôi sẽ đang bay đến Nhật.'],
+          ['She will be working at 9 o\'clock.', 'Cô ấy sẽ đang làm việc lúc 9 giờ.'],
+          ['Don\'t call me at 7; I will be having dinner.', 'Đừng gọi tôi lúc 7 giờ; tôi sẽ đang ăn tối.']
+        ]
+      },
+      {
+        id: 'future-perfect', name: 'Tương lai hoàn thành', en: 'Future Perfect', color: '#6366f1',
+        use: 'Hành động sẽ HOÀN THÀNH trước một thời điểm trong tương lai.',
+        forms: [
+          ['Khẳng định', 'S + will have + V3/ed', 'I <b>will have finished</b> by 5pm.'],
+          ['Phủ định', 'S + will not have + V3', 'I <b>will not have finished</b>.'],
+          ['Nghi vấn', 'Will + S + have + V3 ?', '<b>Will</b> you <b>have finished</b>?']
+        ],
+        usage: ['Hành động hoàn thành trước một mốc thời gian trong tương lai', 'Thường đi với "by, by the time"'],
+        signals: ['by', 'by the time', 'by then', 'before', 'by 2030'],
+        examples: [
+          ['By 2030, I will have graduated from university.', 'Đến năm 2030, tôi sẽ đã tốt nghiệp đại học.'],
+          ['She will have left by the time you arrive.', 'Cô ấy sẽ đã đi trước khi bạn đến.'],
+          ['They will have built the bridge by next year.', 'Họ sẽ xây xong cây cầu vào năm sau.']
+        ]
+      },
+      {
+        id: 'future-perfect-cont', name: 'TL hoàn thành tiếp diễn', en: 'Future Perfect Continuous', color: '#818cf8',
+        use: 'Nhấn mạnh hành động kéo dài ĐẾN một thời điểm trong tương lai (nâng cao).',
+        forms: [
+          ['Khẳng định', 'S + will have been + V-ing', 'I <b>will have been working</b>...'],
+          ['Phủ định', 'S + will not have been + V-ing', 'I <b>will not have been working</b>.'],
+          ['Nghi vấn', 'Will + S + have been + V-ing ?', '<b>Will</b> you <b>have been working</b>?']
+        ],
+        usage: ['Nhấn mạnh tính liên tục, kéo dài của hành động tính đến một mốc tương lai'],
+        signals: ['by', 'for', 'by the time', 'by then'],
+        examples: [
+          ['By next month, I will have been working here for 5 years.', 'Đến tháng sau, tôi sẽ làm ở đây được 5 năm.'],
+          ['She will have been studying for 3 hours by noon.', 'Đến trưa, cô ấy sẽ đã học liên tục 3 tiếng.'],
+          ['By 2025, they will have been living here for a decade.', 'Đến 2025, họ sẽ đã sống ở đây một thập kỷ.']
+        ]
+      },
+      {
+        id: 'be-going-to', name: 'Tương lai gần (be going to)', en: 'Future: be going to', color: '#14b8a6',
+        use: 'Dự định, kế hoạch đã định trước.',
+        forms: [
+          ['Khẳng định', 'S + am/is/are going to + V', 'I <b>am going to</b> travel.'],
+          ['Phủ định', 'S + am/is/are not going to + V', 'I <b>am not going to</b> travel.'],
+          ['Nghi vấn', 'Am/Is/Are + S + going to + V ?', '<b>Are</b> you <b>going to</b> travel?']
+        ],
+        usage: ['Kế hoạch đã lên trước', 'Dự đoán có bằng chứng rõ ràng'],
+        signals: ['tonight', 'tomorrow', 'next month', 'this weekend'],
+        examples: [
+          ['I am going to visit my grandma this weekend.', 'Tôi dự định thăm bà cuối tuần này.'],
+          ['Look at those clouds! It is going to rain.', 'Nhìn mây kìa! Trời sắp mưa.'],
+          ['They are going to build a new school.', 'Họ sẽ xây một trường mới.']
+        ]
+      },
+      {
+        id: 'present-perfect-cont', name: 'HT hoàn thành tiếp diễn', en: 'Present Perfect Continuous', color: '#a855f7',
+        use: 'Nhấn mạnh hành động kéo dài từ quá khứ đến nay (nâng cao, lớp 9).',
+        forms: [
+          ['Khẳng định', 'S + have/has been + V-ing', 'I <b>have been studying</b>.'],
+          ['Phủ định', 'S + have/has not been + V-ing', 'I <b>have not been studying</b>.'],
+          ['Nghi vấn', 'Have/Has + S + been + V-ing ?', '<b>Have</b> you <b>been studying</b>?']
+        ],
+        usage: ['Nhấn mạnh tính liên tục, kéo dài của hành động đến hiện tại'],
+        signals: ['for', 'since', 'all day', 'how long', 'recently'],
+        examples: [
+          ['I have been learning English for 3 years.', 'Tôi đã học tiếng Anh được 3 năm.'],
+          ['It has been raining all day.', 'Trời đã mưa cả ngày.'],
+          ['How long have you been waiting?', 'Bạn đã đợi bao lâu rồi?']
+        ]
+      }
+    ];
 
-  <!-- ================= IRREGULAR VERBS ================= -->
-  <section id="irregular" class="view">
-    <h1>🔤 Động từ bất quy tắc</h1>
-    <p class="muted">Bảng V1 (nguyên thể) – V2 (quá khứ) – V3 (quá khứ phân từ). Gõ để tìm nhanh, nhấn 🔊 để nghe.</p>
-    <div class="card" style="margin:16px 0">
-      <input type="text" id="ivSearch" placeholder="🔍 Tìm động từ (vd: go, ăn, eat...)" style="width:100%">
-    </div>
-    <div id="ivTable"></div>
+    /* ============================================================
+       NGÂN HÀNG CÂU HỎI TRẮC NGHIỆM
+    ============================================================ */
+    const QUESTIONS = {
+      'present-simple': [
+        { q: 'She ___ to school every morning.', o: ['go', 'goes', 'going', 'went'], a: 1, e: 'Chủ ngữ "She" + V-es → goes. Dấu hiệu "every morning".' },
+        { q: 'They ___ football on Sundays.', o: ['plays', 'play', 'playing', 'played'], a: 1, e: 'Chủ ngữ "They" số nhiều → play (không thêm s).' },
+        { q: 'The sun ___ in the east.', o: ['rise', 'rises', 'rising', 'rose'], a: 1, e: 'Sự thật hiển nhiên → hiện tại đơn, "The sun" → rises.' },
+        { q: 'My father ___ not drink coffee.', o: ['do', 'does', 'is', 'are'], a: 1, e: 'Chủ ngữ số ít → does not.' },
+        { q: '___ you like ice cream?', o: ['Does', 'Is', 'Do', 'Are'], a: 2, e: 'Chủ ngữ "you" → Do you like...?' },
+        { q: 'Water ___ at 100°C.', o: ['boil', 'boils', 'boiling', 'boiled'], a: 1, e: 'Sự thật khoa học, "Water" số ít → boils.' },
+        { q: 'We ___ English on Mondays.', o: ['has', 'study', 'studies', 'studying'], a: 1, e: '"We" → study.' },
+        { q: 'He always ___ his homework.', o: ['do', 'does', 'doing', 'did'], a: 1, e: '"always" là dấu hiệu HT đơn, He → does.' },
+        { q: 'My sister ___ TV every evening.', o: ['watch', 'watches', 'watching', 'watched'], a: 1, e: '"My sister" số ít → watches (thêm -es sau ch).' },
+        { q: 'Cats ___ milk.', o: ['likes', 'like', 'liking', 'liked'], a: 1, e: '"Cats" số nhiều → like.' },
+        { q: 'The train ___ at 7 a.m. every day.', o: ['leave', 'leaves', 'left', 'leaving'], a: 1, e: 'Lịch trình → HT đơn, "The train" → leaves.' },
+        { q: 'I ___ not understand this lesson.', o: ['does', 'do', 'am', 'is'], a: 1, e: '"I" → do not.' },
+        { q: 'How often ___ she go swimming?', o: ['do', 'does', 'is', 'are'], a: 1, e: '"she" → does she go.' },
+        { q: 'Nam ___ his teeth twice a day.', o: ['brush', 'brushes', 'brushed', 'brushing'], a: 1, e: '"Nam" số ít → brushes.' }
+      ],
+      'present-continuous': [
+        { q: 'Look! The children ___ in the park.', o: ['play', 'plays', 'are playing', 'played'], a: 2, e: '"Look!" → hiện tại tiếp diễn, children (số nhiều) → are playing.' },
+        { q: 'I ___ my homework right now.', o: ['do', 'am doing', 'does', 'did'], a: 1, e: '"right now" → am doing.' },
+        { q: 'She ___ a book at the moment.', o: ['reads', 'is reading', 'read', 'reading'], a: 1, e: '"at the moment" → is reading.' },
+        { q: 'Listen! Someone ___ the piano.', o: ['plays', 'is playing', 'play', 'played'], a: 1, e: '"Listen!" → is playing.' },
+        { q: 'They ___ not sleeping now.', o: ['is', 'am', 'are', 'do'], a: 2, e: '"They" → are not.' },
+        { q: 'What ___ you doing now?', o: ['is', 'are', 'do', 'does'], a: 1, e: '"you" + V-ing → are you doing.' },
+        { q: 'We ___ TV at the moment.', o: ['watch', 'watches', 'are watching', 'watched'], a: 2, e: '"at the moment" → are watching.' },
+        { q: 'He is ___ a letter now.', o: ['write', 'writes', 'writing', 'wrote'], a: 2, e: 'is + V-ing → writing (bỏ e thêm ing).' },
+        { q: 'The baby ___ crying right now.', o: ['are', 'is', 'am', 'do'], a: 1, e: '"The baby" số ít → is crying.' },
+        { q: 'My parents ___ in the garden now.', o: ['is working', 'are working', 'works', 'work'], a: 1, e: '"My parents" số nhiều → are working.' },
+        { q: 'Be quiet! The students ___ a test.', o: ['take', 'takes', 'are taking', 'took'], a: 2, e: '"Be quiet!" → đang diễn ra → are taking.' },
+        { q: 'I ___ wearing my uniform now.', o: ['is', 'am', 'are', 'do'], a: 1, e: '"I" → am wearing.' },
+        { q: 'Why ___ she crying?', o: ['is', 'are', 'do', 'does'], a: 0, e: '"she" → is she crying.' }
+      ],
+      'present-perfect': [
+        { q: 'I have ___ my lunch already.', o: ['eat', 'eaten', 'ate', 'eating'], a: 1, e: 'have + V3 → eaten. "already" là dấu hiệu.' },
+        { q: 'She ___ lived here for 10 years.', o: ['have', 'has', 'is', 'was'], a: 1, e: 'Chủ ngữ "She" → has.' },
+        { q: '___ you ever been to Da Nang?', o: ['Have', 'Has', 'Did', 'Do'], a: 0, e: '"ever" + you → Have you ever been...' },
+        { q: 'They have ___ finished the project.', o: ['yet', 'just', 'ago', 'now'], a: 1, e: '"just" đi với HT hoàn thành (yet dùng câu phủ định/nghi vấn).' },
+        { q: 'We have known each other ___ 2015.', o: ['for', 'since', 'in', 'at'], a: 1, e: '"since + mốc thời gian" (2015).' },
+        { q: 'He has worked here ___ five years.', o: ['since', 'for', 'in', 'at'], a: 1, e: '"for + khoảng thời gian" (five years).' },
+        { q: 'I have not ___ that film yet.', o: ['see', 'seen', 'saw', 'seeing'], a: 1, e: 'have not + V3 → seen.' },
+        { q: 'My mom has ___ a new car.', o: ['buy', 'bought', 'buyed', 'buying'], a: 1, e: 'have/has + V3 → bought.' },
+        { q: '___ he done his homework yet?', o: ['Have', 'Has', 'Did', 'Do'], a: 1, e: '"he" → Has he done...?' },
+        { q: 'We have ___ this book three times.', o: ['read', 'reads', 'reading', 'to read'], a: 0, e: 'Kinh nghiệm → have read (read V3 giữ nguyên).' },
+        { q: 'She has ___ been to London.', o: ['ever', 'never', 'yet', 'ago'], a: 1, e: '"never" = chưa từng, đi với HT hoàn thành.' },
+        { q: 'They ___ just arrived at the airport.', o: ['have', 'has', 'did', 'was'], a: 0, e: '"They" → have just arrived.' },
+        { q: 'I have ___ my keys. I cannot find them.', o: ['lose', 'lost', 'losed', 'losing'], a: 1, e: 'have + V3 → lost.' }
+      ],
+      'past-simple': [
+        { q: 'We ___ to the zoo last Sunday.', o: ['go', 'went', 'gone', 'going'], a: 1, e: '"last Sunday" → quá khứ đơn, go → went.' },
+        { q: 'She ___ not come to the party.', o: ['do', 'did', 'was', 'is'], a: 1, e: 'Phủ định QK đơn → did not.' },
+        { q: '___ you watch TV yesterday?', o: ['Do', 'Did', 'Was', 'Were'], a: 1, e: '"yesterday" → Did you watch...?' },
+        { q: 'They ___ a new house in 2020.', o: ['buy', 'bought', 'buys', 'buying'], a: 1, e: '"in 2020" → bought (V2 bất quy tắc).' },
+        { q: 'I ___ very tired last night.', o: ['am', 'was', 'were', 'is'], a: 1, e: '"I" + QK của be → was.' },
+        { q: 'He ___ his homework an hour ago.', o: ['finish', 'finished', 'finishes', 'finishing'], a: 1, e: '"ago" → finished.' },
+        { q: 'The students ___ happy yesterday.', o: ['was', 'were', 'are', 'is'], a: 1, e: '"students" số nhiều → were.' },
+        { q: 'My brother ___ to music last night.', o: ['listen', 'listened', 'listens', 'listening'], a: 1, e: '"last night" → listened.' },
+        { q: 'Where ___ you go on holiday?', o: ['do', 'did', 'was', 'were'], a: 1, e: 'Câu hỏi QK → did you go.' },
+        { q: 'She ___ a beautiful dress to the party.', o: ['wear', 'wore', 'weared', 'wears'], a: 1, e: 'wear → wore (bất quy tắc).' },
+        { q: 'We ___ not have school yesterday.', o: ['did', 'do', 'was', 'were'], a: 0, e: 'Phủ định QK → did not have.' },
+        { q: 'The film ___ at 9 o\'clock.', o: ['start', 'started', 'starts', 'starting'], a: 1, e: 'QK đơn → started.' },
+        { q: 'They ___ in Hue two years ago.', o: ['live', 'lived', 'lives', 'living'], a: 1, e: '"ago" → lived.' }
+      ],
+      'past-continuous': [
+        { q: 'I ___ TV at 8pm last night.', o: ['watch', 'was watching', 'were watching', 'watched'], a: 1, e: 'Thời điểm cụ thể trong QK, "I" → was watching.' },
+        { q: 'While she ___, the phone rang.', o: ['cooks', 'was cooking', 'cooked', 'cooking'], a: 1, e: '"While + QK tiếp diễn" → was cooking.' },
+        { q: 'They ___ football when it started to rain.', o: ['played', 'were playing', 'was playing', 'play'], a: 1, e: '"They" + đang diễn ra thì bị cắt ngang → were playing.' },
+        { q: 'What ___ you doing at that moment?', o: ['was', 'were', 'did', 'are'], a: 1, e: '"you" → were you doing.' },
+        { q: 'He ___ not sleeping at midnight.', o: ['was', 'were', 'did', 'is'], a: 0, e: '"He" → was not.' },
+        { q: 'We ___ dinner when you called.', o: ['have', 'were having', 'was having', 'had'], a: 1, e: '"We" đang diễn ra → were having.' },
+        { q: 'At 7am yesterday, I ___ to school.', o: ['walk', 'was walking', 'were walking', 'walked'], a: 1, e: 'Thời điểm cụ thể → was walking.' },
+        { q: 'She ___ a letter when the lights went out.', o: ['wrote', 'was writing', 'were writing', 'writes'], a: 1, e: 'Đang diễn ra thì bị cắt ngang → was writing.' },
+        { q: 'The boys ___ in the river all afternoon.', o: ['swim', 'was swimming', 'were swimming', 'swam'], a: 2, e: '"The boys" số nhiều → were swimming.' },
+        { q: 'While we ___, it began to snow.', o: ['talk', 'were talking', 'was talking', 'talked'], a: 1, e: '"While + we" → were talking.' },
+        { q: '___ they playing games at 9pm?', o: ['Was', 'Were', 'Did', 'Are'], a: 1, e: '"they" → Were they playing.' }
+      ],
+      'future-simple': [
+        { q: 'I ___ help you with your bags.', o: ['will', 'am', 'do', 'was'], a: 0, e: 'Quyết định ngay lúc nói → will help.' },
+        { q: 'It ___ rain tomorrow.', o: ['will', 'is', 'was', 'does'], a: 0, e: 'Dự đoán tương lai → will rain.' },
+        { q: 'She ___ be 15 next year.', o: ['will', 'is going', 'was', 'does'], a: 0, e: '"next year" → will be.' },
+        { q: 'They will ___ to Japan soon.', o: ['travel', 'travels', 'traveled', 'traveling'], a: 0, e: 'will + V nguyên thể → travel.' },
+        { q: 'I think it ___ be sunny tomorrow.', o: ['will', 'is', 'was', 'going'], a: 0, e: '"I think...tomorrow" → will be.' },
+        { q: '___ you come to my party?', o: ['Will', 'Do', 'Are', 'Did'], a: 0, e: 'Lời mời tương lai → Will you...?' },
+        { q: 'Don\'t worry, I ___ not tell anyone.', o: ['will', 'am', 'do', 'did'], a: 0, e: 'Lời hứa → will not (won\'t) tell.' },
+        { q: 'Maybe she ___ pass the exam.', o: ['will', 'is', 'was', 'does'], a: 0, e: '"Maybe" → dự đoán → will pass.' },
+        { q: 'We ___ visit grandma next week.', o: ['will', 'are', 'do', 'were'], a: 0, e: '"next week" → will visit.' },
+        { q: 'The weather forecast says it ___ be cold.', o: ['will', 'is', 'was', 'does'], a: 0, e: 'Dự đoán tương lai → will be.' },
+        { q: 'He won\'t ___ late tomorrow.', o: ['is', 'be', 'being', 'was'], a: 1, e: 'won\'t + V nguyên thể → be.' },
+        { q: 'Where ___ you stay in Hanoi?', o: ['will', 'do', 'are', 'did'], a: 0, e: 'Câu hỏi tương lai → will you stay.' }
+      ],
+      'be-going-to': [
+        { q: 'I ___ going to visit my aunt this weekend.', o: ['am', 'is', 'are', 'will'], a: 0, e: '"I" → am going to.' },
+        { q: 'Look at those clouds! It ___ going to rain.', o: ['am', 'is', 'are', 'will'], a: 1, e: '"It" → is going to (có bằng chứng = mây đen).' },
+        { q: 'They are going to ___ a new bridge.', o: ['build', 'builds', 'built', 'building'], a: 0, e: 'going to + V nguyên thể → build.' },
+        { q: 'We ___ going to have a picnic tomorrow.', o: ['am', 'is', 'are', 'will'], a: 2, e: '"We" → are going to.' },
+        { q: '___ she going to study abroad?', o: ['Is', 'Are', 'Am', 'Will'], a: 0, e: '"she" → Is she going to...?' },
+        { q: 'He is ___ to buy a new bike.', o: ['go', 'going', 'goes', 'went'], a: 1, e: 'Cấu trúc cố định: be + going to.' },
+        { q: 'You ___ going to love this movie.', o: ['am', 'is', 'are', 'will'], a: 2, e: '"You" → are going to.' },
+        { q: 'My friends are going to ___ a party.', o: ['has', 'have', 'having', 'had'], a: 1, e: 'going to + V nguyên thể → have.' },
+        { q: 'I am not ___ to eat fast food anymore.', o: ['go', 'going', 'goes', 'went'], a: 1, e: 'be + not + going to + V.' },
+        { q: 'What ___ you going to do tonight?', o: ['am', 'is', 'are', 'do'], a: 2, e: '"you" → are you going to do.' },
+        { q: 'Watch out! You ___ going to fall!', o: ['am', 'is', 'are', 'will'], a: 2, e: '"You" + có bằng chứng → are going to fall.' }
+      ],
+      'present-perfect-cont': [
+        { q: 'I have been ___ English for 3 years.', o: ['learn', 'learned', 'learning', 'learns'], a: 2, e: 'have been + V-ing → learning.' },
+        { q: 'It ___ been raining all day.', o: ['have', 'has', 'is', 'was'], a: 1, e: '"It" → has been.' },
+        { q: 'How long have you ___ waiting?', o: ['be', 'been', 'being', 'was'], a: 1, e: 'have + been + V-ing.' },
+        { q: 'They have been ___ since morning.', o: ['work', 'works', 'working', 'worked'], a: 2, e: 'have been + working.' },
+        { q: 'She has been ___ for the bus for 20 minutes.', o: ['wait', 'waited', 'waiting', 'waits'], a: 2, e: 'has been + waiting.' },
+        { q: 'We ___ been studying since 8 o\'clock.', o: ['have', 'has', 'are', 'did'], a: 0, e: '"We" → have been.' },
+        { q: 'He has been ___ football all afternoon.', o: ['play', 'played', 'playing', 'plays'], a: 2, e: 'has been + playing.' },
+        { q: 'My eyes are red because I ___ been crying.', o: ['have', 'has', 'am', 'was'], a: 0, e: '"I" → have been crying.' },
+        { q: 'How long has it ___ snowing?', o: ['be', 'been', 'being', 'was'], a: 1, e: 'has + been + V-ing.' },
+        { q: 'I have been ___ for you for an hour!', o: ['look', 'looked', 'looking', 'looks'], a: 2, e: 'have been + looking.' },
+        { q: 'You look tired. ___ you been running?', o: ['Have', 'Has', 'Did', 'Are'], a: 0, e: '"you" → Have you been running.' },
+        { q: 'The kids have been ___ in the garden.', o: ['play', 'played', 'playing', 'plays'], a: 2, e: 'have been + playing.' }
+      ],
+      'past-perfect': [
+        { q: 'When I arrived, the train ___ already left.', o: ['has', 'had', 'have', 'was'], a: 1, e: 'Hành động xảy ra trước QK → had left.' },
+        { q: 'She ___ finished her homework before dinner.', o: ['has', 'had', 'have', 'was'], a: 1, e: 'Trước một mốc QK → had finished.' },
+        { q: 'They had ___ snow before that trip.', o: ['never see', 'never seen', 'never saw', 'not see'], a: 1, e: 'had + (never) + V3 → seen.' },
+        { q: 'After he ___ lunch, he went out.', o: ['has had', 'had had', 'have had', 'had'], a: 1, e: 'after + QKHT → had had.' },
+        { q: 'By the time we got there, the film ___ started.', o: ['has', 'had', 'have', 'was'], a: 1, e: '"By the time + QK" → had started.' },
+        { q: 'I couldn\'t enter because I ___ lost my key.', o: ['have', 'had', 'has', 'was'], a: 1, e: 'Nguyên nhân trước đó → had lost.' },
+        { q: 'She told me she ___ seen that movie.', o: ['has', 'had', 'have', 'did'], a: 1, e: 'Tường thuật lùi thì → had seen.' },
+        { q: 'We ___ never been to Hue before 2020.', o: ['has', 'had', 'have', 'were'], a: 1, e: 'Trước mốc QK → had never been.' }
+      ],
+      'past-perfect-cont': [
+        { q: 'I ___ been waiting for an hour when she came.', o: ['has', 'had', 'have', 'was'], a: 1, e: 'QKHT tiếp diễn → had been waiting.' },
+        { q: 'He was tired because he ___ been working all day.', o: ['has', 'had', 'have', 'was'], a: 1, e: 'had been + V-ing.' },
+        { q: 'They had been ___ there for ten years before moving.', o: ['live', 'lived', 'living', 'lives'], a: 2, e: 'had been + living.' },
+        { q: 'How long ___ you been studying when I called?', o: ['has', 'had', 'have', 'did'], a: 1, e: 'Had + S + been + V-ing.' },
+        { q: 'She had been ___ for the bus before it arrived.', o: ['wait', 'waited', 'waiting', 'waits'], a: 2, e: 'had been + waiting.' },
+        { q: 'We were wet because it ___ been raining.', o: ['has', 'had', 'have', 'was'], a: 1, e: 'had been + raining.' },
+        { q: 'My eyes hurt; I ___ been reading for hours.', o: ['has', 'had', 'have', 'was'], a: 1, e: '"I" → had been reading.' }
+      ],
+      'future-continuous': [
+        { q: 'This time tomorrow, I ___ be flying to Japan.', o: ['will', 'am', 'was', 'have'], a: 0, e: 'TL tiếp diễn → will be flying.' },
+        { q: 'She will ___ working at 9 o\'clock.', o: ['be', 'is', 'being', 'been'], a: 0, e: 'will + be + V-ing.' },
+        { q: 'Don\'t call at 7; we ___ be having dinner.', o: ['will', 'are', 'were', 'have'], a: 0, e: 'will be having.' },
+        { q: 'At 8pm, they will be ___ a film.', o: ['watch', 'watches', 'watching', 'watched'], a: 2, e: 'will be + watching.' },
+        { q: '___ you be using the computer later?', o: ['Will', 'Are', 'Do', 'Were'], a: 0, e: 'Will + S + be + V-ing.' },
+        { q: 'This time next week, he ___ be lying on a beach.', o: ['will', 'is', 'was', 'has'], a: 0, e: 'will be lying.' },
+        { q: 'I will ___ studying when you arrive.', o: ['be', 'am', 'being', 'been'], a: 0, e: 'will + be + V-ing.' }
+      ],
+      'future-perfect': [
+        { q: 'By 2030, I ___ have graduated.', o: ['will', 'am', 'was', 'have'], a: 0, e: 'TL hoàn thành → will have graduated.' },
+        { q: 'She will ___ left by the time you arrive.', o: ['has', 'have', 'had', 'having'], a: 1, e: 'will + have + V3.' },
+        { q: 'They will have ___ the bridge by next year.', o: ['build', 'built', 'building', 'builds'], a: 1, e: 'will have + built.' },
+        { q: 'By 6pm, we ___ have finished the work.', o: ['will', 'are', 'were', 'have'], a: 0, e: '"By 6pm" → will have finished.' },
+        { q: '___ you have done it by tomorrow?', o: ['Will', 'Are', 'Do', 'Did'], a: 0, e: 'Will + S + have + V3.' },
+        { q: 'He will have ___ the book by Friday.', o: ['read', 'reads', 'reading', 'to read'], a: 0, e: 'will have + read (V3).' },
+        { q: 'By the time she is 18, she ___ have learned English.', o: ['will', 'is', 'was', 'has'], a: 0, e: 'will have learned.' }
+      ],
+      'future-perfect-cont': [
+        { q: 'By next month, I will have been ___ here for 5 years.', o: ['work', 'worked', 'working', 'works'], a: 2, e: 'will have been + working.' },
+        { q: 'She will have ___ been studying for 3 hours by noon.', o: ['be', 'been', 'being', 'was'], a: 1, e: 'will have + been + V-ing.' },
+        { q: 'By 2025, they ___ have been living here for a decade.', o: ['will', 'are', 'were', 'have'], a: 0, e: 'will have been living.' },
+        { q: 'He will have been ___ for the bus for an hour.', o: ['wait', 'waited', 'waiting', 'waits'], a: 2, e: 'will have been + waiting.' },
+        { q: 'By then, we ___ have been driving for ten hours.', o: ['will', 'are', 'were', 'have'], a: 0, e: 'will have been driving.' },
+        { q: 'How long will you ___ been teaching by June?', o: ['has', 'have', 'had', 'having'], a: 1, e: 'will + have + been + V-ing.' }
+      ],
+      '_extra': [
+        { q: 'My grandfather ___ in this village since 1960.', o: ['lives', 'has lived', 'lived', 'living'], a: 1, e: '"since 1960" → HT hoàn thành: has lived.', topicName: 'Hiện tại hoàn thành' },
+        { q: 'Right now the dog ___ at the cat.', o: ['barks', 'is barking', 'barked', 'bark'], a: 1, e: '"Right now" → HT tiếp diễn: is barking.', topicName: 'Hiện tại tiếp diễn' }
+      ]
+    };
 
-    <div class="card" style="margin-top:28px">
-      <h3>🎮 Trò chơi: Điền V2 / V3</h3>
-      <p class="muted" id="ivgScore">Điểm: 0</p>
-      <div class="question" id="ivgWord" style="margin:14px 0">—</div>
-      <div id="ivgOpts"></div>
-      <div class="feedback" id="ivgFeedback"></div>
-      <div class="row" style="justify-content:flex-end">
-        <button class="btn" id="ivgNext" style="display:none">Câu tiếp →</button>
-      </div>
-    </div>
-  </section>
-</main>
+    /* ============================================================
+       ĐIỀU HƯỚNG
+    ============================================================ */
+    const views = document.querySelectorAll('.view');
+    const navBtns = document.querySelectorAll('nav button');
+    function show(id) {
+      views.forEach(v => v.classList.toggle('active', v.id === id));
+      navBtns.forEach(b => b.classList.toggle('active', b.dataset.view === id));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    navBtns.forEach(b => b.onclick = () => show(b.dataset.view));
+    document.querySelectorAll('[data-go]').forEach(el => el.onclick = () => show(el.dataset.go));
 
-<footer>
-  Made for học sinh cấp 2 • Chạy offline • Luyện nói cần trình duyệt Chrome/Edge có micro 🎧
-</footer>
-
-<script>
-/* ============================================================
-   TƯƠNG THÍCH TRÌNH DUYỆT (Safari/iOS) + BẮT LỖI
-============================================================ */
-// Hiển thị lỗi JS ra màn hình (giúp gỡ lỗi trên Safari)
-window.onerror=function(msg,src,line,col){
-  var b=document.getElementById('errBanner');
-  if(!b){
-    b=document.createElement('div'); b.id='errBanner';
-    b.style.cssText='position:fixed;left:0;right:0;bottom:0;background:#7f1d1d;color:#fff;padding:10px 14px;font:13px monospace;z-index:9999;white-space:pre-wrap';
-    (document.body||document.documentElement).appendChild(b);
-  }
-  b.textContent='⚠️ Lỗi: '+msg+' (dòng '+line+')';
-  return false;
-};
-// Polyfill cho Safari cũ
-if(!Array.prototype.flat){ Array.prototype.flat=function(){ return this.reduce(function(a,b){ return a.concat(b); },[]); }; }
-if(!Array.prototype.flatMap){ Array.prototype.flatMap=function(f){ return this.map(f).flat(); }; }
-
-/* ============================================================
-   DỮ LIỆU CÁC THÌ
-============================================================ */
-const TENSES = [
-  {
-    id:'present-simple', name:'Hiện tại đơn', en:'Present Simple', color:'#3b82f6',
-    use:'Diễn tả thói quen, sự thật hiển nhiên, lịch trình.',
-    forms:[
-      ['Khẳng định','S + V(s/es) + O','She <b>plays</b> tennis.'],
-      ['Phủ định','S + do/does + not + V','She <b>does not play</b> tennis.'],
-      ['Nghi vấn','Do/Does + S + V ?','<b>Does</b> she <b>play</b> tennis?']
-    ],
-    usage:['Thói quen hằng ngày','Sự thật, chân lý','Lịch trình tàu xe, thời khóa biểu'],
-    signals:['every day','usually','often','always','sometimes','never'],
-    examples:[
-      ['I go to school every day.','Tôi đi học mỗi ngày.'],
-      ['The sun rises in the east.','Mặt trời mọc ở hướng đông.'],
-      ['She does not like coffee.','Cô ấy không thích cà phê.']
-    ]
-  },
-  {
-    id:'present-continuous', name:'Hiện tại tiếp diễn', en:'Present Continuous', color:'#06b6d4',
-    use:'Hành động đang xảy ra ngay lúc nói.',
-    forms:[
-      ['Khẳng định','S + am/is/are + V-ing','They <b>are playing</b> now.'],
-      ['Phủ định','S + am/is/are + not + V-ing','They <b>are not playing</b>.'],
-      ['Nghi vấn','Am/Is/Are + S + V-ing ?','<b>Are</b> they <b>playing</b>?']
-    ],
-    usage:['Hành động đang diễn ra lúc nói','Hành động tạm thời quanh thời điểm nói'],
-    signals:['now','right now','at the moment','at present','Look!','Listen!'],
-    examples:[
-      ['I am doing my homework now.','Tôi đang làm bài tập bây giờ.'],
-      ['Look! The bus is coming.','Nhìn kìa! Xe buýt đang đến.'],
-      ['They are not sleeping.','Họ không đang ngủ.']
-    ]
-  },
-  {
-    id:'present-perfect', name:'Hiện tại hoàn thành', en:'Present Perfect', color:'#8b5cf6',
-    use:'Hành động đã xảy ra nhưng còn liên quan đến hiện tại.',
-    forms:[
-      ['Khẳng định','S + have/has + V3/ed','I <b>have finished</b> it.'],
-      ['Phủ định','S + have/has + not + V3/ed','I <b>have not finished</b> it.'],
-      ['Nghi vấn','Have/Has + S + V3/ed ?','<b>Have</b> you <b>finished</b>?']
-    ],
-    usage:['Việc vừa mới xảy ra','Kinh nghiệm từng làm','Việc bắt đầu trong quá khứ, kéo dài đến nay'],
-    signals:['just','already','yet','ever','never','since','for','recently'],
-    examples:[
-      ['I have just eaten lunch.','Tôi vừa mới ăn trưa.'],
-      ['She has lived here for 5 years.','Cô ấy đã sống ở đây 5 năm.'],
-      ['Have you ever been to Hanoi?','Bạn đã từng đến Hà Nội chưa?']
-    ]
-  },
-  {
-    id:'past-simple', name:'Quá khứ đơn', en:'Past Simple', color:'#f59e0b',
-    use:'Hành động đã xảy ra và kết thúc trong quá khứ.',
-    forms:[
-      ['Khẳng định','S + V2/ed + O','He <b>visited</b> Hue.'],
-      ['Phủ định','S + did not + V','He <b>did not visit</b> Hue.'],
-      ['Nghi vấn','Did + S + V ?','<b>Did</b> he <b>visit</b> Hue?']
-    ],
-    usage:['Hành động đã kết thúc trong quá khứ','Chuỗi hành động trong quá khứ'],
-    signals:['yesterday','last week','ago','in 2010','last night','last year'],
-    examples:[
-      ['I watched a film yesterday.','Tôi đã xem phim hôm qua.'],
-      ['They went to the zoo last Sunday.','Họ đã đi sở thú Chủ Nhật trước.'],
-      ['She did not come to school.','Cô ấy đã không đến trường.']
-    ]
-  },
-  {
-    id:'past-continuous', name:'Quá khứ tiếp diễn', en:'Past Continuous', color:'#ec4899',
-    use:'Hành động đang xảy ra tại một thời điểm trong quá khứ.',
-    forms:[
-      ['Khẳng định','S + was/were + V-ing','I <b>was reading</b> at 8pm.'],
-      ['Phủ định','S + was/were + not + V-ing','I <b>was not reading</b>.'],
-      ['Nghi vấn','Was/Were + S + V-ing ?','<b>Were</b> you <b>reading</b>?']
-    ],
-    usage:['Đang xảy ra tại thời điểm trong quá khứ','Hành động đang diễn ra thì bị cắt ngang'],
-    signals:['at 8 o\'clock yesterday','while','when','at that moment'],
-    examples:[
-      ['I was watching TV at 9pm last night.','Tôi đang xem TV lúc 9 giờ tối qua.'],
-      ['While she was cooking, the phone rang.','Khi cô ấy đang nấu ăn, điện thoại reo.'],
-      ['They were playing football then.','Lúc đó họ đang chơi bóng đá.']
-    ]
-  },
-  {
-    id:'past-perfect', name:'Quá khứ hoàn thành', en:'Past Perfect', color:'#f43f5e',
-    use:'Hành động xảy ra TRƯỚC một hành động khác trong quá khứ.',
-    forms:[
-      ['Khẳng định','S + had + V3/ed','She <b>had left</b> before I came.'],
-      ['Phủ định','S + had not (hadn\'t) + V3','She <b>had not left</b>.'],
-      ['Nghi vấn','Had + S + V3 ?','<b>Had</b> she <b>left</b>?']
-    ],
-    usage:['Hành động xảy ra trước một hành động/thời điểm khác trong quá khứ','Thường đi với "before, after, by the time"'],
-    signals:['before','after','by the time','already','until then','when'],
-    examples:[
-      ['When I arrived, the train had already left.','Khi tôi đến, tàu đã rời đi rồi.'],
-      ['She had finished her homework before dinner.','Cô ấy đã làm xong bài tập trước bữa tối.'],
-      ['They had never seen snow before that day.','Họ chưa từng thấy tuyết trước ngày đó.']
-    ]
-  },
-  {
-    id:'past-perfect-cont', name:'QK hoàn thành tiếp diễn', en:'Past Perfect Continuous', color:'#fb7185',
-    use:'Nhấn mạnh hành động kéo dài TRƯỚC một thời điểm trong quá khứ (nâng cao).',
-    forms:[
-      ['Khẳng định','S + had been + V-ing','I <b>had been waiting</b> for an hour.'],
-      ['Phủ định','S + had not been + V-ing','I <b>had not been waiting</b>.'],
-      ['Nghi vấn','Had + S + been + V-ing ?','<b>Had</b> you <b>been waiting</b>?']
-    ],
-    usage:['Nhấn mạnh tính liên tục của hành động trước một mốc trong quá khứ'],
-    signals:['for','since','before','all day','until'],
-    examples:[
-      ['I had been studying for 2 hours when she called.','Tôi đã học được 2 tiếng khi cô ấy gọi.'],
-      ['He was tired because he had been working all day.','Anh ấy mệt vì đã làm việc cả ngày.'],
-      ['They had been living there for ten years before they moved.','Họ đã sống ở đó 10 năm trước khi chuyển đi.']
-    ]
-  },
-  {
-    id:'future-simple', name:'Tương lai đơn', en:'Future Simple', color:'#10b981',
-    use:'Quyết định tức thời, dự đoán, lời hứa.',
-    forms:[
-      ['Khẳng định','S + will + V','I <b>will help</b> you.'],
-      ['Phủ định','S + will not (won\'t) + V','I <b>will not help</b> you.'],
-      ['Nghi vấn','Will + S + V ?','<b>Will</b> you <b>help</b> me?']
-    ],
-    usage:['Quyết định ngay lúc nói','Dự đoán tương lai','Lời hứa, lời đề nghị'],
-    signals:['tomorrow','next week','soon','someday','in the future','I think'],
-    examples:[
-      ['I will call you tomorrow.','Tôi sẽ gọi cho bạn ngày mai.'],
-      ['It will rain this evening.','Trời sẽ mưa tối nay.'],
-      ['She won\'t be late.','Cô ấy sẽ không trễ đâu.']
-    ]
-  },
-  {
-    id:'future-continuous', name:'Tương lai tiếp diễn', en:'Future Continuous', color:'#0ea5e9',
-    use:'Hành động sẽ ĐANG diễn ra tại một thời điểm trong tương lai.',
-    forms:[
-      ['Khẳng định','S + will be + V-ing','I <b>will be studying</b> at 8pm.'],
-      ['Phủ định','S + will not be + V-ing','I <b>will not be studying</b>.'],
-      ['Nghi vấn','Will + S + be + V-ing ?','<b>Will</b> you <b>be studying</b>?']
-    ],
-    usage:['Hành động đang diễn ra tại một thời điểm trong tương lai'],
-    signals:['at this time tomorrow','at 8pm tomorrow','this time next week','soon'],
-    examples:[
-      ['This time tomorrow, I will be flying to Japan.','Giờ này ngày mai, tôi sẽ đang bay đến Nhật.'],
-      ['She will be working at 9 o\'clock.','Cô ấy sẽ đang làm việc lúc 9 giờ.'],
-      ['Don\'t call me at 7; I will be having dinner.','Đừng gọi tôi lúc 7 giờ; tôi sẽ đang ăn tối.']
-    ]
-  },
-  {
-    id:'future-perfect', name:'Tương lai hoàn thành', en:'Future Perfect', color:'#6366f1',
-    use:'Hành động sẽ HOÀN THÀNH trước một thời điểm trong tương lai.',
-    forms:[
-      ['Khẳng định','S + will have + V3/ed','I <b>will have finished</b> by 5pm.'],
-      ['Phủ định','S + will not have + V3','I <b>will not have finished</b>.'],
-      ['Nghi vấn','Will + S + have + V3 ?','<b>Will</b> you <b>have finished</b>?']
-    ],
-    usage:['Hành động hoàn thành trước một mốc thời gian trong tương lai','Thường đi với "by, by the time"'],
-    signals:['by','by the time','by then','before','by 2030'],
-    examples:[
-      ['By 2030, I will have graduated from university.','Đến năm 2030, tôi sẽ đã tốt nghiệp đại học.'],
-      ['She will have left by the time you arrive.','Cô ấy sẽ đã đi trước khi bạn đến.'],
-      ['They will have built the bridge by next year.','Họ sẽ xây xong cây cầu vào năm sau.']
-    ]
-  },
-  {
-    id:'future-perfect-cont', name:'TL hoàn thành tiếp diễn', en:'Future Perfect Continuous', color:'#818cf8',
-    use:'Nhấn mạnh hành động kéo dài ĐẾN một thời điểm trong tương lai (nâng cao).',
-    forms:[
-      ['Khẳng định','S + will have been + V-ing','I <b>will have been working</b>...'],
-      ['Phủ định','S + will not have been + V-ing','I <b>will not have been working</b>.'],
-      ['Nghi vấn','Will + S + have been + V-ing ?','<b>Will</b> you <b>have been working</b>?']
-    ],
-    usage:['Nhấn mạnh tính liên tục, kéo dài của hành động tính đến một mốc tương lai'],
-    signals:['by','for','by the time','by then'],
-    examples:[
-      ['By next month, I will have been working here for 5 years.','Đến tháng sau, tôi sẽ làm ở đây được 5 năm.'],
-      ['She will have been studying for 3 hours by noon.','Đến trưa, cô ấy sẽ đã học liên tục 3 tiếng.'],
-      ['By 2025, they will have been living here for a decade.','Đến 2025, họ sẽ đã sống ở đây một thập kỷ.']
-    ]
-  },
-  {
-    id:'be-going-to', name:'Tương lai gần (be going to)', en:'Future: be going to', color:'#14b8a6',
-    use:'Dự định, kế hoạch đã định trước.',
-    forms:[
-      ['Khẳng định','S + am/is/are going to + V','I <b>am going to</b> travel.'],
-      ['Phủ định','S + am/is/are not going to + V','I <b>am not going to</b> travel.'],
-      ['Nghi vấn','Am/Is/Are + S + going to + V ?','<b>Are</b> you <b>going to</b> travel?']
-    ],
-    usage:['Kế hoạch đã lên trước','Dự đoán có bằng chứng rõ ràng'],
-    signals:['tonight','tomorrow','next month','this weekend'],
-    examples:[
-      ['I am going to visit my grandma this weekend.','Tôi dự định thăm bà cuối tuần này.'],
-      ['Look at those clouds! It is going to rain.','Nhìn mây kìa! Trời sắp mưa.'],
-      ['They are going to build a new school.','Họ sẽ xây một trường mới.']
-    ]
-  },
-  {
-    id:'present-perfect-cont', name:'HT hoàn thành tiếp diễn', en:'Present Perfect Continuous', color:'#a855f7',
-    use:'Nhấn mạnh hành động kéo dài từ quá khứ đến nay (nâng cao, lớp 9).',
-    forms:[
-      ['Khẳng định','S + have/has been + V-ing','I <b>have been studying</b>.'],
-      ['Phủ định','S + have/has not been + V-ing','I <b>have not been studying</b>.'],
-      ['Nghi vấn','Have/Has + S + been + V-ing ?','<b>Have</b> you <b>been studying</b>?']
-    ],
-    usage:['Nhấn mạnh tính liên tục, kéo dài của hành động đến hiện tại'],
-    signals:['for','since','all day','how long','recently'],
-    examples:[
-      ['I have been learning English for 3 years.','Tôi đã học tiếng Anh được 3 năm.'],
-      ['It has been raining all day.','Trời đã mưa cả ngày.'],
-      ['How long have you been waiting?','Bạn đã đợi bao lâu rồi?']
-    ]
-  }
-];
-
-/* ============================================================
-   NGÂN HÀNG CÂU HỎI TRẮC NGHIỆM
-============================================================ */
-const QUESTIONS = {
-  'present-simple':[
-    {q:'She ___ to school every morning.', o:['go','goes','going','went'], a:1, e:'Chủ ngữ "She" + V-es → goes. Dấu hiệu "every morning".'},
-    {q:'They ___ football on Sundays.', o:['plays','play','playing','played'], a:1, e:'Chủ ngữ "They" số nhiều → play (không thêm s).'},
-    {q:'The sun ___ in the east.', o:['rise','rises','rising','rose'], a:1, e:'Sự thật hiển nhiên → hiện tại đơn, "The sun" → rises.'},
-    {q:'My father ___ not drink coffee.', o:['do','does','is','are'], a:1, e:'Chủ ngữ số ít → does not.'},
-    {q:'___ you like ice cream?', o:['Does','Is','Do','Are'], a:2, e:'Chủ ngữ "you" → Do you like...?'},
-    {q:'Water ___ at 100°C.', o:['boil','boils','boiling','boiled'], a:1, e:'Sự thật khoa học, "Water" số ít → boils.'},
-    {q:'We ___ English on Mondays.', o:['has','study','studies','studying'], a:1, e:'"We" → study.'},
-    {q:'He always ___ his homework.', o:['do','does','doing','did'], a:1, e:'"always" là dấu hiệu HT đơn, He → does.'},
-    {q:'My sister ___ TV every evening.', o:['watch','watches','watching','watched'], a:1, e:'"My sister" số ít → watches (thêm -es sau ch).'},
-    {q:'Cats ___ milk.', o:['likes','like','liking','liked'], a:1, e:'"Cats" số nhiều → like.'},
-    {q:'The train ___ at 7 a.m. every day.', o:['leave','leaves','left','leaving'], a:1, e:'Lịch trình → HT đơn, "The train" → leaves.'},
-    {q:'I ___ not understand this lesson.', o:['does','do','am','is'], a:1, e:'"I" → do not.'},
-    {q:'How often ___ she go swimming?', o:['do','does','is','are'], a:1, e:'"she" → does she go.'},
-    {q:'Nam ___ his teeth twice a day.', o:['brush','brushes','brushed','brushing'], a:1, e:'"Nam" số ít → brushes.'}
-  ],
-  'present-continuous':[
-    {q:'Look! The children ___ in the park.', o:['play','plays','are playing','played'], a:2, e:'"Look!" → hiện tại tiếp diễn, children (số nhiều) → are playing.'},
-    {q:'I ___ my homework right now.', o:['do','am doing','does','did'], a:1, e:'"right now" → am doing.'},
-    {q:'She ___ a book at the moment.', o:['reads','is reading','read','reading'], a:1, e:'"at the moment" → is reading.'},
-    {q:'Listen! Someone ___ the piano.', o:['plays','is playing','play','played'], a:1, e:'"Listen!" → is playing.'},
-    {q:'They ___ not sleeping now.', o:['is','am','are','do'], a:2, e:'"They" → are not.'},
-    {q:'What ___ you doing now?', o:['is','are','do','does'], a:1, e:'"you" + V-ing → are you doing.'},
-    {q:'We ___ TV at the moment.', o:['watch','watches','are watching','watched'], a:2, e:'"at the moment" → are watching.'},
-    {q:'He is ___ a letter now.', o:['write','writes','writing','wrote'], a:2, e:'is + V-ing → writing (bỏ e thêm ing).'},
-    {q:'The baby ___ crying right now.', o:['are','is','am','do'], a:1, e:'"The baby" số ít → is crying.'},
-    {q:'My parents ___ in the garden now.', o:['is working','are working','works','work'], a:1, e:'"My parents" số nhiều → are working.'},
-    {q:'Be quiet! The students ___ a test.', o:['take','takes','are taking','took'], a:2, e:'"Be quiet!" → đang diễn ra → are taking.'},
-    {q:'I ___ wearing my uniform now.', o:['is','am','are','do'], a:1, e:'"I" → am wearing.'},
-    {q:'Why ___ she crying?', o:['is','are','do','does'], a:0, e:'"she" → is she crying.'}
-  ],
-  'present-perfect':[
-    {q:'I have ___ my lunch already.', o:['eat','eaten','ate','eating'], a:1, e:'have + V3 → eaten. "already" là dấu hiệu.'},
-    {q:'She ___ lived here for 10 years.', o:['have','has','is','was'], a:1, e:'Chủ ngữ "She" → has.'},
-    {q:'___ you ever been to Da Nang?', o:['Have','Has','Did','Do'], a:0, e:'"ever" + you → Have you ever been...'},
-    {q:'They have ___ finished the project.', o:['yet','just','ago','now'], a:1, e:'"just" đi với HT hoàn thành (yet dùng câu phủ định/nghi vấn).'},
-    {q:'We have known each other ___ 2015.', o:['for','since','in','at'], a:1, e:'"since + mốc thời gian" (2015).'},
-    {q:'He has worked here ___ five years.', o:['since','for','in','at'], a:1, e:'"for + khoảng thời gian" (five years).'},
-    {q:'I have not ___ that film yet.', o:['see','seen','saw','seeing'], a:1, e:'have not + V3 → seen.'},
-    {q:'My mom has ___ a new car.', o:['buy','bought','buyed','buying'], a:1, e:'have/has + V3 → bought.'},
-    {q:'___ he done his homework yet?', o:['Have','Has','Did','Do'], a:1, e:'"he" → Has he done...?'},
-    {q:'We have ___ this book three times.', o:['read','reads','reading','to read'], a:0, e:'Kinh nghiệm → have read (read V3 giữ nguyên).'},
-    {q:'She has ___ been to London.', o:['ever','never','yet','ago'], a:1, e:'"never" = chưa từng, đi với HT hoàn thành.'},
-    {q:'They ___ just arrived at the airport.', o:['have','has','did','was'], a:0, e:'"They" → have just arrived.'},
-    {q:'I have ___ my keys. I cannot find them.', o:['lose','lost','losed','losing'], a:1, e:'have + V3 → lost.'}
-  ],
-  'past-simple':[
-    {q:'We ___ to the zoo last Sunday.', o:['go','went','gone','going'], a:1, e:'"last Sunday" → quá khứ đơn, go → went.'},
-    {q:'She ___ not come to the party.', o:['do','did','was','is'], a:1, e:'Phủ định QK đơn → did not.'},
-    {q:'___ you watch TV yesterday?', o:['Do','Did','Was','Were'], a:1, e:'"yesterday" → Did you watch...?'},
-    {q:'They ___ a new house in 2020.', o:['buy','bought','buys','buying'], a:1, e:'"in 2020" → bought (V2 bất quy tắc).'},
-    {q:'I ___ very tired last night.', o:['am','was','were','is'], a:1, e:'"I" + QK của be → was.'},
-    {q:'He ___ his homework an hour ago.', o:['finish','finished','finishes','finishing'], a:1, e:'"ago" → finished.'},
-    {q:'The students ___ happy yesterday.', o:['was','were','are','is'], a:1, e:'"students" số nhiều → were.'},
-    {q:'My brother ___ to music last night.', o:['listen','listened','listens','listening'], a:1, e:'"last night" → listened.'},
-    {q:'Where ___ you go on holiday?', o:['do','did','was','were'], a:1, e:'Câu hỏi QK → did you go.'},
-    {q:'She ___ a beautiful dress to the party.', o:['wear','wore','weared','wears'], a:1, e:'wear → wore (bất quy tắc).'},
-    {q:'We ___ not have school yesterday.', o:['did','do','was','were'], a:0, e:'Phủ định QK → did not have.'},
-    {q:'The film ___ at 9 o\'clock.', o:['start','started','starts','starting'], a:1, e:'QK đơn → started.'},
-    {q:'They ___ in Hue two years ago.', o:['live','lived','lives','living'], a:1, e:'"ago" → lived.'}
-  ],
-  'past-continuous':[
-    {q:'I ___ TV at 8pm last night.', o:['watch','was watching','were watching','watched'], a:1, e:'Thời điểm cụ thể trong QK, "I" → was watching.'},
-    {q:'While she ___, the phone rang.', o:['cooks','was cooking','cooked','cooking'], a:1, e:'"While + QK tiếp diễn" → was cooking.'},
-    {q:'They ___ football when it started to rain.', o:['played','were playing','was playing','play'], a:1, e:'"They" + đang diễn ra thì bị cắt ngang → were playing.'},
-    {q:'What ___ you doing at that moment?', o:['was','were','did','are'], a:1, e:'"you" → were you doing.'},
-    {q:'He ___ not sleeping at midnight.', o:['was','were','did','is'], a:0, e:'"He" → was not.'},
-    {q:'We ___ dinner when you called.', o:['have','were having','was having','had'], a:1, e:'"We" đang diễn ra → were having.'},
-    {q:'At 7am yesterday, I ___ to school.', o:['walk','was walking','were walking','walked'], a:1, e:'Thời điểm cụ thể → was walking.'},
-    {q:'She ___ a letter when the lights went out.', o:['wrote','was writing','were writing','writes'], a:1, e:'Đang diễn ra thì bị cắt ngang → was writing.'},
-    {q:'The boys ___ in the river all afternoon.', o:['swim','was swimming','were swimming','swam'], a:2, e:'"The boys" số nhiều → were swimming.'},
-    {q:'While we ___, it began to snow.', o:['talk','were talking','was talking','talked'], a:1, e:'"While + we" → were talking.'},
-    {q:'___ they playing games at 9pm?', o:['Was','Were','Did','Are'], a:1, e:'"they" → Were they playing.'}
-  ],
-  'future-simple':[
-    {q:'I ___ help you with your bags.', o:['will','am','do','was'], a:0, e:'Quyết định ngay lúc nói → will help.'},
-    {q:'It ___ rain tomorrow.', o:['will','is','was','does'], a:0, e:'Dự đoán tương lai → will rain.'},
-    {q:'She ___ be 15 next year.', o:['will','is going','was','does'], a:0, e:'"next year" → will be.'},
-    {q:'They will ___ to Japan soon.', o:['travel','travels','traveled','traveling'], a:0, e:'will + V nguyên thể → travel.'},
-    {q:'I think it ___ be sunny tomorrow.', o:['will','is','was','going'], a:0, e:'"I think...tomorrow" → will be.'},
-    {q:'___ you come to my party?', o:['Will','Do','Are','Did'], a:0, e:'Lời mời tương lai → Will you...?'},
-    {q:'Don\'t worry, I ___ not tell anyone.', o:['will','am','do','did'], a:0, e:'Lời hứa → will not (won\'t) tell.'},
-    {q:'Maybe she ___ pass the exam.', o:['will','is','was','does'], a:0, e:'"Maybe" → dự đoán → will pass.'},
-    {q:'We ___ visit grandma next week.', o:['will','are','do','were'], a:0, e:'"next week" → will visit.'},
-    {q:'The weather forecast says it ___ be cold.', o:['will','is','was','does'], a:0, e:'Dự đoán tương lai → will be.'},
-    {q:'He won\'t ___ late tomorrow.', o:['is','be','being','was'], a:1, e:'won\'t + V nguyên thể → be.'},
-    {q:'Where ___ you stay in Hanoi?', o:['will','do','are','did'], a:0, e:'Câu hỏi tương lai → will you stay.'}
-  ],
-  'be-going-to':[
-    {q:'I ___ going to visit my aunt this weekend.', o:['am','is','are','will'], a:0, e:'"I" → am going to.'},
-    {q:'Look at those clouds! It ___ going to rain.', o:['am','is','are','will'], a:1, e:'"It" → is going to (có bằng chứng = mây đen).'},
-    {q:'They are going to ___ a new bridge.', o:['build','builds','built','building'], a:0, e:'going to + V nguyên thể → build.'},
-    {q:'We ___ going to have a picnic tomorrow.', o:['am','is','are','will'], a:2, e:'"We" → are going to.'},
-    {q:'___ she going to study abroad?', o:['Is','Are','Am','Will'], a:0, e:'"she" → Is she going to...?'},
-    {q:'He is ___ to buy a new bike.', o:['go','going','goes','went'], a:1, e:'Cấu trúc cố định: be + going to.'},
-    {q:'You ___ going to love this movie.', o:['am','is','are','will'], a:2, e:'"You" → are going to.'},
-    {q:'My friends are going to ___ a party.', o:['has','have','having','had'], a:1, e:'going to + V nguyên thể → have.'},
-    {q:'I am not ___ to eat fast food anymore.', o:['go','going','goes','went'], a:1, e:'be + not + going to + V.'},
-    {q:'What ___ you going to do tonight?', o:['am','is','are','do'], a:2, e:'"you" → are you going to do.'},
-    {q:'Watch out! You ___ going to fall!', o:['am','is','are','will'], a:2, e:'"You" + có bằng chứng → are going to fall.'}
-  ],
-  'present-perfect-cont':[
-    {q:'I have been ___ English for 3 years.', o:['learn','learned','learning','learns'], a:2, e:'have been + V-ing → learning.'},
-    {q:'It ___ been raining all day.', o:['have','has','is','was'], a:1, e:'"It" → has been.'},
-    {q:'How long have you ___ waiting?', o:['be','been','being','was'], a:1, e:'have + been + V-ing.'},
-    {q:'They have been ___ since morning.', o:['work','works','working','worked'], a:2, e:'have been + working.'},
-    {q:'She has been ___ for the bus for 20 minutes.', o:['wait','waited','waiting','waits'], a:2, e:'has been + waiting.'},
-    {q:'We ___ been studying since 8 o\'clock.', o:['have','has','are','did'], a:0, e:'"We" → have been.'},
-    {q:'He has been ___ football all afternoon.', o:['play','played','playing','plays'], a:2, e:'has been + playing.'},
-    {q:'My eyes are red because I ___ been crying.', o:['have','has','am','was'], a:0, e:'"I" → have been crying.'},
-    {q:'How long has it ___ snowing?', o:['be','been','being','was'], a:1, e:'has + been + V-ing.'},
-    {q:'I have been ___ for you for an hour!', o:['look','looked','looking','looks'], a:2, e:'have been + looking.'},
-    {q:'You look tired. ___ you been running?', o:['Have','Has','Did','Are'], a:0, e:'"you" → Have you been running.'},
-    {q:'The kids have been ___ in the garden.', o:['play','played','playing','plays'], a:2, e:'have been + playing.'}
-  ],
-  'past-perfect':[
-    {q:'When I arrived, the train ___ already left.', o:['has','had','have','was'], a:1, e:'Hành động xảy ra trước QK → had left.'},
-    {q:'She ___ finished her homework before dinner.', o:['has','had','have','was'], a:1, e:'Trước một mốc QK → had finished.'},
-    {q:'They had ___ snow before that trip.', o:['never see','never seen','never saw','not see'], a:1, e:'had + (never) + V3 → seen.'},
-    {q:'After he ___ lunch, he went out.', o:['has had','had had','have had','had'], a:1, e:'after + QKHT → had had.'},
-    {q:'By the time we got there, the film ___ started.', o:['has','had','have','was'], a:1, e:'"By the time + QK" → had started.'},
-    {q:'I couldn\'t enter because I ___ lost my key.', o:['have','had','has','was'], a:1, e:'Nguyên nhân trước đó → had lost.'},
-    {q:'She told me she ___ seen that movie.', o:['has','had','have','did'], a:1, e:'Tường thuật lùi thì → had seen.'},
-    {q:'We ___ never been to Hue before 2020.', o:['has','had','have','were'], a:1, e:'Trước mốc QK → had never been.'}
-  ],
-  'past-perfect-cont':[
-    {q:'I ___ been waiting for an hour when she came.', o:['has','had','have','was'], a:1, e:'QKHT tiếp diễn → had been waiting.'},
-    {q:'He was tired because he ___ been working all day.', o:['has','had','have','was'], a:1, e:'had been + V-ing.'},
-    {q:'They had been ___ there for ten years before moving.', o:['live','lived','living','lives'], a:2, e:'had been + living.'},
-    {q:'How long ___ you been studying when I called?', o:['has','had','have','did'], a:1, e:'Had + S + been + V-ing.'},
-    {q:'She had been ___ for the bus before it arrived.', o:['wait','waited','waiting','waits'], a:2, e:'had been + waiting.'},
-    {q:'We were wet because it ___ been raining.', o:['has','had','have','was'], a:1, e:'had been + raining.'},
-    {q:'My eyes hurt; I ___ been reading for hours.', o:['has','had','have','was'], a:1, e:'"I" → had been reading.'}
-  ],
-  'future-continuous':[
-    {q:'This time tomorrow, I ___ be flying to Japan.', o:['will','am','was','have'], a:0, e:'TL tiếp diễn → will be flying.'},
-    {q:'She will ___ working at 9 o\'clock.', o:['be','is','being','been'], a:0, e:'will + be + V-ing.'},
-    {q:'Don\'t call at 7; we ___ be having dinner.', o:['will','are','were','have'], a:0, e:'will be having.'},
-    {q:'At 8pm, they will be ___ a film.', o:['watch','watches','watching','watched'], a:2, e:'will be + watching.'},
-    {q:'___ you be using the computer later?', o:['Will','Are','Do','Were'], a:0, e:'Will + S + be + V-ing.'},
-    {q:'This time next week, he ___ be lying on a beach.', o:['will','is','was','has'], a:0, e:'will be lying.'},
-    {q:'I will ___ studying when you arrive.', o:['be','am','being','been'], a:0, e:'will + be + V-ing.'}
-  ],
-  'future-perfect':[
-    {q:'By 2030, I ___ have graduated.', o:['will','am','was','have'], a:0, e:'TL hoàn thành → will have graduated.'},
-    {q:'She will ___ left by the time you arrive.', o:['has','have','had','having'], a:1, e:'will + have + V3.'},
-    {q:'They will have ___ the bridge by next year.', o:['build','built','building','builds'], a:1, e:'will have + built.'},
-    {q:'By 6pm, we ___ have finished the work.', o:['will','are','were','have'], a:0, e:'"By 6pm" → will have finished.'},
-    {q:'___ you have done it by tomorrow?', o:['Will','Are','Do','Did'], a:0, e:'Will + S + have + V3.'},
-    {q:'He will have ___ the book by Friday.', o:['read','reads','reading','to read'], a:0, e:'will have + read (V3).'},
-    {q:'By the time she is 18, she ___ have learned English.', o:['will','is','was','has'], a:0, e:'will have learned.'}
-  ],
-  'future-perfect-cont':[
-    {q:'By next month, I will have been ___ here for 5 years.', o:['work','worked','working','works'], a:2, e:'will have been + working.'},
-    {q:'She will have ___ been studying for 3 hours by noon.', o:['be','been','being','was'], a:1, e:'will have + been + V-ing.'},
-    {q:'By 2025, they ___ have been living here for a decade.', o:['will','are','were','have'], a:0, e:'will have been living.'},
-    {q:'He will have been ___ for the bus for an hour.', o:['wait','waited','waiting','waits'], a:2, e:'will have been + waiting.'},
-    {q:'By then, we ___ have been driving for ten hours.', o:['will','are','were','have'], a:0, e:'will have been driving.'},
-    {q:'How long will you ___ been teaching by June?', o:['has','have','had','having'], a:1, e:'will + have + been + V-ing.'}
-  ],
-  '_extra':[
-    {q:'My grandfather ___ in this village since 1960.', o:['lives','has lived','lived','living'], a:1, e:'"since 1960" → HT hoàn thành: has lived.', topicName:'Hiện tại hoàn thành'},
-    {q:'Right now the dog ___ at the cat.', o:['barks','is barking','barked','bark'], a:1, e:'"Right now" → HT tiếp diễn: is barking.', topicName:'Hiện tại tiếp diễn'}
-  ]
-};
-
-/* ============================================================
-   ĐIỀU HƯỚNG
-============================================================ */
-const views = document.querySelectorAll('.view');
-const navBtns = document.querySelectorAll('nav button');
-function show(id){
-  views.forEach(v=>v.classList.toggle('active', v.id===id));
-  navBtns.forEach(b=>b.classList.toggle('active', b.dataset.view===id));
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-navBtns.forEach(b=>b.onclick=()=>show(b.dataset.view));
-document.querySelectorAll('[data-go]').forEach(el=>el.onclick=()=>show(el.dataset.go));
-
-/* ============================================================
-   TRANG CHỦ – tổng quan các thì
-============================================================ */
-const overview = document.getElementById('tenseOverview');
-overview.innerHTML = TENSES.map(t=>`
+    /* ============================================================
+       TRANG CHỦ – tổng quan các thì
+    ============================================================ */
+    const overview = document.getElementById('tenseOverview');
+    overview.innerHTML = TENSES.map(t => `
   <div class="card link" data-go="lessons" style="border-left:4px solid ${t.color}">
     <span class="badge">${t.en}</span>
     <h3 style="color:${t.color}">${t.name}</h3>
     <p class="muted">${t.use}</p>
   </div>`).join('');
-overview.querySelectorAll('[data-go]').forEach(el=>el.onclick=()=>show('lessons'));
+    overview.querySelectorAll('[data-go]').forEach(el => el.onclick = () => show('lessons'));
 
-/* ============================================================
-   BÀI HỌC
-============================================================ */
-const lessonList = document.getElementById('lessonList');
-lessonList.innerHTML = TENSES.map((t,i)=>`
+    /* ============================================================
+       BÀI HỌC
+    ============================================================ */
+    const lessonList = document.getElementById('lessonList');
+    lessonList.innerHTML = TENSES.map((t, i) => `
   <div class="lesson" data-i="${i}">
     <div class="lesson-head">
       <div class="t">${t.name} <small>${t.en} — ${t.use}</small></div>
@@ -785,281 +1211,414 @@ lessonList.innerHTML = TENSES.map((t,i)=>`
     </div>
     <div class="lesson-body">
       <h3>📐 Công thức</h3>
-      ${t.forms.map(f=>`<div class="formula"><b>${f[0]}:</b> ${f[1]}<br><span style="color:#86efac">${f[2]}</span></div>`).join('')}
+      ${t.forms.map(f => `<div class="formula"><b>${f[0]}:</b> ${f[1]}<br><span style="color:#86efac">${f[2]}</span></div>`).join('')}
       <h3 style="margin-top:14px">💡 Cách dùng</h3>
-      <ul class="clean">${t.usage.map(u=>`<li>${u}</li>`).join('')}</ul>
+      <ul class="clean">${t.usage.map(u => `<li>${u}</li>`).join('')}</ul>
       <h3 style="margin-top:14px">🔑 Dấu hiệu nhận biết</h3>
-      <div>${t.signals.map(s=>`<span class="tag">${s}</span>`).join('')}</div>
+      <div>${t.signals.map(s => `<span class="tag">${s}</span>`).join('')}</div>
       <h3 style="margin-top:14px">📝 Ví dụ</h3>
-      ${t.examples.map(ex=>`
+      ${t.examples.map(ex => `
         <div class="ex">
           <div class="row" style="justify-content:space-between">
             <b>${ex[0]}</b>
-            <button class="btn ghost" style="padding:4px 12px" onclick="speak('${ex[0].replace(/'/g,"\\'")}')">🔊</button>
+            <button class="btn ghost" style="padding:4px 12px" onclick="speak('${ex[0].replace(/'/g, "\\'")}')">🔊</button>
           </div>
           <div class="vi">${ex[1]}</div>
         </div>`).join('')}
     </div>
   </div>`).join('');
-lessonList.querySelectorAll('.lesson-head').forEach(h=>{
-  h.onclick=()=>h.parentElement.classList.toggle('open');
-});
+    lessonList.querySelectorAll('.lesson-head').forEach(h => {
+      h.onclick = () => h.parentElement.classList.toggle('open');
+    });
 
-/* ============================================================
-   TEXT TO SPEECH
-============================================================ */
-function speak(text, rate=0.95){
-  if(!('speechSynthesis' in window)) return;
-  speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang='en-US'; u.rate=rate;
-  const v = speechSynthesis.getVoices().find(v=>v.lang.startsWith('en'));
-  if(v) u.voice=v;
-  speechSynthesis.speak(u);
-}
-if('speechSynthesis' in window){ speechSynthesis.onvoiceschanged=()=>{}; }
+    /* ============================================================
+       TEXT TO SPEECH
+    ============================================================ */
+    function speak(text, rate = 0.95) {
+      if (!('speechSynthesis' in window)) return;
+      speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = 'en-US'; u.rate = rate;
+      const v = speechSynthesis.getVoices().find(v => v.lang.startsWith('en'));
+      if (v) u.voice = v;
+      speechSynthesis.speak(u);
+    }
+    if ('speechSynthesis' in window) { speechSynthesis.onvoiceschanged = () => { }; }
 
-/* ============================================================
-   LUYỆN TẬP – QUIZ
-============================================================ */
-const quizTopic = document.getElementById('quizTopic');
-quizTopic.innerHTML = '<option value="all">🎯 Tổng hợp (tất cả)</option>' +
-  TENSES.map(t=>`<option value="${t.id}">${t.name}</option>`).join('');
+    /* ============================================================
+       LUYỆN TẬP – QUIZ
+    ============================================================ */
+    const quizTopic = document.getElementById('quizTopic');
+    quizTopic.innerHTML = '<option value="all">🎯 Tổng hợp (tất cả)</option>' +
+      TENSES.map(t => `<option value="${t.id}">${t.name}</option>`).join('');
 
-let quiz = { list:[], idx:0, score:0, count:10 };
-function buildPool(topic){
-  let pool=[];
-  if(topic==='all'){
-    for(const id in QUESTIONS) pool=pool.concat(QUESTIONS[id].map(q=>({...q,topic:id})));
-  } else {
-    pool=(QUESTIONS[topic]||[]).map(q=>({...q,topic}));
-  }
-  for(let i=pool.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [pool[i],pool[j]]=[pool[j],pool[i]]; }
-  return pool;
-}
-const tenseName = id => (TENSES.find(t=>t.id===id)||{}).name || 'Tổng hợp';
+    let quiz = { list: [], idx: 0, score: 0, count: 10 };
+    const tenseName = id => (TENSES.find(t => t.id === id) || {}).name || 'Tổng hợp';
 
-document.getElementById('startQuiz').onclick=()=>{
-  const topic=quizTopic.value;
-  const cnt=parseInt(document.getElementById('quizCount').value);
-  const pool=buildPool(topic);
-  quiz={ list:pool.slice(0,Math.min(cnt,pool.length)), idx:0, score:0, count:0 };
-  quiz.count=quiz.list.length;
-  document.getElementById('quizSetup').style.display='none';
-  document.getElementById('quizResult').style.display='none';
-  document.getElementById('quizPlay').style.display='block';
-  renderQ();
-};
-function renderQ(){
-  const q=quiz.list[quiz.idx];
-  document.getElementById('qTopic').textContent=q.topicName||tenseName(q.topic);
-  document.getElementById('qCounter').textContent=`${quiz.idx+1}/${quiz.count}`;
-  document.getElementById('qBar').style.width=`${(quiz.idx)/quiz.count*100}%`;
-  document.getElementById('qText').textContent=q.q;
-  const opts=document.getElementById('qOpts');
-  opts.innerHTML='';
-  q.o.forEach((opt,i)=>{
-    const b=document.createElement('button');
-    b.className='opt'; b.textContent=opt;
-    b.onclick=()=>answer(i,b);
-    opts.appendChild(b);
-  });
-  const fb=document.getElementById('qFeedback'); fb.className='feedback'; fb.textContent='';
-  document.getElementById('nextQ').style.display='none';
-}
-function answer(i,btn){
-  const q=quiz.list[quiz.idx];
-  const all=document.querySelectorAll('#qOpts .opt');
-  all.forEach(b=>b.classList.add('disabled'));
-  const fb=document.getElementById('qFeedback');
-  if(i===q.a){
-    btn.classList.add('correct'); quiz.score++;
-    fb.className='feedback ok show'; fb.innerHTML=`✅ <b>Chính xác!</b> ${q.e}`;
-  }else{
-    btn.classList.add('wrong'); all[q.a].classList.add('correct');
-    fb.className='feedback no show'; fb.innerHTML=`❌ <b>Sai rồi.</b> Đáp án đúng: <b>${q.o[q.a]}</b>. ${q.e}`;
-  }
-  document.getElementById('qBar').style.width=`${(quiz.idx+1)/quiz.count*100}%`;
-  document.getElementById('nextQ').style.display='inline-block';
-}
-document.getElementById('nextQ').onclick=()=>{
-  quiz.idx++;
-  if(quiz.idx>=quiz.count) finishQuiz();
-  else renderQ();
-};
-function finishQuiz(){
-  document.getElementById('quizPlay').style.display='none';
-  document.getElementById('quizResult').style.display='block';
-  const pct=Math.round(quiz.score/quiz.count*100);
-  document.getElementById('finalScore').textContent=`${quiz.score}/${quiz.count}`;
-  let msg;
-  if(pct===100) msg='🏆 Tuyệt vời! Điểm tuyệt đối!';
-  else if(pct>=80) msg='🌟 Giỏi lắm! Tiếp tục phát huy nhé.';
-  else if(pct>=50) msg='👍 Khá ổn! Ôn lại lý thuyết để tốt hơn.';
-  else msg='💪 Cố lên! Hãy đọc lại phần Bài học rồi thử lại.';
-  document.getElementById('scoreMsg').textContent=`${msg} (${pct}%)`;
-}
-document.getElementById('backQuiz').onclick=()=>{
-  if(confirm('Bạn có chắc muốn quay lại? Bài làm hiện tại sẽ không được lưu.')){
-    document.getElementById('quizPlay').style.display='none';
-    document.getElementById('quizResult').style.display='none';
-    document.getElementById('quizSetup').style.display='block';
-  }
-};
-document.getElementById('retryQuiz').onclick=()=>document.getElementById('startQuiz').click();
-document.getElementById('newQuiz').onclick=()=>{
-  document.getElementById('quizResult').style.display='none';
-  document.getElementById('quizSetup').style.display='block';
-};
+    /* ---- BỘ SINH CÂU HỎI TỰ ĐỘNG (mỗi thì có hàng trăm câu, trộn mỗi lần) ---- */
+    const SUBJECTS = [
+      { t: 'I', p: 'I' }, { t: 'You', p: 'pl' }, { t: 'We', p: 'pl' }, { t: 'They', p: 'pl' },
+      { t: 'He', p: 's' }, { t: 'She', p: 's' }, { t: 'Nam', p: 's', prop: 1 }, { t: 'Lan', p: 's', prop: 1 },
+      { t: 'My brother', p: 's' }, { t: 'My sister', p: 's' }, { t: 'My mother', p: 's' },
+      { t: 'The teacher', p: 's' }, { t: 'My parents', p: 'pl' }, { t: 'The students', p: 'pl' },
+      { t: 'My friends', p: 'pl' }, { t: 'Tom and Mary', p: 'pl', prop: 1 }
+    ];
+    // [base, 3rd-s, ing, V2, V3, object/complement]
+    const GVERBS = [
+      ['play', 'plays', 'playing', 'played', 'played', 'football'],
+      ['go', 'goes', 'going', 'went', 'gone', 'to school'],
+      ['eat', 'eats', 'eating', 'ate', 'eaten', 'breakfast'],
+      ['study', 'studies', 'studying', 'studied', 'studied', 'English'],
+      ['watch', 'watches', 'watching', 'watched', 'watched', 'TV'],
+      ['write', 'writes', 'writing', 'wrote', 'written', 'a letter'],
+      ['read', 'reads', 'reading', 'read', 'read', 'a book'],
+      ['do', 'does', 'doing', 'did', 'done', 'the homework'],
+      ['work', 'works', 'working', 'worked', 'worked', 'very hard'],
+      ['visit', 'visits', 'visiting', 'visited', 'visited', 'their grandparents'],
+      ['clean', 'cleans', 'cleaning', 'cleaned', 'cleaned', 'the house'],
+      ['cook', 'cooks', 'cooking', 'cooked', 'cooked', 'dinner'],
+      ['sing', 'sings', 'singing', 'sang', 'sung', 'a song'],
+      ['make', 'makes', 'making', 'made', 'made', 'a cake'],
+      ['take', 'takes', 'taking', 'took', 'taken', 'many photos'],
+      ['finish', 'finishes', 'finishing', 'finished', 'finished', 'the project'],
+      ['help', 'helps', 'helping', 'helped', 'helped', 'their friends'],
+      ['draw', 'draws', 'drawing', 'drew', 'drawn', 'a picture'],
+      ['paint', 'paints', 'painting', 'painted', 'painted', 'the wall'],
+      ['fix', 'fixes', 'fixing', 'fixed', 'fixed', 'the bike']
+    ].map(a => ({ b: a[0], s: a[1], ing: a[2], past: a[3], pp: a[4], o: a[5] }));
 
-/* ============================================================
-   LUYỆN NÓI
-============================================================ */
-const speakTopic=document.getElementById('speakTopic');
-speakTopic.innerHTML=TENSES.map(t=>`<option value="${t.id}">${t.name}</option>`).join('');
-let spList=[], spIdx=0;
-function loadSpeak(){
-  const t=TENSES.find(x=>x.id===speakTopic.value);
-  spList=t.examples; spIdx=0; renderSpeak();
-}
-function renderSpeak(){
-  const ex=spList[spIdx];
-  document.getElementById('spIndex').textContent=`Câu ${spIdx+1}/${spList.length}`;
-  document.getElementById('spPhrase').textContent=ex[0];
-  document.getElementById('spPhraseVi').textContent=ex[1];
-  const h=document.getElementById('spHeard'); h.style.display='none'; h.innerHTML='';
-  document.getElementById('spHint').textContent='Nhấn micro rồi đọc câu trên';
-}
-speakTopic.onchange=loadSpeak;
-document.getElementById('spListen').onclick=()=>speak(spList[spIdx][0],0.95);
-document.getElementById('spSlow').onclick=()=>speak(spList[spIdx][0],0.6);
-document.getElementById('spPrev').onclick=()=>{ if(spIdx>0){spIdx--;renderSpeak();} };
-document.getElementById('spNext').onclick=()=>{ if(spIdx<spList.length-1){spIdx++;renderSpeak();} };
-
-/* --- Speech Recognition --- */
-const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-const micBtn=document.getElementById('spMic');
-let recog=null, listening=false;
-try{
-  if(SR){
-    recog=new SR(); recog.lang='en-US'; recog.interimResults=false; recog.maxAlternatives=3;
-    recog.onresult=(e)=>{
-      let best='';
-      for(let i=0;i<e.results[0].length;i++){ best=e.results[0][i].transcript; break; }
-      scoreSpeech(best);
+    function vp(subj, v, tense) {
+      const beP = subj.p === 'I' ? 'am' : (subj.p === 's' ? 'is' : 'are');
+      const bePast = subj.p === 'pl' ? 'were' : 'was';
+      const have = subj.p === 's' ? 'has' : 'have';
+      switch (tense) {
+        case 'present-simple': return subj.p === 's' ? v.s : v.b;
+        case 'present-continuous': return beP + ' ' + v.ing;
+        case 'present-perfect': return have + ' ' + v.pp;
+        case 'present-perfect-cont': return have + ' been ' + v.ing;
+        case 'past-simple': return v.past;
+        case 'past-continuous': return bePast + ' ' + v.ing;
+        case 'past-perfect': return 'had ' + v.pp;
+        case 'past-perfect-cont': return 'had been ' + v.ing;
+        case 'future-simple': return 'will ' + v.b;
+        case 'future-continuous': return 'will be ' + v.ing;
+        case 'future-perfect': return 'will have ' + v.pp;
+        case 'future-perfect-cont': return 'will have been ' + v.ing;
+        case 'be-going-to': return beP + ' going to ' + v.b;
+      }
+    }
+    const TMPL = {
+      'present-simple': (S, o) => `${S} ___ ${o} every day.`,
+      'present-continuous': (S, o) => `Look! ${S} ___ ${o} at the moment.`,
+      'present-perfect': (S, o) => `${S} ___ ${o} already.`,
+      'present-perfect-cont': (S, o) => `${S} ___ ${o} for two hours.`,
+      'past-simple': (S, o) => `${S} ___ ${o} yesterday.`,
+      'past-continuous': (S, o) => `${S} ___ ${o} at 8 p.m. last night.`,
+      'past-perfect': (S, o) => `${S} ___ ${o} before I came.`,
+      'past-perfect-cont': (S, o) => `${S} ___ ${o} for an hour before it stopped.`,
+      'future-simple': (S, o) => `${S} ___ ${o} tomorrow.`,
+      'future-continuous': (S, o) => `At this time tomorrow, ${S} ___ ${o}.`,
+      'future-perfect': (S, o) => `By next year, ${S} ___ ${o}.`,
+      'future-perfect-cont': (S, o) => `By 2030, ${S} ___ ${o} for ten years.`,
+      'be-going-to': (S, o) => `${S} ___ ${o} this weekend.`
     };
-    recog.onerror=(e)=>{
+    const CONF = {
+      'present-simple': ['present-continuous', 'past-simple', 'future-simple'],
+      'present-continuous': ['present-simple', 'past-continuous', 'present-perfect'],
+      'present-perfect': ['past-simple', 'present-perfect-cont', 'present-continuous'],
+      'present-perfect-cont': ['present-perfect', 'past-perfect-cont', 'present-continuous'],
+      'past-simple': ['present-simple', 'past-continuous', 'present-perfect'],
+      'past-continuous': ['past-simple', 'present-continuous', 'past-perfect'],
+      'past-perfect': ['past-simple', 'present-perfect', 'past-perfect-cont'],
+      'past-perfect-cont': ['past-perfect', 'past-continuous', 'present-perfect-cont'],
+      'future-simple': ['present-simple', 'be-going-to', 'future-continuous'],
+      'future-continuous': ['future-simple', 'present-continuous', 'future-perfect'],
+      'future-perfect': ['future-simple', 'future-perfect-cont', 'present-perfect'],
+      'future-perfect-cont': ['future-perfect', 'future-continuous', 'present-perfect-cont'],
+      'be-going-to': ['future-simple', 'present-continuous', 'present-simple']
+    };
+    const ALLT = Object.keys(TMPL);
+    function gExp(tid, subj, v) {
+      const beP = subj.p === 'I' ? 'am' : (subj.p === 's' ? 'is' : 'are');
+      const bePast = subj.p === 'pl' ? 'were' : 'was';
+      const have = subj.p === 's' ? 'has' : 'have';
+      const M = {
+        'present-simple': `Dấu hiệu "every day" → Hiện tại đơn. ${subj.t} → ${subj.p === 's' ? v.s : v.b}.`,
+        'present-continuous': `Dấu hiệu "Look! ... at the moment" → Hiện tại tiếp diễn: ${beP} + V-ing.`,
+        'present-perfect': `Dấu hiệu "already" → Hiện tại hoàn thành: ${have} + V3 (${v.pp}).`,
+        'present-perfect-cont': `"for two hours" + nhấn mạnh liên tục → HT hoàn thành tiếp diễn: ${have} been + V-ing.`,
+        'past-simple': `Dấu hiệu "yesterday" → Quá khứ đơn: V2 (${v.past}).`,
+        'past-continuous': `"at 8 p.m. last night" → Quá khứ tiếp diễn: ${bePast} + V-ing.`,
+        'past-perfect': `"before I came" (việc xảy ra trước) → Quá khứ hoàn thành: had + V3 (${v.pp}).`,
+        'past-perfect-cont': `"for an hour before..." → QK hoàn thành tiếp diễn: had been + V-ing.`,
+        'future-simple': `Dấu hiệu "tomorrow" → Tương lai đơn: will + V (nguyên thể).`,
+        'future-continuous': `"At this time tomorrow" → Tương lai tiếp diễn: will be + V-ing.`,
+        'future-perfect': `"By next year" → Tương lai hoàn thành: will have + V3 (${v.pp}).`,
+        'future-perfect-cont': `"By 2030 ... for ten years" → TL hoàn thành tiếp diễn: will have been + V-ing.`,
+        'be-going-to': `Kế hoạch "this weekend" → be going to: ${beP} going to + V.`
+      };
+      return M[tid];
+    }
+    const MID_TMPL = ['future-continuous', 'future-perfect', 'future-perfect-cont'];
+    function genQuestion(tid) {
+      const subj = SUBJECTS[Math.floor(Math.random() * SUBJECTS.length)];
+      const v = GVERBS[Math.floor(Math.random() * GVERBS.length)];
+      // chủ ngữ giữa câu (sau "By...,"/"At...,") thì viết thường (trừ "I" và tên riêng)
+      const S = (MID_TMPL.indexOf(tid) >= 0 && subj.t !== 'I' && !subj.prop)
+        ? subj.t.charAt(0).toLowerCase() + subj.t.slice(1) : subj.t;
+      const correct = vp(subj, v, tid);
+      const opts = [correct];
+      (CONF[tid] || []).forEach(ct => { const f = vp(subj, v, ct); if (opts.indexOf(f) < 0 && opts.length < 4) opts.push(f); });
+      if (opts.length < 4) ALLT.forEach(ct => { const f = vp(subj, v, ct); if (opts.indexOf(f) < 0 && opts.length < 4) opts.push(f); });
+      [v.b, v.s, v.ing, v.past, v.pp].forEach(f => { if (opts.indexOf(f) < 0 && opts.length < 4) opts.push(f); });
+      for (let i = opts.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[opts[i], opts[j]] = [opts[j], opts[i]]; }
+      return { q: TMPL[tid](S, v.o), o: opts, a: opts.indexOf(correct), e: gExp(tid, subj, v), topic: tid };
+    }
+    function staticQ(tid) {
+      const arr = QUESTIONS[tid];
+      if (!arr || !arr.length) return null;
+      return { ...arr[Math.floor(Math.random() * arr.length)], topic: tid };
+    }
+    function makeOne(tid) {
+      // 25% dùng câu biên soạn tay (đa dạng dấu hiệu since/for, giới từ...), 75% câu tự sinh
+      if (Math.random() < 0.25) { const s = staticQ(tid); if (s) return s; }
+      return genQuestion(tid);
+    }
+    function buildPool(topic, count) {
+      const pickableT = ALLT;
+      const list = []; const seen = {};
+      let guard = 0;
+      while (list.length < count && guard < count * 30) {
+        guard++;
+        const tid = topic === 'all' ? pickableT[Math.floor(Math.random() * pickableT.length)] : topic;
+        const q = makeOne(tid);
+        if (seen[q.q]) continue; // tránh trùng câu trong cùng lượt
+        seen[q.q] = 1; list.push(q);
+      }
+      return list;
+    }
+
+    document.getElementById('startQuiz').onclick = () => {
+      const topic = quizTopic.value;
+      const cnt = parseInt(document.getElementById('quizCount').value);
+      const pool = buildPool(topic, cnt);
+      quiz = { list: pool, idx: 0, score: 0, count: pool.length };
+      document.getElementById('quizSetup').style.display = 'none';
+      document.getElementById('quizResult').style.display = 'none';
+      document.getElementById('quizPlay').style.display = 'block';
+      renderQ();
+    };
+    function renderQ() {
+      const q = quiz.list[quiz.idx];
+      document.getElementById('qTopic').textContent = q.topicName || tenseName(q.topic);
+      document.getElementById('qCounter').textContent = `${quiz.idx + 1}/${quiz.count}`;
+      document.getElementById('qBar').style.width = `${(quiz.idx) / quiz.count * 100}%`;
+      document.getElementById('qText').textContent = q.q;
+      const opts = document.getElementById('qOpts');
+      opts.innerHTML = '';
+      q.o.forEach((opt, i) => {
+        const b = document.createElement('button');
+        b.className = 'opt'; b.textContent = opt;
+        b.onclick = () => answer(i, b);
+        opts.appendChild(b);
+      });
+      const fb = document.getElementById('qFeedback'); fb.className = 'feedback'; fb.textContent = '';
+      document.getElementById('nextQ').style.display = 'none';
+    }
+    function answer(i, btn) {
+      const q = quiz.list[quiz.idx];
+      const all = document.querySelectorAll('#qOpts .opt');
+      all.forEach(b => b.classList.add('disabled'));
+      const fb = document.getElementById('qFeedback');
+      if (i === q.a) {
+        btn.classList.add('correct'); quiz.score++;
+        fb.className = 'feedback ok show'; fb.innerHTML = `✅ <b>Chính xác!</b> ${q.e}`;
+      } else {
+        btn.classList.add('wrong'); all[q.a].classList.add('correct');
+        fb.className = 'feedback no show'; fb.innerHTML = `❌ <b>Sai rồi.</b> Đáp án đúng: <b>${q.o[q.a]}</b>. ${q.e}`;
+      }
+      document.getElementById('qBar').style.width = `${(quiz.idx + 1) / quiz.count * 100}%`;
+      document.getElementById('nextQ').style.display = 'inline-block';
+    }
+    document.getElementById('nextQ').onclick = () => {
+      quiz.idx++;
+      if (quiz.idx >= quiz.count) finishQuiz();
+      else renderQ();
+    };
+    function finishQuiz() {
+      document.getElementById('quizPlay').style.display = 'none';
+      document.getElementById('quizResult').style.display = 'block';
+      const pct = Math.round(quiz.score / quiz.count * 100);
+      document.getElementById('finalScore').textContent = `${quiz.score}/${quiz.count}`;
+      let msg;
+      if (pct === 100) msg = '🏆 Tuyệt vời! Điểm tuyệt đối!';
+      else if (pct >= 80) msg = '🌟 Giỏi lắm! Tiếp tục phát huy nhé.';
+      else if (pct >= 50) msg = '👍 Khá ổn! Ôn lại lý thuyết để tốt hơn.';
+      else msg = '💪 Cố lên! Hãy đọc lại phần Bài học rồi thử lại.';
+      document.getElementById('scoreMsg').textContent = `${msg} (${pct}%)`;
+    }
+    document.getElementById('backQuiz').onclick = () => {
+      if (confirm('Bạn có chắc muốn quay lại? Bài làm hiện tại sẽ không được lưu.')) {
+        document.getElementById('quizPlay').style.display = 'none';
+        document.getElementById('quizResult').style.display = 'none';
+        document.getElementById('quizSetup').style.display = 'block';
+      }
+    };
+    document.getElementById('retryQuiz').onclick = () => document.getElementById('startQuiz').click();
+    document.getElementById('newQuiz').onclick = () => {
+      document.getElementById('quizResult').style.display = 'none';
+      document.getElementById('quizSetup').style.display = 'block';
+    };
+
+    /* ============================================================
+       LUYỆN NÓI
+    ============================================================ */
+    const speakTopic = document.getElementById('speakTopic');
+    speakTopic.innerHTML = TENSES.map(t => `<option value="${t.id}">${t.name}</option>`).join('');
+    let spList = [], spIdx = 0;
+    function loadSpeak() {
+      const t = TENSES.find(x => x.id === speakTopic.value);
+      spList = t.examples; spIdx = 0; renderSpeak();
+    }
+    function renderSpeak() {
+      const ex = spList[spIdx];
+      document.getElementById('spIndex').textContent = `Câu ${spIdx + 1}/${spList.length}`;
+      document.getElementById('spPhrase').textContent = ex[0];
+      document.getElementById('spPhraseVi').textContent = ex[1];
+      const h = document.getElementById('spHeard'); h.style.display = 'none'; h.innerHTML = '';
+      document.getElementById('spHint').textContent = 'Nhấn micro rồi đọc câu trên';
+    }
+    speakTopic.onchange = loadSpeak;
+    document.getElementById('spListen').onclick = () => speak(spList[spIdx][0], 0.95);
+    document.getElementById('spSlow').onclick = () => speak(spList[spIdx][0], 0.6);
+    document.getElementById('spPrev').onclick = () => { if (spIdx > 0) { spIdx--; renderSpeak(); } };
+    document.getElementById('spNext').onclick = () => { if (spIdx < spList.length - 1) { spIdx++; renderSpeak(); } };
+
+    /* --- Speech Recognition --- */
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const micBtn = document.getElementById('spMic');
+    let recog = null, listening = false;
+    try {
+      if (SR) {
+        recog = new SR(); recog.lang = 'en-US'; recog.interimResults = false; recog.maxAlternatives = 3;
+        recog.onresult = (e) => {
+          let best = '';
+          for (let i = 0; i < e.results[0].length; i++) { best = e.results[0][i].transcript; break; }
+          scoreSpeech(best);
+        };
+        recog.onerror = (e) => {
+          stopListen();
+          document.getElementById('spHint').textContent = '⚠️ Không nghe được. Hãy thử lại và nói rõ hơn.';
+        };
+        recog.onend = () => stopListen();
+      } else { throw new Error('no SR'); }
+    } catch (err) {
+      recog = null;
+      document.getElementById('speakWarn').style.display = 'block';
+      micBtn.disabled = true; micBtn.style.opacity = .5;
+    }
+    function startListen() {
+      if (!recog) return;
+      try {
+        recog.start(); listening = true; micBtn.classList.add('listening');
+        document.getElementById('spHint').textContent = '🔴 Đang nghe... hãy đọc câu trên';
+      } catch (e) { }
+    }
+    function stopListen() { listening = false; micBtn.classList.remove('listening'); }
+    micBtn.onclick = () => { if (listening) { recog.stop(); stopListen(); } else startListen(); };
+
+    function norm(s) { return s.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, ' ').trim(); }
+    function scoreSpeech(heardRaw) {
       stopListen();
-      document.getElementById('spHint').textContent='⚠️ Không nghe được. Hãy thử lại và nói rõ hơn.';
-    };
-    recog.onend=()=>stopListen();
-  } else { throw new Error('no SR'); }
-} catch(err){
-  recog=null;
-  document.getElementById('speakWarn').style.display='block';
-  micBtn.disabled=true; micBtn.style.opacity=.5;
-}
-function startListen(){
-  if(!recog) return;
-  try{ recog.start(); listening=true; micBtn.classList.add('listening');
-    document.getElementById('spHint').textContent='🔴 Đang nghe... hãy đọc câu trên';
-  }catch(e){}
-}
-function stopListen(){ listening=false; micBtn.classList.remove('listening'); }
-micBtn.onclick=()=>{ if(listening){ recog.stop(); stopListen(); } else startListen(); };
-
-function norm(s){ return s.toLowerCase().replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim(); }
-function scoreSpeech(heardRaw){
-  stopListen();
-  const target=spList[spIdx][0];
-  const tWords=norm(target).split(' ');
-  const hWords=norm(heardRaw).split(' ');
-  const hSet=[...hWords];
-  let matched=0;
-  const display=tWords.map(w=>{
-    const k=hSet.indexOf(w);
-    if(k>-1){ hSet.splice(k,1); matched++; return `<span class="wmatch">${w}</span>`; }
-    return `<span class="wmiss">${w}</span>`;
-  }).join(' ');
-  const pct=Math.round(matched/tWords.length*100);
-  const box=document.getElementById('spHeard'); box.style.display='block';
-  let verdict;
-  if(pct>=85) verdict=`<div class="result-good">🌟 Xuất sắc! ${pct}% chính xác</div>`;
-  else if(pct>=60) verdict=`<div class="result-good">👍 Khá tốt! ${pct}% — luyện thêm chút nữa</div>`;
-  else verdict=`<div class="result-bad">💪 ${pct}% — hãy nghe mẫu rồi thử lại nhé</div>`;
-  box.innerHTML=`${verdict}
+      const target = spList[spIdx][0];
+      const tWords = norm(target).split(' ');
+      const hWords = norm(heardRaw).split(' ');
+      const hSet = [...hWords];
+      let matched = 0;
+      const display = tWords.map(w => {
+        const k = hSet.indexOf(w);
+        if (k > -1) { hSet.splice(k, 1); matched++; return `<span class="wmatch">${w}</span>`; }
+        return `<span class="wmiss">${w}</span>`;
+      }).join(' ');
+      const pct = Math.round(matched / tWords.length * 100);
+      const box = document.getElementById('spHeard'); box.style.display = 'block';
+      let verdict;
+      if (pct >= 85) verdict = `<div class="result-good">🌟 Xuất sắc! ${pct}% chính xác</div>`;
+      else if (pct >= 60) verdict = `<div class="result-good">👍 Khá tốt! ${pct}% — luyện thêm chút nữa</div>`;
+      else verdict = `<div class="result-bad">💪 ${pct}% — hãy nghe mẫu rồi thử lại nhé</div>`;
+      box.innerHTML = `${verdict}
     <div style="margin-top:8px"><b>Câu mẫu:</b> ${display}</div>
     <div class="muted" style="margin-top:4px"><b>Bạn đọc:</b> "${heardRaw}"</div>`;
-  document.getElementById('spHint').textContent='Nhấn micro để thử lại hoặc qua câu sau';
-}
-loadSpeak();
+      document.getElementById('spHint').textContent = 'Nhấn micro để thử lại hoặc qua câu sau';
+    }
+    loadSpeak();
 
-/* ============================================================
-   TỪ VỰNG
-============================================================ */
-const VOCAB = {
-  '🏫 Trường học':[
-    ['school','/skuːl/','trường học'],['teacher','/ˈtiːtʃə/','giáo viên'],
-    ['student','/ˈstjuːdnt/','học sinh'],['classroom','/ˈklɑːsruːm/','lớp học'],
-    ['book','/bʊk/','quyển sách'],['pen','/pen/','bút mực'],
-    ['pencil','/ˈpensl/','bút chì'],['notebook','/ˈnəʊtbʊk/','vở'],
-    ['ruler','/ˈruːlə/','thước kẻ'],['eraser','/ɪˈreɪzə/','cục tẩy'],
-    ['homework','/ˈhəʊmwɜːk/','bài tập về nhà'],['lesson','/ˈlesn/','bài học'],
-    ['exam','/ɪɡˈzæm/','kỳ thi'],['library','/ˈlaɪbrəri/','thư viện']
-  ],
-  '👨‍👩‍👧 Gia đình':[
-    ['family','/ˈfæməli/','gia đình'],['father','/ˈfɑːðə/','bố'],
-    ['mother','/ˈmʌðə/','mẹ'],['brother','/ˈbrʌðə/','anh/em trai'],
-    ['sister','/ˈsɪstə/','chị/em gái'],['grandfather','/ˈɡrænfɑːðə/','ông'],
-    ['grandmother','/ˈɡrænmʌðə/','bà'],['son','/sʌn/','con trai'],
-    ['daughter','/ˈdɔːtə/','con gái'],['uncle','/ˈʌŋkl/','chú/bác'],
-    ['aunt','/ɑːnt/','cô/dì'],['cousin','/ˈkʌzn/','anh/chị em họ']
-  ],
-  '🐶 Động vật':[
-    ['dog','/dɒɡ/','con chó'],['cat','/kæt/','con mèo'],
-    ['bird','/bɜːd/','con chim'],['fish','/fɪʃ/','con cá'],
-    ['elephant','/ˈelɪfənt/','con voi'],['tiger','/ˈtaɪɡə/','con hổ'],
-    ['lion','/ˈlaɪən/','sư tử'],['monkey','/ˈmʌŋki/','con khỉ'],
-    ['rabbit','/ˈræbɪt/','con thỏ'],['chicken','/ˈtʃɪkɪn/','con gà'],
-    ['cow','/kaʊ/','con bò'],['horse','/hɔːs/','con ngựa']
-  ],
-  '🍎 Thức ăn':[
-    ['rice','/raɪs/','cơm/gạo'],['bread','/bred/','bánh mì'],
-    ['milk','/mɪlk/','sữa'],['water','/ˈwɔːtə/','nước'],
-    ['apple','/ˈæpl/','quả táo'],['banana','/bəˈnɑːnə/','quả chuối'],
-    ['orange','/ˈɒrɪndʒ/','quả cam'],['egg','/eɡ/','quả trứng'],
-    ['meat','/miːt/','thịt'],['vegetable','/ˈvedʒtəbl/','rau củ'],
-    ['noodle','/ˈnuːdl/','mì/phở'],['fruit','/fruːt/','trái cây']
-  ],
-  '🧍 Cơ thể':[
-    ['head','/hed/','đầu'],['hair','/heə/','tóc'],
-    ['eye','/aɪ/','mắt'],['nose','/nəʊz/','mũi'],
-    ['mouth','/maʊθ/','miệng'],['ear','/ɪə/','tai'],
-    ['hand','/hænd/','bàn tay'],['leg','/leɡ/','chân'],
-    ['foot','/fʊt/','bàn chân'],['arm','/ɑːm/','cánh tay'],
-    ['face','/feɪs/','khuôn mặt'],['tooth','/tuːθ/','răng']
-  ],
-  '⚡ Động từ thường gặp':[
-    ['go','/ɡəʊ/','đi'],['eat','/iːt/','ăn'],
-    ['drink','/drɪŋk/','uống'],['play','/pleɪ/','chơi'],
-    ['read','/riːd/','đọc'],['write','/raɪt/','viết'],
-    ['run','/rʌn/','chạy'],['walk','/wɔːk/','đi bộ'],
-    ['sleep','/sliːp/','ngủ'],['study','/ˈstʌdi/','học'],
-    ['speak','/spiːk/','nói'],['listen','/ˈlɪsn/','nghe'],
-    ['watch','/wɒtʃ/','xem'],['help','/help/','giúp đỡ']
-  ]
-};
-const vocabTabs=document.getElementById('vocabTabs');
-const vocabList=document.getElementById('vocabList');
-const vocabTopics=Object.keys(VOCAB);
-let curVocab=vocabTopics[0];
-vocabTabs.innerHTML=vocabTopics.map((t,i)=>`<button class="btn ${i===0?'':'ghost'}" data-vt="${t}">${t}</button>`).join('');
-function renderVocab(){
-  vocabTabs.querySelectorAll('[data-vt]').forEach(b=>{
-    b.className='btn '+(b.dataset.vt===curVocab?'':'ghost');
-  });
-  const words=VOCAB[curVocab];
-  vocabList.innerHTML=`<div class="grid cols3">${words.map(w=>`
+    /* ============================================================
+       TỪ VỰNG
+    ============================================================ */
+    const VOCAB = {
+      '🏫 Trường học': [
+        ['school', '/skuːl/', 'trường học'], ['teacher', '/ˈtiːtʃə/', 'giáo viên'],
+        ['student', '/ˈstjuːdnt/', 'học sinh'], ['classroom', '/ˈklɑːsruːm/', 'lớp học'],
+        ['book', '/bʊk/', 'quyển sách'], ['pen', '/pen/', 'bút mực'],
+        ['pencil', '/ˈpensl/', 'bút chì'], ['notebook', '/ˈnəʊtbʊk/', 'vở'],
+        ['ruler', '/ˈruːlə/', 'thước kẻ'], ['eraser', '/ɪˈreɪzə/', 'cục tẩy'],
+        ['homework', '/ˈhəʊmwɜːk/', 'bài tập về nhà'], ['lesson', '/ˈlesn/', 'bài học'],
+        ['exam', '/ɪɡˈzæm/', 'kỳ thi'], ['library', '/ˈlaɪbrəri/', 'thư viện']
+      ],
+      '👨‍👩‍👧 Gia đình': [
+        ['family', '/ˈfæməli/', 'gia đình'], ['father', '/ˈfɑːðə/', 'bố'],
+        ['mother', '/ˈmʌðə/', 'mẹ'], ['brother', '/ˈbrʌðə/', 'anh/em trai'],
+        ['sister', '/ˈsɪstə/', 'chị/em gái'], ['grandfather', '/ˈɡrænfɑːðə/', 'ông'],
+        ['grandmother', '/ˈɡrænmʌðə/', 'bà'], ['son', '/sʌn/', 'con trai'],
+        ['daughter', '/ˈdɔːtə/', 'con gái'], ['uncle', '/ˈʌŋkl/', 'chú/bác'],
+        ['aunt', '/ɑːnt/', 'cô/dì'], ['cousin', '/ˈkʌzn/', 'anh/chị em họ']
+      ],
+      '🐶 Động vật': [
+        ['dog', '/dɒɡ/', 'con chó'], ['cat', '/kæt/', 'con mèo'],
+        ['bird', '/bɜːd/', 'con chim'], ['fish', '/fɪʃ/', 'con cá'],
+        ['elephant', '/ˈelɪfənt/', 'con voi'], ['tiger', '/ˈtaɪɡə/', 'con hổ'],
+        ['lion', '/ˈlaɪən/', 'sư tử'], ['monkey', '/ˈmʌŋki/', 'con khỉ'],
+        ['rabbit', '/ˈræbɪt/', 'con thỏ'], ['chicken', '/ˈtʃɪkɪn/', 'con gà'],
+        ['cow', '/kaʊ/', 'con bò'], ['horse', '/hɔːs/', 'con ngựa']
+      ],
+      '🍎 Thức ăn': [
+        ['rice', '/raɪs/', 'cơm/gạo'], ['bread', '/bred/', 'bánh mì'],
+        ['milk', '/mɪlk/', 'sữa'], ['water', '/ˈwɔːtə/', 'nước'],
+        ['apple', '/ˈæpl/', 'quả táo'], ['banana', '/bəˈnɑːnə/', 'quả chuối'],
+        ['orange', '/ˈɒrɪndʒ/', 'quả cam'], ['egg', '/eɡ/', 'quả trứng'],
+        ['meat', '/miːt/', 'thịt'], ['vegetable', '/ˈvedʒtəbl/', 'rau củ'],
+        ['noodle', '/ˈnuːdl/', 'mì/phở'], ['fruit', '/fruːt/', 'trái cây']
+      ],
+      '🧍 Cơ thể': [
+        ['head', '/hed/', 'đầu'], ['hair', '/heə/', 'tóc'],
+        ['eye', '/aɪ/', 'mắt'], ['nose', '/nəʊz/', 'mũi'],
+        ['mouth', '/maʊθ/', 'miệng'], ['ear', '/ɪə/', 'tai'],
+        ['hand', '/hænd/', 'bàn tay'], ['leg', '/leɡ/', 'chân'],
+        ['foot', '/fʊt/', 'bàn chân'], ['arm', '/ɑːm/', 'cánh tay'],
+        ['face', '/feɪs/', 'khuôn mặt'], ['tooth', '/tuːθ/', 'răng']
+      ],
+      '⚡ Động từ thường gặp': [
+        ['go', '/ɡəʊ/', 'đi'], ['eat', '/iːt/', 'ăn'],
+        ['drink', '/drɪŋk/', 'uống'], ['play', '/pleɪ/', 'chơi'],
+        ['read', '/riːd/', 'đọc'], ['write', '/raɪt/', 'viết'],
+        ['run', '/rʌn/', 'chạy'], ['walk', '/wɔːk/', 'đi bộ'],
+        ['sleep', '/sliːp/', 'ngủ'], ['study', '/ˈstʌdi/', 'học'],
+        ['speak', '/spiːk/', 'nói'], ['listen', '/ˈlɪsn/', 'nghe'],
+        ['watch', '/wɒtʃ/', 'xem'], ['help', '/help/', 'giúp đỡ']
+      ]
+    };
+    const vocabTabs = document.getElementById('vocabTabs');
+    const vocabList = document.getElementById('vocabList');
+    const vocabTopics = Object.keys(VOCAB);
+    let curVocab = vocabTopics[0];
+    vocabTabs.innerHTML = vocabTopics.map((t, i) => `<button class="btn ${i === 0 ? '' : 'ghost'}" data-vt="${t}">${t}</button>`).join('');
+    function renderVocab() {
+      vocabTabs.querySelectorAll('[data-vt]').forEach(b => {
+        b.className = 'btn ' + (b.dataset.vt === curVocab ? '' : 'ghost');
+      });
+      const words = VOCAB[curVocab];
+      vocabList.innerHTML = `<div class="grid cols3">${words.map(w => `
     <div class="card" style="padding:14px 16px">
       <div class="row" style="justify-content:space-between; align-items:flex-start">
         <div>
@@ -1070,107 +1629,107 @@ function renderVocab(){
         <button class="btn ghost" style="padding:6px 12px" onclick="speak('${w[0]}')">🔊</button>
       </div>
     </div>`).join('')}</div>`;
-}
-vocabTabs.querySelectorAll('[data-vt]').forEach(b=>b.onclick=()=>{ curVocab=b.dataset.vt; renderVocab(); });
-renderVocab();
+    }
+    vocabTabs.querySelectorAll('[data-vt]').forEach(b => b.onclick = () => { curVocab = b.dataset.vt; renderVocab(); });
+    renderVocab();
 
-/* --- Trò chơi ghép từ --- */
-const allWords=Object.values(VOCAB).flat();
-let vgScore=0, vgCurrent=null;
-function newVG(){
-  const pick=allWords[Math.floor(Math.random()*allWords.length)];
-  vgCurrent=pick;
-  const wrong=[];
-  while(wrong.length<3){
-    const w=allWords[Math.floor(Math.random()*allWords.length)];
-    if(w[2]!==pick[2] && !wrong.includes(w[2])) wrong.push(w[2]);
-  }
-  const opts=[pick[2],...wrong];
-  for(let i=opts.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [opts[i],opts[j]]=[opts[j],opts[i]]; }
-  document.getElementById('vgWord').innerHTML=`${pick[0]} <button class="btn ghost" style="padding:4px 12px" onclick="speak('${pick[0]}')">🔊</button>`;
-  const box=document.getElementById('vgOpts'); box.innerHTML='';
-  opts.forEach(o=>{
-    const b=document.createElement('button'); b.className='opt'; b.textContent=o;
-    b.onclick=()=>vgAnswer(o,b); box.appendChild(b);
-  });
-  const fb=document.getElementById('vgFeedback'); fb.className='feedback'; fb.textContent='';
-  document.getElementById('vgNext').style.display='none';
-}
-function vgAnswer(o,btn){
-  document.querySelectorAll('#vgOpts .opt').forEach(b=>b.classList.add('disabled'));
-  const fb=document.getElementById('vgFeedback');
-  if(o===vgCurrent[2]){
-    btn.classList.add('correct'); vgScore++;
-    fb.className='feedback ok show'; fb.innerHTML='✅ Chính xác!';
-  }else{
-    btn.classList.add('wrong');
-    document.querySelectorAll('#vgOpts .opt').forEach(b=>{ if(b.textContent===vgCurrent[2]) b.classList.add('correct'); });
-    fb.className='feedback no show'; fb.innerHTML=`❌ Đáp án đúng: <b>${vgCurrent[2]}</b>`;
-  }
-  document.getElementById('vgScore').textContent='Điểm: '+vgScore;
-  document.getElementById('vgNext').style.display='inline-block';
-}
-document.getElementById('vgNext').onclick=newVG;
-newVG();
+    /* --- Trò chơi ghép từ --- */
+    const allWords = Object.values(VOCAB).flat();
+    let vgScore = 0, vgCurrent = null;
+    function newVG() {
+      const pick = allWords[Math.floor(Math.random() * allWords.length)];
+      vgCurrent = pick;
+      const wrong = [];
+      while (wrong.length < 3) {
+        const w = allWords[Math.floor(Math.random() * allWords.length)];
+        if (w[2] !== pick[2] && !wrong.includes(w[2])) wrong.push(w[2]);
+      }
+      const opts = [pick[2], ...wrong];
+      for (let i = opts.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[opts[i], opts[j]] = [opts[j], opts[i]]; }
+      document.getElementById('vgWord').innerHTML = `${pick[0]} <button class="btn ghost" style="padding:4px 12px" onclick="speak('${pick[0]}')">🔊</button>`;
+      const box = document.getElementById('vgOpts'); box.innerHTML = '';
+      opts.forEach(o => {
+        const b = document.createElement('button'); b.className = 'opt'; b.textContent = o;
+        b.onclick = () => vgAnswer(o, b); box.appendChild(b);
+      });
+      const fb = document.getElementById('vgFeedback'); fb.className = 'feedback'; fb.textContent = '';
+      document.getElementById('vgNext').style.display = 'none';
+    }
+    function vgAnswer(o, btn) {
+      document.querySelectorAll('#vgOpts .opt').forEach(b => b.classList.add('disabled'));
+      const fb = document.getElementById('vgFeedback');
+      if (o === vgCurrent[2]) {
+        btn.classList.add('correct'); vgScore++;
+        fb.className = 'feedback ok show'; fb.innerHTML = '✅ Chính xác!';
+      } else {
+        btn.classList.add('wrong');
+        document.querySelectorAll('#vgOpts .opt').forEach(b => { if (b.textContent === vgCurrent[2]) b.classList.add('correct'); });
+        fb.className = 'feedback no show'; fb.innerHTML = `❌ Đáp án đúng: <b>${vgCurrent[2]}</b>`;
+      }
+      document.getElementById('vgScore').textContent = 'Điểm: ' + vgScore;
+      document.getElementById('vgNext').style.display = 'inline-block';
+    }
+    document.getElementById('vgNext').onclick = newVG;
+    newVG();
 
-/* ============================================================
-   ĐỘNG TỪ BẤT QUY TẮC
-============================================================ */
-const IRREGULAR=[
-  ['be','was/were','been','thì, là, ở'],['become','became','become','trở nên'],
-  ['begin','began','begun','bắt đầu'],['break','broke','broken','làm vỡ'],
-  ['bring','brought','brought','mang đến'],['build','built','built','xây dựng'],
-  ['buy','bought','bought','mua'],['catch','caught','caught','bắt, chộp'],
-  ['choose','chose','chosen','lựa chọn'],['come','came','come','đến'],
-  ['cost','cost','cost','có giá'],['cut','cut','cut','cắt'],
-  ['do','did','done','làm'],['draw','drew','drawn','vẽ'],
-  ['drink','drank','drunk','uống'],['drive','drove','driven','lái xe'],
-  ['eat','ate','eaten','ăn'],['fall','fell','fallen','rơi, ngã'],
-  ['feel','felt','felt','cảm thấy'],['find','found','found','tìm thấy'],
-  ['fly','flew','flown','bay'],['forget','forgot','forgotten','quên'],
-  ['get','got','gotten/got','lấy, nhận'],['give','gave','given','cho, tặng'],
-  ['go','went','gone','đi'],['grow','grew','grown','lớn lên, trồng'],
-  ['have','had','had','có'],['hear','heard','heard','nghe'],
-  ['hide','hid','hidden','giấu, trốn'],['hit','hit','hit','đánh, đập'],
-  ['hold','held','held','cầm, giữ'],['hurt','hurt','hurt','làm đau'],
-  ['keep','kept','kept','giữ'],['know','knew','known','biết'],
-  ['learn','learnt/learned','learnt/learned','học'],['leave','left','left','rời đi'],
-  ['lend','lent','lent','cho mượn'],['let','let','let','cho phép'],
-  ['lose','lost','lost','mất, thua'],['make','made','made','làm, chế tạo'],
-  ['mean','meant','meant','có nghĩa'],['meet','met','met','gặp'],
-  ['pay','paid','paid','trả tiền'],['put','put','put','đặt, để'],
-  ['read','read','read','đọc'],['ride','rode','ridden','cưỡi, đi xe'],
-  ['ring','rang','rung','reo, gọi'],['run','ran','run','chạy'],
-  ['say','said','said','nói'],['see','saw','seen','nhìn thấy'],
-  ['sell','sold','sold','bán'],['send','sent','sent','gửi'],
-  ['shine','shone','shone','chiếu sáng'],['show','showed','shown','cho xem'],
-  ['shut','shut','shut','đóng'],['sing','sang','sung','hát'],
-  ['sit','sat','sat','ngồi'],['sleep','slept','slept','ngủ'],
-  ['speak','spoke','spoken','nói'],['spend','spent','spent','tiêu, dành'],
-  ['stand','stood','stood','đứng'],['steal','stole','stolen','ăn trộm'],
-  ['swim','swam','swum','bơi'],['take','took','taken','lấy, cầm'],
-  ['teach','taught','taught','dạy'],['tell','told','told','kể, bảo'],
-  ['think','thought','thought','nghĩ'],['throw','threw','thrown','ném'],
-  ['understand','understood','understood','hiểu'],['wake','woke','woken','thức dậy'],
-  ['wear','wore','worn','mặc'],['win','won','won','thắng'],
-  ['write','wrote','written','viết'],['fight','fought','fought','chiến đấu'],
-  ['feed','fed','fed','cho ăn'],
-  ['lie','lay','lain','nằm'],['lay','laid','laid','đặt nằm'],
-  ['rise','rose','risen','mọc, tăng lên'],['set','set','set','lặn, đặt'],
-  ['shoot','shot','shot','bắn'],['sink','sank','sunk','chìm']
-];
-const ivTable=document.getElementById('ivTable');
-function renderIV(filter=''){
-  const f=filter.toLowerCase().trim();
-  const rows=IRREGULAR.filter(v=>!f || v.join(' ').toLowerCase().includes(f));
-  ivTable.innerHTML=`
+    /* ============================================================
+       ĐỘNG TỪ BẤT QUY TẮC
+    ============================================================ */
+    const IRREGULAR = [
+      ['be', 'was/were', 'been', 'thì, là, ở'], ['become', 'became', 'become', 'trở nên'],
+      ['begin', 'began', 'begun', 'bắt đầu'], ['break', 'broke', 'broken', 'làm vỡ'],
+      ['bring', 'brought', 'brought', 'mang đến'], ['build', 'built', 'built', 'xây dựng'],
+      ['buy', 'bought', 'bought', 'mua'], ['catch', 'caught', 'caught', 'bắt, chộp'],
+      ['choose', 'chose', 'chosen', 'lựa chọn'], ['come', 'came', 'come', 'đến'],
+      ['cost', 'cost', 'cost', 'có giá'], ['cut', 'cut', 'cut', 'cắt'],
+      ['do', 'did', 'done', 'làm'], ['draw', 'drew', 'drawn', 'vẽ'],
+      ['drink', 'drank', 'drunk', 'uống'], ['drive', 'drove', 'driven', 'lái xe'],
+      ['eat', 'ate', 'eaten', 'ăn'], ['fall', 'fell', 'fallen', 'rơi, ngã'],
+      ['feel', 'felt', 'felt', 'cảm thấy'], ['find', 'found', 'found', 'tìm thấy'],
+      ['fly', 'flew', 'flown', 'bay'], ['forget', 'forgot', 'forgotten', 'quên'],
+      ['get', 'got', 'gotten/got', 'lấy, nhận'], ['give', 'gave', 'given', 'cho, tặng'],
+      ['go', 'went', 'gone', 'đi'], ['grow', 'grew', 'grown', 'lớn lên, trồng'],
+      ['have', 'had', 'had', 'có'], ['hear', 'heard', 'heard', 'nghe'],
+      ['hide', 'hid', 'hidden', 'giấu, trốn'], ['hit', 'hit', 'hit', 'đánh, đập'],
+      ['hold', 'held', 'held', 'cầm, giữ'], ['hurt', 'hurt', 'hurt', 'làm đau'],
+      ['keep', 'kept', 'kept', 'giữ'], ['know', 'knew', 'known', 'biết'],
+      ['learn', 'learnt/learned', 'learnt/learned', 'học'], ['leave', 'left', 'left', 'rời đi'],
+      ['lend', 'lent', 'lent', 'cho mượn'], ['let', 'let', 'let', 'cho phép'],
+      ['lose', 'lost', 'lost', 'mất, thua'], ['make', 'made', 'made', 'làm, chế tạo'],
+      ['mean', 'meant', 'meant', 'có nghĩa'], ['meet', 'met', 'met', 'gặp'],
+      ['pay', 'paid', 'paid', 'trả tiền'], ['put', 'put', 'put', 'đặt, để'],
+      ['read', 'read', 'read', 'đọc'], ['ride', 'rode', 'ridden', 'cưỡi, đi xe'],
+      ['ring', 'rang', 'rung', 'reo, gọi'], ['run', 'ran', 'run', 'chạy'],
+      ['say', 'said', 'said', 'nói'], ['see', 'saw', 'seen', 'nhìn thấy'],
+      ['sell', 'sold', 'sold', 'bán'], ['send', 'sent', 'sent', 'gửi'],
+      ['shine', 'shone', 'shone', 'chiếu sáng'], ['show', 'showed', 'shown', 'cho xem'],
+      ['shut', 'shut', 'shut', 'đóng'], ['sing', 'sang', 'sung', 'hát'],
+      ['sit', 'sat', 'sat', 'ngồi'], ['sleep', 'slept', 'slept', 'ngủ'],
+      ['speak', 'spoke', 'spoken', 'nói'], ['spend', 'spent', 'spent', 'tiêu, dành'],
+      ['stand', 'stood', 'stood', 'đứng'], ['steal', 'stole', 'stolen', 'ăn trộm'],
+      ['swim', 'swam', 'swum', 'bơi'], ['take', 'took', 'taken', 'lấy, cầm'],
+      ['teach', 'taught', 'taught', 'dạy'], ['tell', 'told', 'told', 'kể, bảo'],
+      ['think', 'thought', 'thought', 'nghĩ'], ['throw', 'threw', 'thrown', 'ném'],
+      ['understand', 'understood', 'understood', 'hiểu'], ['wake', 'woke', 'woken', 'thức dậy'],
+      ['wear', 'wore', 'worn', 'mặc'], ['win', 'won', 'won', 'thắng'],
+      ['write', 'wrote', 'written', 'viết'], ['fight', 'fought', 'fought', 'chiến đấu'],
+      ['feed', 'fed', 'fed', 'cho ăn'],
+      ['lie', 'lay', 'lain', 'nằm'], ['lay', 'laid', 'laid', 'đặt nằm'],
+      ['rise', 'rose', 'risen', 'mọc, tăng lên'], ['set', 'set', 'set', 'lặn, đặt'],
+      ['shoot', 'shot', 'shot', 'bắn'], ['sink', 'sank', 'sunk', 'chìm']
+    ];
+    const ivTable = document.getElementById('ivTable');
+    function renderIV(filter = '') {
+      const f = filter.toLowerCase().trim();
+      const rows = IRREGULAR.filter(v => !f || v.join(' ').toLowerCase().includes(f));
+      ivTable.innerHTML = `
     <div style="overflow-x:auto">
     <table style="width:100%; border-collapse:collapse; min-width:560px">
       <thead><tr style="text-align:left; color:#93c5fd; border-bottom:2px solid var(--border)">
         <th style="padding:10px">V1 (nguyên thể)</th><th>V2 (quá khứ)</th><th>V3 (PII)</th><th>Nghĩa</th><th></th>
       </tr></thead>
       <tbody>
-      ${rows.map((v,i)=>`<tr style="border-bottom:1px solid var(--border); background:${i%2?'rgba(39,52,73,.4)':'transparent'}">
+      ${rows.map((v, i) => `<tr style="border-bottom:1px solid var(--border); background:${i % 2 ? 'rgba(39,52,73,.4)' : 'transparent'}">
         <td style="padding:9px 10px; font-weight:700; color:#e2e8f0">${v[0]}</td>
         <td style="color:#fcd34d">${v[1]}</td>
         <td style="color:#86efac">${v[2]}</td>
@@ -1179,55 +1738,56 @@ function renderIV(filter=''){
       </tr>`).join('')}
       </tbody>
     </table></div>
-    ${rows.length===0?'<p class="muted" style="padding:14px">Không tìm thấy động từ nào.</p>':`<p class="muted" style="padding:10px 4px">Tổng: ${rows.length} động từ</p>`}`;
-}
-document.getElementById('ivSearch').addEventListener('input',e=>renderIV(e.target.value));
-renderIV();
+    ${rows.length === 0 ? '<p class="muted" style="padding:14px">Không tìm thấy động từ nào.</p>' : `<p class="muted" style="padding:10px 4px">Tổng: ${rows.length} động từ</p>`}`;
+    }
+    document.getElementById('ivSearch').addEventListener('input', e => renderIV(e.target.value));
+    renderIV();
 
-/* --- Trò chơi điền V2/V3 --- */
-let ivgScore=0, ivgCur=null, ivgCol=2;
-function newIVG(){
-  ivgCur=IRREGULAR[Math.floor(Math.random()*IRREGULAR.length)];
-  ivgCol=Math.random()<0.5?1:2; // 1=V2, 2=V3
-  const label=ivgCol===1?'V2 (quá khứ)':'V3 (quá khứ phân từ)';
-  const correct=ivgCur[ivgCol];
-  const wrong=[];
-  while(wrong.length<3){
-    const v=IRREGULAR[Math.floor(Math.random()*IRREGULAR.length)];
-    const cand=v[ivgCol];
-    if(cand!==correct && !wrong.includes(cand)) wrong.push(cand);
-  }
-  const opts=[correct,...wrong];
-  for(let i=opts.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [opts[i],opts[j]]=[opts[j],opts[i]]; }
-  document.getElementById('ivgWord').innerHTML=`Dạng <b style="color:#93c5fd">${label}</b> của <b style="color:#fcd34d">${ivgCur[0]}</b> (${ivgCur[3]}) là gì?`;
-  const box=document.getElementById('ivgOpts'); box.innerHTML='';
-  opts.forEach(o=>{
-    const b=document.createElement('button'); b.className='opt'; b.textContent=o;
-    b.onclick=()=>ivgAnswer(o,b); box.appendChild(b);
-  });
-  const fb=document.getElementById('ivgFeedback'); fb.className='feedback'; fb.textContent='';
-  document.getElementById('ivgNext').style.display='none';
-}
-function ivgAnswer(o,btn){
-  document.querySelectorAll('#ivgOpts .opt').forEach(b=>b.classList.add('disabled'));
-  const fb=document.getElementById('ivgFeedback');
-  const correct=ivgCur[ivgCol];
-  if(o===correct){
-    btn.classList.add('correct'); ivgScore++;
-    fb.className='feedback ok show'; fb.innerHTML=`✅ Đúng! ${ivgCur[0]} → ${ivgCur[1]} → ${ivgCur[2]}`;
-  }else{
-    btn.classList.add('wrong');
-    document.querySelectorAll('#ivgOpts .opt').forEach(b=>{ if(b.textContent===correct) b.classList.add('correct'); });
-    fb.className='feedback no show'; fb.innerHTML=`❌ Đáp án đúng: <b>${correct}</b>. (${ivgCur[0]} → ${ivgCur[1]} → ${ivgCur[2]})`;
-  }
-  document.getElementById('ivgScore').textContent='Điểm: '+ivgScore;
-  document.getElementById('ivgNext').style.display='inline-block';
-}
-document.getElementById('ivgNext').onclick=newIVG;
-newIVG();
+    /* --- Trò chơi điền V2/V3 --- */
+    let ivgScore = 0, ivgCur = null, ivgCol = 2;
+    function newIVG() {
+      ivgCur = IRREGULAR[Math.floor(Math.random() * IRREGULAR.length)];
+      ivgCol = Math.random() < 0.5 ? 1 : 2; // 1=V2, 2=V3
+      const label = ivgCol === 1 ? 'V2 (quá khứ)' : 'V3 (quá khứ phân từ)';
+      const correct = ivgCur[ivgCol];
+      const wrong = [];
+      while (wrong.length < 3) {
+        const v = IRREGULAR[Math.floor(Math.random() * IRREGULAR.length)];
+        const cand = v[ivgCol];
+        if (cand !== correct && !wrong.includes(cand)) wrong.push(cand);
+      }
+      const opts = [correct, ...wrong];
+      for (let i = opts.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[opts[i], opts[j]] = [opts[j], opts[i]]; }
+      document.getElementById('ivgWord').innerHTML = `Dạng <b style="color:#93c5fd">${label}</b> của <b style="color:#fcd34d">${ivgCur[0]}</b> (${ivgCur[3]}) là gì?`;
+      const box = document.getElementById('ivgOpts'); box.innerHTML = '';
+      opts.forEach(o => {
+        const b = document.createElement('button'); b.className = 'opt'; b.textContent = o;
+        b.onclick = () => ivgAnswer(o, b); box.appendChild(b);
+      });
+      const fb = document.getElementById('ivgFeedback'); fb.className = 'feedback'; fb.textContent = '';
+      document.getElementById('ivgNext').style.display = 'none';
+    }
+    function ivgAnswer(o, btn) {
+      document.querySelectorAll('#ivgOpts .opt').forEach(b => b.classList.add('disabled'));
+      const fb = document.getElementById('ivgFeedback');
+      const correct = ivgCur[ivgCol];
+      if (o === correct) {
+        btn.classList.add('correct'); ivgScore++;
+        fb.className = 'feedback ok show'; fb.innerHTML = `✅ Đúng! ${ivgCur[0]} → ${ivgCur[1]} → ${ivgCur[2]}`;
+      } else {
+        btn.classList.add('wrong');
+        document.querySelectorAll('#ivgOpts .opt').forEach(b => { if (b.textContent === correct) b.classList.add('correct'); });
+        fb.className = 'feedback no show'; fb.innerHTML = `❌ Đáp án đúng: <b>${correct}</b>. (${ivgCur[0]} → ${ivgCur[1]} → ${ivgCur[2]})`;
+      }
+      document.getElementById('ivgScore').textContent = 'Điểm: ' + ivgScore;
+      document.getElementById('ivgNext').style.display = 'inline-block';
+    }
+    document.getElementById('ivgNext').onclick = newIVG;
+    newIVG();
 
-// init voices
-window.addEventListener('load',()=>{ if('speechSynthesis' in window) speechSynthesis.getVoices(); });
-</script>
+    // init voices
+    window.addEventListener('load', () => { if ('speechSynthesis' in window) speechSynthesis.getVoices(); });
+  </script>
 </body>
+
 </html>
