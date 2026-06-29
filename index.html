@@ -440,6 +440,40 @@
       border: 1px solid var(--danger);
     }
 
+    .chip {
+      background: var(--card2);
+      color: var(--text);
+      border: 2px solid var(--border);
+      padding: 9px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1.05rem;
+      font-weight: 600;
+      transition: .12s;
+    }
+
+    .chip:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .chip.ans {
+      border-color: var(--primary);
+      background: #1d3a5f;
+    }
+
+    #oBank:empty::after {
+      content: '(đã dùng hết các từ)';
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    #oAnswer:empty::after {
+      content: 'Câu của bạn sẽ hiện ở đây...';
+      color: var(--muted);
+      font-style: italic;
+    }
+
     .scoreboard {
       text-align: center;
       padding: 20px;
@@ -646,6 +680,10 @@
         <div class="card" style="margin-top:18px">
           <h3>Chọn chủ đề ôn tập</h3>
           <div class="row" style="justify-content:center; margin:14px 0">
+            <select id="quizType">
+              <option value="mc">📝 Trắc nghiệm chọn đáp án</option>
+              <option value="order">🔀 Sắp xếp từ thành câu</option>
+            </select>
             <select id="quizTopic"></select>
             <select id="quizCount">
               <option value="10">10 câu</option>
@@ -676,6 +714,32 @@
           <div class="feedback" id="qFeedback"></div>
           <div class="row" style="justify-content:flex-end">
             <button class="btn" id="nextQ" style="display:none">Câu tiếp →</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="orderPlay" style="display:none">
+        <div class="card">
+          <div class="row" style="justify-content:space-between">
+            <button class="btn ghost" id="backOrder" style="padding:6px 14px">← Quay lại</button>
+            <span class="badge" id="oTopic">—</span>
+            <span class="muted" id="oCounter">1/10</span>
+          </div>
+          <div class="progress">
+            <div id="oBar"></div>
+          </div>
+          <p class="muted" style="margin:6px 0">Nhấn vào các từ theo đúng thứ tự để tạo thành câu:</p>
+          <div id="oAnswer"
+            style="min-height:54px; border:2px dashed var(--border); border-radius:12px; padding:10px; margin-bottom:12px; display:flex; flex-wrap:wrap; gap:8px; align-content:flex-start">
+          </div>
+          <div id="oBank" style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px"></div>
+          <div class="feedback" id="oFeedback"></div>
+          <div class="row" style="justify-content:space-between">
+            <button class="btn ghost" id="oReset">↺ Làm lại câu</button>
+            <div class="row">
+              <button class="btn green" id="oCheck">✔️ Kiểm tra</button>
+              <button class="btn" id="oNext" style="display:none">Câu tiếp →</button>
+            </div>
           </div>
         </div>
       </div>
@@ -1398,15 +1462,18 @@
       return list;
     }
 
+    function shuffleArr(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[a[i], a[j]] = [a[j], a[i]]; } return a; }
+    function hideAllQuiz() { ['quizSetup', 'quizPlay', 'orderPlay', 'quizResult'].forEach(id => document.getElementById(id).style.display = 'none'); }
+
     document.getElementById('startQuiz').onclick = () => {
+      const type = document.getElementById('quizType').value;
       const topic = quizTopic.value;
       const cnt = parseInt(document.getElementById('quizCount').value);
       const pool = buildPool(topic, cnt);
-      quiz = { list: pool, idx: 0, score: 0, count: pool.length };
-      document.getElementById('quizSetup').style.display = 'none';
-      document.getElementById('quizResult').style.display = 'none';
-      document.getElementById('quizPlay').style.display = 'block';
-      renderQ();
+      quiz = { list: pool, idx: 0, score: 0, count: pool.length, mode: type };
+      hideAllQuiz();
+      if (type === 'order') { document.getElementById('orderPlay').style.display = 'block'; renderOrder(); }
+      else { document.getElementById('quizPlay').style.display = 'block'; renderQ(); }
     };
     function renderQ() {
       const q = quiz.list[quiz.idx];
@@ -1446,7 +1513,7 @@
       else renderQ();
     };
     function finishQuiz() {
-      document.getElementById('quizPlay').style.display = 'none';
+      hideAllQuiz();
       document.getElementById('quizResult').style.display = 'block';
       const pct = Math.round(quiz.score / quiz.count * 100);
       document.getElementById('finalScore').textContent = `${quiz.score}/${quiz.count}`;
@@ -1468,6 +1535,77 @@
     document.getElementById('newQuiz').onclick = () => {
       document.getElementById('quizResult').style.display = 'none';
       document.getElementById('quizSetup').style.display = 'block';
+    };
+
+    /* ---- DẠNG BÀI: SẮP XẾP TỪ THÀNH CÂU ---- */
+    let orderState = { bank: [], answer: [], checked: false };
+    function renderOrder() {
+      const item = quiz.list[quiz.idx];
+      item._full = item.q.replace('___', item.o[item.a]);
+      const tokens = item._full.split(' ');
+      const scrambled = tokens.slice();
+      if (scrambled.length > 1) {
+        let tries = 0;
+        do { shuffleArr(scrambled); tries++; } while (scrambled.join(' ') === item._full && tries < 12);
+      }
+      orderState = { bank: scrambled, answer: [], checked: false };
+      document.getElementById('oTopic').textContent = item.topicName || tenseName(item.topic);
+      document.getElementById('oCounter').textContent = `${quiz.idx + 1}/${quiz.count}`;
+      document.getElementById('oBar').style.width = `${(quiz.idx) / quiz.count * 100}%`;
+      const fb = document.getElementById('oFeedback'); fb.className = 'feedback'; fb.textContent = '';
+      document.getElementById('oNext').style.display = 'none';
+      document.getElementById('oCheck').style.display = 'inline-block';
+      paintOrder();
+    }
+    function paintOrder() {
+      const ans = document.getElementById('oAnswer'); const bank = document.getElementById('oBank');
+      ans.innerHTML = ''; bank.innerHTML = '';
+      orderState.answer.forEach((w, i) => {
+        const b = document.createElement('button'); b.className = 'chip ans'; b.textContent = w;
+        b.onclick = () => { if (orderState.checked) return; orderState.bank.push(w); orderState.answer.splice(i, 1); paintOrder(); };
+        ans.appendChild(b);
+      });
+      orderState.bank.forEach((w, i) => {
+        const b = document.createElement('button'); b.className = 'chip'; b.textContent = w;
+        b.onclick = () => { if (orderState.checked) return; orderState.answer.push(w); orderState.bank.splice(i, 1); paintOrder(); };
+        bank.appendChild(b);
+      });
+    }
+    document.getElementById('oReset').onclick = () => {
+      if (orderState.checked) return;
+      orderState.bank = orderState.bank.concat(orderState.answer); orderState.answer = [];
+      shuffleArr(orderState.bank); paintOrder();
+      const fb = document.getElementById('oFeedback'); fb.className = 'feedback'; fb.textContent = '';
+    };
+    document.getElementById('oCheck').onclick = () => {
+      if (orderState.checked) return;
+      const item = quiz.list[quiz.idx];
+      const fb = document.getElementById('oFeedback');
+      if (orderState.bank.length > 0) {
+        fb.className = 'feedback no show'; fb.innerHTML = '⚠️ Bạn chưa dùng hết các từ. Hãy ghép đủ rồi kiểm tra.';
+        return;
+      }
+      orderState.checked = true;
+      const made = orderState.answer.join(' ');
+      if (made === item._full) {
+        quiz.score++;
+        fb.className = 'feedback ok show'; fb.innerHTML = `✅ <b>Chính xác!</b> ${item._full}`;
+      } else {
+        fb.className = 'feedback no show'; fb.innerHTML = `❌ <b>Chưa đúng.</b><br>Bạn ghép: ${made}<br>Câu đúng: <b>${item._full}</b>`;
+      }
+      document.getElementById('oBar').style.width = `${(quiz.idx + 1) / quiz.count * 100}%`;
+      document.getElementById('oCheck').style.display = 'none';
+      document.getElementById('oNext').style.display = 'inline-block';
+    };
+    document.getElementById('oNext').onclick = () => {
+      quiz.idx++;
+      if (quiz.idx >= quiz.count) finishQuiz();
+      else renderOrder();
+    };
+    document.getElementById('backOrder').onclick = () => {
+      if (confirm('Bạn có chắc muốn quay lại? Bài làm hiện tại sẽ không được lưu.')) {
+        hideAllQuiz(); document.getElementById('quizSetup').style.display = 'block';
+      }
     };
 
     /* ============================================================
